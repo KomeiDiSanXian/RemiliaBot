@@ -1,3 +1,7 @@
+/*
+	准备连接api
+	基本上需要重构
+*/
 // Package aipaint ai绘图
 package aipaint
 

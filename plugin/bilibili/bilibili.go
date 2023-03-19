@@ -48,11 +48,11 @@ var (
 
 // 查成分的
 func init() {
-	engine := control.Register("bilibili", &ctrl.Options[*zero.Ctx]{
+	engine := control.Register("b站", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
 		Brief:            "b站查成分查弹幕",
-		Help: "- >vup info [xxx]\n" +
-			"- >user info [xxx]\n" +
+		Help: "- .vup info [xxx]\n" +
+			"- .user info [xxx]\n" +
 			"- 查成分 [xxx]\n" +
 			"- 查弹幕 [xxx]\n" +
 			"- 设置b站cookie b_ut=7;buvid3=0;i-wanna-go-back=-1;innersign=0;\n" +
@@ -73,7 +73,7 @@ func init() {
 		}
 		return true
 	})
-	engine.OnRegex(`^>user info\s?(.{1,25})$`, getPara).SetBlock(true).
+	engine.OnRegex(`^.user info\s?(.{1,25})$`, getPara).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
 			id := ctx.State["uid"].(string)
 			card, err := bz.GetMemberCard(id)
@@ -91,7 +91,7 @@ func init() {
 			))
 		})
 
-	engine.OnRegex(`^>vup info\s?(.{1,25})$`, getPara).SetBlock(true).
+	engine.OnRegex(`^.vup info\s?(.{1,25})$`, getPara).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
 			id := ctx.State["uid"].(string)
 			// 获取详情

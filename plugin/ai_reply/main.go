@@ -22,18 +22,17 @@ var replmd = replymode{
 var ttsmd = newttsmode()
 
 func init() { // 插件主体
-	ent := control.Register("tts", &ctrl.Options[*zero.Ctx]{
+	ent := control.Register("语音回复", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: true,
 		Brief:            "人工智能语音回复",
 		Help: "- @Bot 任意文本(任意一句话回复)\n" +
 			"- 设置语音模式[原神人物/百度/拟声鸟] 数字(百度/拟声鸟模式)\n" +
 			"- 设置默认语音模式[原神人物/百度/拟声鸟] 数字(百度/拟声鸟模式)\n" +
 			"- 恢复成默认语音模式\n" +
-			"- 设置原神语音 api key xxxxxx (key请加开发群获得)\n" +
 			"当前适用的原神人物含有以下：\n" + list(genshin.SoundList[:], 5),
 	})
 
-	enr := control.Register("aireply", &ctrl.Options[*zero.Ctx]{
+	enr := control.Register("ai回复", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault:  false,
 		Brief:             "人工智能回复",
 		Help:              "- @Bot 任意文本(任意一句话回复)\n- 设置回复模式[青云客|小爱|ChatGPT]\n- 设置 ChatGPT api key xxx",

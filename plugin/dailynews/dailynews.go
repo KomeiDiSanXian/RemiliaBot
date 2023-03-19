@@ -14,7 +14,7 @@ import (
 const api = "http://dwz.2xb.cn/zaob"
 
 func init() {
-	engine := control.Register("dailynews", &ctrl.Options[*zero.Ctx]{
+	engine := control.Register("早报", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault:  false,
 		Brief:             "今日早报",
 		Help:              "- 今日早报",

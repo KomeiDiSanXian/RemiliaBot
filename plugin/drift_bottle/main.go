@@ -33,7 +33,7 @@ var seaLocker sync.RWMutex
 // We need a container to inject what we need :(
 
 func init() {
-	en := control.Register("driftbottle", &ctrl.Options[*zero.Ctx]{
+	en := control.Register("漂流瓶", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault:  false,
 		Brief:             "漂流瓶",
 		Help:              "- @bot pick" + "- @bot throw xxx (xxx为投递内容)",

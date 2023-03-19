@@ -13,7 +13,7 @@ import (
 )
 
 func init() {
-	control.Register("baidu", &ctrl.Options[*zero.Ctx]{
+	control.Register("百度", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
 		Brief:            "不会百度吗",
 		Help:             "- 百度下[xxx]",

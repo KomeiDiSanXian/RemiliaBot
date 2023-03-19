@@ -15,7 +15,7 @@ import (
 )
 
 func init() {
-	en := control.Register("reborn", &ctrl.Options[*zero.Ctx]{
+	en := control.Register("投胎模拟", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
 		Brief:            "投胎模拟器",
 		Help:             "- reborn",

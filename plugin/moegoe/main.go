@@ -26,7 +26,7 @@ var speakers = map[string]uint{
 }
 
 func init() {
-	en := control.Register("moegoe", &ctrl.Options[*zero.Ctx]{
+	en := control.Register("模型拟声", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
 		Brief:            "日韩中 VITS 模型拟声",
 		Help: "- 让[宁宁|爱瑠|芳乃|茉子|丛雨|小春|七海]说(日语)\n" +

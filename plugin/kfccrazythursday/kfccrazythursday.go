@@ -15,9 +15,9 @@ const (
 )
 
 func init() {
-	engine := control.Register("kfccrazythursday", &ctrl.Options[*zero.Ctx]{
+	engine := control.Register("疯狂星期四", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
-		Brief:            "疯狂星期四",
+		Brief:            "疯狂星期四文案",
 		Help:             "疯狂星期四\n",
 	})
 	engine.OnFullMatch("疯狂星期四").SetBlock(true).Handle(func(ctx *zero.Ctx) {

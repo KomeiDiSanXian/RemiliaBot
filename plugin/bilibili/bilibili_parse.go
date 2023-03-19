@@ -27,7 +27,7 @@ var (
 
 // 插件主体
 func init() {
-	en := control.Register("bilibiliparse", &ctrl.Options[*zero.Ctx]{
+	en := control.Register("b链解析", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
 		Brief:            "b站链接解析",
 		Help:             "例:- t.bilibili.com/642277677329285174\n- bilibili.com/read/cv17134450\n- bilibili.com/video/BV13B4y1x7pS\n- live.bilibili.com/22603245 ",

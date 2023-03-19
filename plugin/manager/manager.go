@@ -64,7 +64,7 @@ var (
 )
 
 func init() { // 插件主体
-	engine := control.Register("manager", &ctrl.Options[*zero.Ctx]{
+	engine := control.Register("群管", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault:  false,
 		Brief:             "群管插件",
 		Help:              hint,
@@ -464,7 +464,7 @@ func init() { // 插件主体
 					ctx.SendGroupMessage(ctx.Event.GroupID, message.ParseMessageFromString(welcometocq(ctx, w.Msg)))
 				} else {
 					userid := ctx.Event.UserID
-					ctx.SendChain(message.Text(ctx.CardOrNickName(userid), "(", userid, ")", "离开了我们..."))
+					ctx.SendChain(message.Text(ctx.CardOrNickName(userid), "(", userid, ")", "承受不住的群内男同的氛围，离开了"))
 				}
 			}
 		})

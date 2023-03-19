@@ -52,13 +52,13 @@ var pool = &imgpool{
 }
 
 func init() { // 插件主体
-	engine := control.Register("setutime", &ctrl.Options[*zero.Ctx]{
+	engine := control.Register("涩图", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
 		Brief:            "涩图",
 		Help: "- 来份[涩图/二次元/风景/车万]\n" +
 			"- 添加[涩图/二次元/风景/车万][P站图片ID]\n" +
 			"- 删除[涩图/二次元/风景/车万][P站图片ID]\n" +
-			"- >setu status",
+			"- .setu -s",
 		PublicDataFolder: "SetuTime",
 	})
 
@@ -130,7 +130,7 @@ func init() { // 插件主体
 		})
 
 	// 查询数据库涩图数量
-	engine.OnFullMatch(">setu status", getdb).SetBlock(true).
+	engine.OnFullMatch(".setu -s", getdb).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
 			state := []string{"[SetuTime]"}
 			pool.dbmu.RLock()

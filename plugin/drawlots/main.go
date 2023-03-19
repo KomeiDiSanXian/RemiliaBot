@@ -40,7 +40,7 @@ var (
 		}
 		return lotsList
 	}()
-	en = control.Register("drawlots", &ctrl.Options[*zero.Ctx]{
+	en = control.Register("多功能抽签", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
 		Brief:            "多功能抽签",
 		Help: "支持图包文件夹和gif抽签\n" +
@@ -115,7 +115,8 @@ func init() {
 		}
 		ctx.Send(message.ReplyWithMessage(id, message.Image("file:///"+datapath+lotsName+"."+fileInfo.lotsType)))
 	})
-	en.OnRegex(`^加(.+)签.*`, zero.SuperUserPermission, zero.MustProvidePicture).SetBlock(true).Limit(ctxext.LimitByUser).Handle(func(ctx *zero.Ctx) {
+	// 修改为任何人可加
+	en.OnRegex(`^加(.+)签.*`, zero.MustProvidePicture).SetBlock(true).Limit(ctxext.LimitByUser).Handle(func(ctx *zero.Ctx) {
 		id := ctx.Event.MessageID
 		lotsName := ctx.State["regex_matched"].([]string)[1]
 		if lotsName == "" {
@@ -144,7 +145,8 @@ func init() {
 		}
 		ctx.Send(message.ReplyWithMessage(id, message.Text("成功！")))
 	})
-	en.OnRegex(`^删(.+)签$`, zero.SuperUserPermission).SetBlock(true).Limit(ctxext.LimitByUser).Handle(func(ctx *zero.Ctx) {
+	// 管理员级可删除
+	en.OnRegex(`^删(.+)签$`, zero.AdminPermission).SetBlock(true).Limit(ctxext.LimitByUser).Handle(func(ctx *zero.Ctx) {
 		id := ctx.Event.MessageID
 		lotsName := ctx.State["regex_matched"].([]string)[1]
 		fileInfo, ok := lotsList[lotsName]

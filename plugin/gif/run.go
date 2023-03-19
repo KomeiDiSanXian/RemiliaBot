@@ -126,7 +126,7 @@ func init() { // 插件主体
 	for k := range cmdMap {
 		cmd = append(cmd, k)
 	}
-	en := control.Register("gif", &ctrl.Options[*zero.Ctx]{
+	en := control.Register("制图", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
 		Brief:            "制图",
 		Help: "下为制图命令:\n" +

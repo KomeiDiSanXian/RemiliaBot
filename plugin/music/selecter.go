@@ -22,7 +22,7 @@ import (
 )
 
 func init() {
-	control.Register("music", &ctrl.Options[*zero.Ctx]{
+	control.Register("点歌", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
 		Brief:            "点歌",
 		Help: "- 点歌[xxx]\n" +

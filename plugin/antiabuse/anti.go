@@ -38,10 +38,10 @@ func onDel(uid int64, _ struct{}) {
 }
 
 func init() {
-	engine := control.Register("antiabuse", &ctrl.Options[*zero.Ctx]{
-		DisableOnDefault:  false,
-		Brief:             "违禁词检测",
-		Help:              "- /[添加|删除|查看]违禁词",
+	engine := control.Register("违禁词检测", &ctrl.Options[*zero.Ctx]{
+		DisableOnDefault: false,
+		Brief:            "违禁词检测",
+		Help: "- /[添加|删除|查看]违禁词\t使用违禁词会被机器人禁言10分钟",
 		PrivateDataFolder: "anti_abuse",
 	})
 

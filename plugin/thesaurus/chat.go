@@ -19,7 +19,7 @@ import (
 )
 
 func init() {
-	engine := control.Register("thesaurus", &ctrl.Options[*zero.Ctx]{
+	engine := control.Register("词匹回复", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
 		Brief:            "词典匹配回复",
 		Help:             "- 切换[kimo|傲娇|可爱]词库\n- 设置词库触发概率0.x (0<x<9)",

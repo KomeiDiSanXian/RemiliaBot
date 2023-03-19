@@ -32,7 +32,7 @@ var (
 )
 
 func init() {
-	en := control.Register("lolicon", &ctrl.Options[*zero.Ctx]{
+	en := control.Register("随机图片", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
 		Brief:            "随机图片",
 		Help: "- 随机图片\n" +

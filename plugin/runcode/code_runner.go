@@ -15,18 +15,18 @@ import (
 var ro = runoob.NewRunOOB("b6365362a90ac2ac7098ba52c13e352b")
 
 func init() {
-	control.Register("runcode", &ctrl.Options[*zero.Ctx]{
+	control.Register("在线代码运行", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
 		Brief:            "在线代码运行",
-		Help: ">runcode [language] [code block]\n" +
+		Help: ".runcode [language] [code block]\n" +
 			"模板查看: \n" +
-			">runcode [language] help\n" +
+			".runcode [language] help\n" +
 			"支持语种: \n" +
 			"Go || Python || C/C++ || C# || Java || Lua \n" +
 			"JavaScript || TypeScript || PHP || Shell \n" +
 			"Kotlin  || Rust || Erlang || Ruby || Swift \n" +
 			"R || VB || Py2 || Perl || Pascal || Scala",
-	}).ApplySingle(ctxext.DefaultSingle).OnRegex(`^>runcode(raw)?\s(.+?)\s([\s\S]+)$`).SetBlock(true).Limit(ctxext.LimitByUser).
+	}).ApplySingle(ctxext.DefaultSingle).OnRegex(`^.runcode(raw)?\s(.+?)\s([\s\S]+)$`).SetBlock(true).Limit(ctxext.LimitByUser).
 		Handle(func(ctx *zero.Ctx) {
 			israw := ctx.State["regex_matched"].([]string)[1] != ""
 			language := ctx.State["regex_matched"].([]string)[2]
