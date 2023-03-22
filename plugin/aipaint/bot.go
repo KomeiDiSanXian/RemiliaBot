@@ -1,3 +1,4 @@
+// 本地部署的ai画图
 package aipaint
 
 import (

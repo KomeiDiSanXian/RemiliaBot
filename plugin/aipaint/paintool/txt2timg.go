@@ -1,7 +1,9 @@
+// txt to img
 package paintool
 
 import "github.com/tidwall/gjson"
 
+// txt to image request body structure
 type Txt2ImgReqBody struct {
 	EnableHires                       bool     `json:"enable_hr"`
 	DenoisingStrength                 int      `json:"denoising_strength"`
@@ -28,6 +30,8 @@ type settings struct {
 	FilterNSFW bool `json:"filter_nsfw"`
 }
 
+// New a Txt2ImgReqBody,which sampler is DPM++ 2M Karras,steps 20, cfg 7, 512*512px.
+// nsfw will be filtered out
 func NewDefaultTxt2Img(prompt, negprompt string) *Txt2ImgReqBody {
 	return &Txt2ImgReqBody{
 		EnableHires:                       false,
@@ -48,6 +52,7 @@ func NewDefaultTxt2Img(prompt, negprompt string) *Txt2ImgReqBody {
 	}
 }
 
+// Send a request body then get an array of base64 string.
 func GetTxt2Img(body *Txt2ImgReqBody) (b64Img []*string, err error) {
 	paint := NewPaint()
 	reqBody, err := NewTxt2ImgRequest(body)
