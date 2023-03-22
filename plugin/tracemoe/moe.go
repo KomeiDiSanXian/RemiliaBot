@@ -23,7 +23,7 @@ func init() { // 插件主体
 	engine.OnKeywordGroup([]string{"以图搜番", "搜番", "搜索番剧"}, zero.MustProvidePicture).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
 			// 开始搜索图片
-			ctx.SendChain(message.Text("少女祈祷中......"))
+			ctx.SendChain(message.Text("少女折寿中......"))
 			for _, pic := range ctx.State["image_url"].([]string) {
 				if result, err := moe.Search(pic, true, true); err != nil {
 					ctx.SendChain(message.Text("ERROR: ", err))

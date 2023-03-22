@@ -54,7 +54,7 @@ func init() { // 插件主体
 	engine.OnRegex(`^搜图(\d+)$`).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
 			id, _ := strconv.ParseInt(ctx.State["regex_matched"].([]string)[1], 10, 64)
-			ctx.SendChain(message.Text("少女祈祷中......"))
+			ctx.SendChain(message.Text("少女折寿中......"))
 			// 获取P站插图信息
 			illust, err := pixiv.Works(id)
 			if err != nil {
@@ -114,7 +114,7 @@ func init() { // 插件主体
 				ctx.SendChain(message.Text("ERROR: 未获取到图片链接"))
 				return
 			}
-			ctx.SendChain(message.Text("少女祈祷中..."))
+			ctx.SendChain(message.Text("少女折寿中..."))
 			for _, pic := range pics {
 				if saucenaocli != nil {
 					resp, err := saucenaocli.FromURL(pic)

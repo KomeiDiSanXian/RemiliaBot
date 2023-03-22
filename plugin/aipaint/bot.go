@@ -20,6 +20,7 @@ var engine = control.Register("ai画图", &ctrl.Options[*zero.Ctx]{
 func init() {
 	engine.OnPrefix(".tti").SetBlock(true).Handle(func(ctx *zero.Ctx) {
 		prompt := ctx.State["args"].(string)
+		ctx.SendChain(message.Text("少女折寿中..."))
 		imgs, err := paintool.GetTxt2Img(paintool.NewDefaultTxt2Img(prompt, paintool.DefaultNegtivePrompt))
 		if err != nil {
 			ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("绘图失败，请稍后再试"))

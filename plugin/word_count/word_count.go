@@ -74,7 +74,7 @@ func init() {
 				return
 			}
 
-			ctx.SendChain(message.Text("少女祈祷中..."))
+			ctx.SendChain(message.Text("少女折寿中..."))
 			gid, _ := strconv.ParseInt(ctx.State["regex_matched"].([]string)[1], 10, 64)
 			p, _ := strconv.ParseInt(ctx.State["regex_matched"].([]string)[2], 10, 64)
 			if p > 10000 {

@@ -24,7 +24,7 @@ func init() {
 		Handle(func(ctx *zero.Ctx) {
 			url := ctx.State["image_url"].([]string)
 			if len(url) > 0 {
-				ctx.SendChain(message.Text("少女祈祷中..."))
+				ctx.SendChain(message.Text("少女折寿中..."))
 				p, err := nsfw.Classify(url[0])
 				if err != nil {
 					ctx.SendChain(message.Text("ERROR: ", err))

@@ -35,7 +35,7 @@ func init() { // 插件主体
 		Handle(func(ctx *zero.Ctx) {
 			_ctx, _cancel := context.WithTimeout(context.Background(), hf.TimeoutMax*time.Second)
 			defer _cancel()
-			ctx.SendChain(message.Text("少女祈祷中..."))
+			ctx.SendChain(message.Text("少女折寿中..."))
 
 			magicpromptURL := fmt.Sprintf(hf.WssJoinPath, magicpromptRepo)
 			args := ctx.State["args"].(string)

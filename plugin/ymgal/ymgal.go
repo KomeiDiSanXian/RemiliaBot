@@ -35,7 +35,7 @@ func init() {
 	})
 	engine.OnRegex("^随机gal(CG|表情包)$", getdb).Limit(ctxext.LimitByUser).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
-			ctx.Send("少女祈祷中......")
+			ctx.Send("少女折寿中......")
 			pictureType := ctx.State["regex_matched"].([]string)[1]
 			var y ymgal
 			if pictureType == "表情包" {
@@ -47,7 +47,7 @@ func init() {
 		})
 	engine.OnRegex("^gal(CG|表情包)([一-龥ぁ-んァ-ヶA-Za-z0-9]{1,25})$", getdb).Limit(ctxext.LimitByUser).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
-			ctx.Send("少女祈祷中......")
+			ctx.Send("少女折寿中......")
 			pictureType := ctx.State["regex_matched"].([]string)[1]
 			key := ctx.State["regex_matched"].([]string)[2]
 			var y ymgal
@@ -60,7 +60,7 @@ func init() {
 		})
 	engine.OnFullMatch("更新gal", zero.SuperUserPermission, getdb).SetBlock(true).Handle(
 		func(ctx *zero.Ctx) {
-			ctx.Send("少女祈祷中......")
+			ctx.Send("少女折寿中......")
 			err := updatePic()
 			if err != nil {
 				ctx.SendChain(message.Text("ERROR: ", err))

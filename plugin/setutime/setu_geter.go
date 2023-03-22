@@ -220,7 +220,7 @@ func (p *imgpool) add(ctx *zero.Ctx, imgtype string, id int64) error {
 	if err := p.db.Create(imgtype, &pixiv.Illust{}); err != nil {
 		return err
 	}
-	ctx.SendChain(message.Text("少女祈祷中......"))
+	ctx.SendChain(message.Text("少女折寿中......"))
 	// 查询P站插图信息
 	illust, err := pixiv.Works(id)
 	if err != nil {

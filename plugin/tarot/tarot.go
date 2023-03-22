@@ -256,7 +256,7 @@ func init() {
 			length = 77
 		}
 		if ok {
-			ctx.SendChain(message.Text("少女祈祷中..."))
+			ctx.SendChain(message.Text("少女折寿中..."))
 			var build strings.Builder
 			build.WriteString(ctx.CardOrNickName(ctx.Event.UserID))
 			build.WriteString("---")

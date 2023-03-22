@@ -37,7 +37,7 @@ func init() {
 	_ = os.RemoveAll(cachePath)
 	_ = os.MkdirAll(cachePath, 0755)
 	engine.OnRegex("^使(.{0,10})说([A-Za-z\\s\\d\u3005\u3040-\u30ff\u4e00-\u9fff\uff11-\uff19\uff21-\uff3a\uff41-\uff5a\uff66-\uff9d\\pP]+)$", selectName).SetBlock(true).Handle(func(ctx *zero.Ctx) {
-		ctx.SendChain(message.Text("少女祈祷中..."))
+		ctx.SendChain(message.Text("少女折寿中..."))
 		uid := ctx.Event.UserID
 		today := time.Now().Format("20060102150405")
 		ahsaiFile := cachePath + strconv.FormatInt(uid, 10) + today + "ahsai.wav"
