@@ -56,8 +56,8 @@ func init() {
 	control.Register("coser", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
 		Brief:            "三次元coser",
-		Help:             "- coser",
-	}).ApplySingle(ctxext.DefaultSingle).OnFullMatch("coser").SetBlock(true).Limit(ctxext.LimitByGroup).
+		Help:             "- .coser",
+	}).ApplySingle(ctxext.DefaultSingle).OnFullMatch(".coser").SetBlock(true).Limit(ctxext.LimitByGroup).
 		Handle(func(ctx *zero.Ctx) {
 			pic, err := p.Roll("coser")
 			if err != nil {

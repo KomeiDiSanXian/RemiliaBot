@@ -1,3 +1,4 @@
+// 准备改为链接正则匹配后发送图片
 // Package github GitHub 仓库搜索
 package github
 
@@ -19,7 +20,7 @@ import (
 
 func init() { // 插件主体
 	control.Register("github", &ctrl.Options[*zero.Ctx]{
-		DisableOnDefault: false,
+		DisableOnDefault: true,
 		Brief:            "GitHub仓库搜索",
 		Help: "- >github [xxx]\n" +
 			"- >github -p [xxx]",

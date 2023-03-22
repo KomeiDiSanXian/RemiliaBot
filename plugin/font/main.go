@@ -12,7 +12,7 @@ import (
 )
 
 func init() {
-	control.Register("font", &ctrl.Options[*zero.Ctx]{
+	control.Register("渲染字体到图片", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
 		Brief:            "渲染任意文字到图片",
 		Help:             "- (用[字体])渲染文字xxx\n可选字体: [终末体|终末变体|紫罗兰体|樱酥体|Consolas体|苹方体]",

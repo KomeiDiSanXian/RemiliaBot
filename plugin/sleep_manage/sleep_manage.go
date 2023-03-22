@@ -14,7 +14,7 @@ import (
 )
 
 func init() {
-	engine := control.Register("sleepmanage", &ctrl.Options[*zero.Ctx]{
+	engine := control.Register("睡眠小助手", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault:  false,
 		Brief:             "睡眠小助手",
 		Help:              "- 早安\n- 晚安",

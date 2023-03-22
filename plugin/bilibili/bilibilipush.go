@@ -38,7 +38,7 @@ var (
 )
 
 func init() {
-	en := control.Register("bilibilipush", &ctrl.Options[*zero.Ctx]{
+	en := control.Register("b站推送", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
 		Brief:            "b站推送",
 		Help: "- 添加b站订阅[uid|name]\n" +
