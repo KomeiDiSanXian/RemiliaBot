@@ -1,10 +1,10 @@
 package paintool
 
 import (
-	"io"
 	"bytes"
 	"encoding/json"
 	"errors"
+	"io"
 )
 
 func anyToJSON(data any) (io.Reader, error) {

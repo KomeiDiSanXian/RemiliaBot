@@ -2,12 +2,13 @@
 package aipaint
 
 import (
-	"github.com/FloatTech/ZeroBot-Plugin/plugin/aipaint/paintool"
 	ctrl "github.com/FloatTech/zbpctrl"
 	"github.com/FloatTech/zbputils/control"
 	"github.com/FloatTech/zbputils/ctxext"
 	zero "github.com/wdvxdr1123/ZeroBot"
 	"github.com/wdvxdr1123/ZeroBot/message"
+
+	"github.com/FloatTech/ZeroBot-Plugin/plugin/aipaint/paintool"
 )
 
 var engine = control.Register("ai画图", &ctrl.Options[*zero.Ctx]{
