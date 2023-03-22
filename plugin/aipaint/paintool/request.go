@@ -1,4 +1,4 @@
-// http请求相关
+// Package paintool http请求相关
 package paintool
 
 import (
@@ -10,7 +10,7 @@ import (
 	"github.com/tidwall/gjson"
 )
 
-// paint struct...
+// Paint is paint struct...
 type Paint struct {
 	Client   *http.Client
 	Response *http.Response
@@ -29,7 +29,7 @@ func (p *Paint) Copy() *Paint {
 	return &pp
 }
 
-// Generate a request body
+// NewTxt2ImgRequest generates a request body
 func NewTxt2ImgRequest(reqBody *Txt2ImgReqBody) (*http.Request, error) {
 	body, err := anyToJSON(reqBody)
 	if err != nil {
@@ -38,12 +38,13 @@ func NewTxt2ImgRequest(reqBody *Txt2ImgReqBody) (*http.Request, error) {
 	return http.NewRequest("POST", fmt.Sprintf("%s%s", paintURL, txt2img), body)
 }
 
-// response body will be written to Paint.Response
+// SendRequest response body will be written to Paint.Response
 func (p *Paint) SendRequest(req *http.Request) (*Paint, error) {
 	resp, err := p.Client.Do(req)
 	if err != nil {
 		return nil, err
 	}
+	defer resp.Body.Close()
 	if resp.StatusCode != 200 {
 		return nil, errors.New("response status code is not 200")
 	}
@@ -52,9 +53,8 @@ func (p *Paint) SendRequest(req *http.Request) (*Paint, error) {
 	return pp, nil
 }
 
-// Serialize response body
+// ParseRespToGjson serializes response body
 func (p *Paint) ParseRespToGjson(path string) gjson.Result {
 	body, _ := io.ReadAll(p.Response.Body)
-	defer p.Response.Body.Close()
 	return gjson.GetBytes(body, path)
 }

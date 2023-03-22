@@ -1,5 +1,5 @@
-// 准备改为链接正则匹配后发送图片
 // Package github GitHub 仓库搜索
+// 准备改为链接正则匹配后发送图片
 package github
 
 import (
