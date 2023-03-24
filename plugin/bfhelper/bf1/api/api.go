@@ -1,4 +1,4 @@
-// package bfapi 战地相关api库
+// Package bf1api 战地相关api库
 package bf1api
 
 import (
@@ -31,7 +31,7 @@ const (
 // error code
 const (
 	ErrServerNotFound int64 = -34501
-	ErrInvalidMapId   int64 = -32603
+	ErrInvalidMapID   int64 = -32603
 	ErrServerOutdate  int64 = -32851
 	ErrPlayerIsAdmin  int64 = -32857
 	ErrinvalidPlayer  int64 = -32856
@@ -43,14 +43,14 @@ const (
 */
 // ea账密
 const (
-	UserName string = "2495099161@qq.com" //邮箱
-	Password string = "Swp20020621"
+	UserName string = "" //邮箱
+	Password string = ""
 )
 
 // Sakura API info, contacts to SakuraKooi to get it
 const (
-	SakuraID    string = "baka"
-	SakuraToken string = "b8843295-2874-49c0-87db-970811bd7eea"
+	SakuraID    string = ""
+	SakuraToken string = ""
 )
 
 // 原生API 方法名常量
@@ -83,10 +83,10 @@ const (
 )
 
 var (
-	Session string = "" // gatewaysession
-	Token   string = "" // bearerAccessToken
-	Sid     string = "" // cookie sid
-	Remid   string = "" // cookie rid
+	Session string // gatewaysession
+	Token   string // bearerAccessToken
+	Sid     string // cookie sid
+	Remid   string // cookie rid
 )
 
 // post operation struct
@@ -99,7 +99,7 @@ type post struct {
 	ID string `json:"id"`
 }
 
-// Pack, unmarshal json
+// Pack unmarshal json
 type Pack struct {
 	RemainTime int64
 	ResetTime  int64
@@ -141,10 +141,10 @@ func Login(username, password string, refreshToken bool) error {
 	return nil
 }
 
-// ReturnJson NativeAPI 返回json
-func ReturnJson(url, method string, body interface{}) (string, error) {
+// ReturnJSON NativeAPI 返回json
+func ReturnJSON(url, method string, body interface{}) (string, error) {
 	for i := 0; i < 3; i++ { // 3次重试
-		data, err := HttpTry(url, method, body)
+		data, err := HTTPTry(url, method, body)
 		code := gjson.GetBytes(data, "error.code").Int()
 		if code == -32501 {
 			if err := Login(UserName, Password, true); err != nil {
@@ -172,11 +172,11 @@ func GetExchange() (map[string][]string, error) {
 		},
 		ID: "ed26fa43-816d-4f7b-a9d8-de9785ae1bb6",
 	}
-	data, err := ReturnJson(OperationAPI, "POST", post)
+	data, err := ReturnJSON(OperationAPI, "POST", post)
 	if err != nil {
 		return nil, errors.New("获取交换失败")
 	}
-	var exmap map[string][]string = make(map[string][]string)
+	var exmap = make(map[string][]string)
 	for _, v := range gjson.Get(data, "result.items.#.item").Array() {
 		var wpname string = v.Get("parentName").Str
 		if wpname == "" {
@@ -199,7 +199,7 @@ func GetCampaignPacks() (*Pack, error) {
 		},
 		ID: "ed26fa43-816d-4f7b-a9d8-de9785ae1bb6",
 	}
-	data, err := ReturnJson(OperationAPI, "POST", post)
+	data, err := ReturnJSON(OperationAPI, "POST", post)
 	if err != nil {
 		return nil, errors.New("获取行动包失败")
 	}
@@ -254,7 +254,7 @@ func Exception(errcode int64) error {
 	switch errcode {
 	case ErrServerNotFound:
 		return errors.New("找不到服务器，请检查服务器信息是否正确")
-	case ErrInvalidMapId:
+	case ErrInvalidMapID:
 		return errors.New("无效的地图id/无权限")
 	case ErrServerOutdate:
 		return errors.New("找不到服务器/服务器过期")
@@ -284,8 +284,8 @@ func toJSON(data any) (io.Reader, error) {
 	return io.NopCloser(buf), nil
 }
 
-// HttpTry http请求
-func HttpTry(url, method string, body interface{}) ([]byte, error) {
+// HTTPTry http请求
+func HTTPTry(url, method string, body interface{}) ([]byte, error) {
 	cli := &http.Client{
 		Transport: &http.Transport{
 			Dial: func(network, addr string) (net.Conn, error) {
@@ -293,7 +293,7 @@ func HttpTry(url, method string, body interface{}) ([]byte, error) {
 				if err != nil {
 					return nil, err
 				}
-				conn.SetDeadline(time.Now().Add(5 * time.Second)) // 5秒接收数据超时
+				_ = conn.SetDeadline(time.Now().Add(5 * time.Second)) // 5秒接收数据超时
 				return conn, nil
 			},
 		},

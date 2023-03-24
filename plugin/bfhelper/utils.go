@@ -120,7 +120,7 @@ func ID2PID(qid int64, id string) (string, string, error) {
 					return "", id, errors.New("获取pid失败，请重试")
 				}
 				rmu.Lock()
-				db.Update(bf1model.Player{
+				_ = db.Update(bf1model.Player{
 					Qid:        qid,
 					PersonalID: pid,
 				})
@@ -189,7 +189,7 @@ func RequestWeapon(ctx *zero.Ctx, id, class string) {
 // GetBF1Recent 获取bf1最近战绩
 func GetBF1Recent(id string) (result *bf1record.Recent, err error) {
 	u := "https://api.bili22.me/bf1/recent?name=" + id
-	data, err := api.ReturnJson(u, "GET", nil)
+	data, err := api.ReturnJSON(u, "GET", nil)
 	if err != nil {
 		return nil, err
 	}
@@ -202,7 +202,7 @@ func GetBF1Recent(id string) (result *bf1record.Recent, err error) {
 
 // IsValidId 检查id有效性
 func IsValidId(id string) (bool, error) {
-	vld, err := api.ReturnJson("https://signin.ea.com/p/ajax/user/checkOriginId?originId="+id, "GET", nil)
+	vld, err := api.ReturnJSON("https://signin.ea.com/p/ajax/user/checkOriginId?originId="+id, "GET", nil)
 	if err != nil {
 		return true, errors.New("验证id有效性失败，将继续绑定，请自行检查id是否正确")
 	}

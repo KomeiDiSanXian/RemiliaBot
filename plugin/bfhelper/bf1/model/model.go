@@ -28,7 +28,7 @@ func InitDB(dbpath string, tables ...interface{}) error {
 	if err != nil {
 		panic(err)
 	}
-	db.AutoMigrate(tables...)
+	_ = db.AutoMigrate(tables...)
 	sqlDB, _ := db.DB()
 	return sqlDB.Close()
 }

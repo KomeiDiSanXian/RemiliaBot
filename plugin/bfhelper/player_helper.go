@@ -46,18 +46,18 @@ var engine = control.Register("战地", &ctrl.Options[*zero.Ctx]{
 })
 
 // EngineFile 返回 engine.DataFolder()
-func EngineFile() string{
+func EngineFile() string {
 	return engine.DataFolder()
 }
 
 func init() {
 	//初始化数据库
-	bf1model.InitDB(engine.DataFolder()+"player.db", &bf1model.Player{})
+	_ = bf1model.InitDB(engine.DataFolder()+"player.db", &bf1model.Player{})
 	//查询在线玩家数
 	engine.OnFullMatchGroup([]string{".bf1stats", "战地1人数", "bf1人数"}).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
 			ctx.Send("少女折寿中...")
-			data, err := api.ReturnJson("https://api.s-wg.net/ServersCollection/getStatus", "GET", nil)
+			data, err := api.ReturnJSON("https://api.s-wg.net/ServersCollection/getStatus", "GET", nil)
 			if err != nil {
 				ctx.Send("ERROR:" + err.Error())
 				return
@@ -142,7 +142,7 @@ func init() {
 				wg.Done()
 			}()
 			wg.Wait()
-			db.Update(bf1model.Player{
+			_ = db.Update(bf1model.Player{
 				PersonalID: pid,
 				Qid:        ctx.Event.UserID,
 				IsHack:     hack,

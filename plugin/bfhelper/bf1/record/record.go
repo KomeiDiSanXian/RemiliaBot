@@ -15,7 +15,7 @@ func GetStats(name string) (*Stat, error) {
 	if name == "" {
 		return nil, errors.New("ID cannot be empty")
 	}
-	data, err := rsp.ReturnJson("https://battlefieldtracker.com/api/appStats?platform=3&name="+name, "GET", nil)
+	data, err := rsp.ReturnJSON("https://battlefieldtracker.com/api/appStats?platform=3&name="+name, "GET", nil)
 	if err != nil {
 		return nil, err
 	}
@@ -79,7 +79,7 @@ func GetStats(name string) (*Stat, error) {
 // GetWeapons 获取武器
 func GetWeapons(pid string, class string) (*WeaponSort, error) {
 	post := NewPostWeapon(pid)
-	data, err := rsp.ReturnJson(rsp.NativeAPI, "POST", post)
+	data, err := rsp.ReturnJSON(rsp.NativeAPI, "POST", post)
 	if err != nil {
 		return nil, err
 	}
@@ -140,7 +140,7 @@ func SortWeapon(weapons []gjson.Result) *WeaponSort {
 // GetVehicles 获取载具信息
 func GetVehicles(pid string) (*VehicleSort, error) {
 	post := NewPostVehicle(pid)
-	data, err := rsp.ReturnJson(rsp.NativeAPI, "POST", post)
+	data, err := rsp.ReturnJSON(rsp.NativeAPI, "POST", post)
 	if err != nil {
 		return nil, err
 	}
@@ -174,7 +174,7 @@ func GetVehicles(pid string) (*VehicleSort, error) {
 // Get2k battlelog 获取kd,kpm
 func Get2k(pid string) (kd float64, kpm float64, err error) {
 	post := NewPostStats(pid)
-	data, err := rsp.ReturnJson(rsp.NativeAPI, "POST", post)
+	data, err := rsp.ReturnJSON(rsp.NativeAPI, "POST", post)
 	if err != nil {
 		return -1, -1, err
 	}

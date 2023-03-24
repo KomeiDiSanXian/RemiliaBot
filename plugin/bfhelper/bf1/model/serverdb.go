@@ -49,7 +49,7 @@ type ServerDB gorm.DB
 func (sdb *ServerDB) Create(groupid, ownerid int64, gameid string) error {
 	// check gameid
 	post := bf1rsp.NewPostGetServerDetails(gameid)
-	data, err := bf1api.ReturnJson(bf1api.NativeAPI, "POST", post)
+	data, err := bf1api.ReturnJSON(bf1api.NativeAPI, "POST", post)
 	if err != nil {
 		return err
 	}
@@ -109,7 +109,7 @@ func (sdb *ServerDB) AddAdmin(grpid, qid int64) error {
 func (sdb *ServerDB) AddServer(grpid int64, gid string) error {
 	// check gameid
 	post := bf1rsp.NewPostGetServerDetails(gid)
-	data, err := bf1api.ReturnJson(bf1api.NativeAPI, "POST", post)
+	data, err := bf1api.ReturnJSON(bf1api.NativeAPI, "POST", post)
 	if err != nil {
 		return err
 	}
