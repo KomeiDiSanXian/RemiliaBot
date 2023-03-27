@@ -97,7 +97,6 @@ func init() {
 			qids := strings.Split(ctx.State["args"].(string), " ")
 			ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("正在添加..."))
 			db, close, err := OpenServerDB()
-			defer close()
 			if err != nil {
 				ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("ERR：", err))
 				return
@@ -109,6 +108,7 @@ func init() {
 					ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("ERR：添加", v, "为管理时发生错误：", err))
 				}
 			}
+			_ = close()
 			ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("添加结束"))
 		})
 
@@ -121,12 +121,12 @@ func init() {
 			}
 			ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("将", args[0], "的别名设置为", args[1]))
 			db, close, err := OpenServerDB()
-			defer close()
 			if err != nil {
 				ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("ERR：", err))
 				return
 			}
 			_ = db.SetAlias(ctx.Event.GroupID, args[0], args[1])
+			_ = close()
 		})
 
 	// .kick name [reason]
@@ -140,7 +140,6 @@ func init() {
 			// 踢出理由转为繁体
 			args[1] = S2tw(args[1])
 			db, close, err := OpenServerDB()
-			defer close()
 			if err != nil {
 				ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("ERR：", err))
 			}
@@ -199,6 +198,7 @@ func init() {
 				}(v)
 			}
 			wg.Wait()
+			_ = close()
 			msg := "踢出 " + args[0] + "：\n"
 			for _, v := range reasons {
 				msg += "\t" + v + "\n"

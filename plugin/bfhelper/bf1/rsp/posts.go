@@ -8,10 +8,10 @@ type post struct {
 	Method  string `json:"method"`
 	Params  struct {
 		Game       string `json:"game"`
-		PersonaID  string `json:"personaId"`
-		GameId     string `json:"gameId"`
-		ServerId   string `json:"serverId"`
-		PGid       string `json:"persistedGameId"`
+		PersonaID  string `json:"personaID"`
+		GameID     string `json:"gameID"`
+		ServerID   string `json:"serverID"`
+		PGid       string `json:"persistedGameID"`
 		LevelIndex int    `json:"levelIndex"`
 		Reason     string `json:"reason"`
 	} `json:"params"`
@@ -25,16 +25,16 @@ func NewPostKick(pid, gid, reason string) *post {
 		Method:  bf1api.KICK,
 		Params: struct {
 			Game       string "json:\"game\""
-			PersonaID  string "json:\"personaId\""
-			GameId     string `json:"gameId"`
-			ServerId   string `json:"serverId"`
-			PGid       string `json:"persistedGameId"`
+			PersonaID  string "json:\"personaID\""
+			GameID     string `json:"gameID"`
+			ServerID   string `json:"serverID"`
+			PGid       string `json:"persistedGameID"`
 			LevelIndex int    `json:"levelIndex"`
 			Reason     string `json:"reason"`
 		}{
 			Game:      bf1api.BF1,
 			PersonaID: pid,
-			GameId:    gid,
+			GameID:    gid,
 			Reason:    reason,
 		},
 		ID: "ed26fa43-816d-4f7b-a9d8-de9785ae1bb6",
@@ -48,16 +48,16 @@ func NewPostBan(pid, sid string) *post {
 		Method:  bf1api.ADDBAN,
 		Params: struct {
 			Game       string "json:\"game\""
-			PersonaID  string "json:\"personaId\""
-			GameId     string `json:"gameId"`
-			ServerId   string `json:"serverId"`
-			PGid       string `json:"persistedGameId"`
+			PersonaID  string "json:\"personaID\""
+			GameID     string `json:"gameID"`
+			ServerID   string `json:"serverID"`
+			PGid       string `json:"persistedGameID"`
 			LevelIndex int    `json:"levelIndex"`
 			Reason     string `json:"reason"`
 		}{
 			Game:      bf1api.BF1,
 			PersonaID: pid,
-			ServerId:  sid,
+			ServerID:  sid,
 		},
 		ID: "ed26fa43-816d-4f7b-a9d8-de9785ae1bb6",
 	}
@@ -70,16 +70,16 @@ func NewPostRemoveBan(pid, sid string) *post {
 		Method:  bf1api.REMOVEBAN,
 		Params: struct {
 			Game       string "json:\"game\""
-			PersonaID  string "json:\"personaId\""
-			GameId     string `json:"gameId"`
-			ServerId   string `json:"serverId"`
-			PGid       string `json:"persistedGameId"`
+			PersonaID  string "json:\"personaID\""
+			GameID     string `json:"gameID"`
+			ServerID   string `json:"serverID"`
+			PGid       string `json:"persistedGameID"`
 			LevelIndex int    `json:"levelIndex"`
 			Reason     string `json:"reason"`
 		}{
 			Game:      bf1api.BF1,
 			PersonaID: pid,
-			ServerId:  sid,
+			ServerID:  sid,
 		},
 		ID: "ed26fa43-816d-4f7b-a9d8-de9785ae1bb6",
 	}
@@ -92,10 +92,10 @@ func NewPostChangeMap(pgid string, index int) *post {
 		Method:  bf1api.MAPS,
 		Params: struct {
 			Game       string "json:\"game\""
-			PersonaID  string "json:\"personaId\""
-			GameId     string `json:"gameId"`
-			ServerId   string `json:"serverId"`
-			PGid       string `json:"persistedGameId"`
+			PersonaID  string "json:\"personaID\""
+			GameID     string `json:"gameID"`
+			ServerID   string `json:"serverID"`
+			PGid       string `json:"persistedGameID"`
 			LevelIndex int    `json:"levelIndex"`
 			Reason     string `json:"reason"`
 		}{
@@ -114,15 +114,15 @@ func NewPostGetServerDetails(gid string) *post {
 		Method:  bf1api.SERVERDETALS,
 		Params: struct {
 			Game       string "json:\"game\""
-			PersonaID  string "json:\"personaId\""
-			GameId     string `json:"gameId"`
-			ServerId   string `json:"serverId"`
-			PGid       string `json:"persistedGameId"`
+			PersonaID  string "json:\"personaID\""
+			GameID     string `json:"gameID"`
+			ServerID   string `json:"serverID"`
+			PGid       string `json:"persistedGameID"`
 			LevelIndex int    `json:"levelIndex"`
 			Reason     string `json:"reason"`
 		}{
 			Game:   bf1api.BF1,
-			GameId: gid,
+			GameID: gid,
 		},
 		ID: "ed26fa43-816d-4f7b-a9d8-de9785ae1bb6",
 	}
@@ -135,15 +135,15 @@ func NewPostGetServerInfo(gid string) *post {
 		Method:  bf1api.SERVERINFO,
 		Params: struct {
 			Game       string "json:\"game\""
-			PersonaID  string "json:\"personaId\""
-			GameId     string `json:"gameId"`
-			ServerId   string `json:"serverId"`
-			PGid       string `json:"persistedGameId"`
+			PersonaID  string "json:\"personaID\""
+			GameID     string `json:"gameID"`
+			ServerID   string `json:"serverID"`
+			PGid       string `json:"persistedGameID"`
 			LevelIndex int    `json:"levelIndex"`
 			Reason     string `json:"reason"`
 		}{
 			Game:   bf1api.BF1,
-			GameId: gid,
+			GameID: gid,
 		},
 		ID: "ed26fa43-816d-4f7b-a9d8-de9785ae1bb6",
 	}
@@ -156,15 +156,15 @@ func NewPostRSPInfo(sid string) *post {
 		Method:  bf1api.SERVERRSP,
 		Params: struct {
 			Game       string "json:\"game\""
-			PersonaID  string "json:\"personaId\""
-			GameId     string `json:"gameId"`
-			ServerId   string `json:"serverId"`
-			PGid       string `json:"persistedGameId"`
+			PersonaID  string "json:\"personaID\""
+			GameID     string `json:"gameID"`
+			ServerID   string `json:"serverID"`
+			PGid       string `json:"persistedGameID"`
 			LevelIndex int    `json:"levelIndex"`
 			Reason     string `json:"reason"`
 		}{
 			Game:   bf1api.BF1,
-			ServerId: sid,
+			ServerID: sid,
 		},
 		ID: "ed26fa43-816d-4f7b-a9d8-de9785ae1bb6",
 	}

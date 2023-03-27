@@ -145,7 +145,7 @@ func ID2PID(qid int64, id string) (string, string, error) {
 					return "", id, errors.New("获取pid失败，请重试")
 				}
 				rmu.Lock()
-				db.Update(bf1model.Player{
+				_ = db.Update(bf1model.Player{
 					Qid:        qid,
 					PersonalID: pid,
 				})

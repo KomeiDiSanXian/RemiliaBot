@@ -1,4 +1,4 @@
-// package bf1rsp 战地服务器操作
+// Package bf1rsp 战地服务器操作
 package bf1rsp
 
 import (
@@ -22,7 +22,7 @@ type m struct {
 
 type maps []m
 
-// NewServer...
+// NewServer 服务器
 func NewServer(sid, gid, pgid string) *server {
 	return &server{
 		Sid:  sid,
@@ -98,7 +98,7 @@ func (s *server) GetMaps() (*maps, error) {
 	if result == nil {
 		return nil, errors.New("获取到的地图池为空")
 	}
-	var mp maps
+	mp := make(maps, len(result))
 	for _, v := range result {
 		mp = append(mp, m{MapName: v.Get("mapPrettyName").Str, ModeName: v.Get("modePrettyName").Str})
 	}
@@ -114,7 +114,7 @@ func (s *server) GetAdminspid() ([]string, error) {
 	}
 	result := gjson.Get(data, "result.adminList.#.personaId").Array()
 	result = append(result, gjson.Get(data, "result.owner.personaId"))
-	var strs []string
+	strs := make([]string, len(result))
 	for _, v := range result {
 		strs = append(strs, v.Str)
 	}
@@ -125,7 +125,7 @@ func (s *server) GetAdminspid() ([]string, error) {
 /* not compiled
 func (s *server) GetMapidByKeywords(keyword string) (int, error) {
 	switch keyword{
-		case 
+		case
 	}
 }
 */

@@ -24,18 +24,17 @@ type WeaponSort []Weapons
 // VehicleSort Vehicles数组
 type VehicleSort []Vehicle
 
-// 快排重写方法
 // Len 获取长度
 func (a WeaponSort) Len() int            { return len(a) }
-// Swap..
+// Swap 交换
 func (a WeaponSort) Swap(i, j int)       { a[i], a[j] = a[j], a[i] }
-// Less...
+// Less 比较
 func (a WeaponSort) Less(i, j int) bool  { return a[i].Kills > a[j].Kills }
-// Len...
+// Len 获取长度
 func (a VehicleSort) Len() int           { return len(a) }
-// Swap...
+// Swap 交换
 func (a VehicleSort) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
-// Less...
+// Less 比较
 func (a VehicleSort) Less(i, j int) bool { return a[i].Kills > a[j].Kills }
 
 // Stat 战绩

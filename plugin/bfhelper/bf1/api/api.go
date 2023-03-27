@@ -83,10 +83,10 @@ const (
 )
 
 var (
-	Session string // gatewaysession
-	Token   string // bearerAccessToken
-	Sid     string // cookie sid
-	Remid   string // cookie rid
+	Session string // Session gatewaysession
+	Token   string // Token bearerAccessToken
+	Sid     string // Sid cookie sid
+	Remid   string // Remid cookie rid
 )
 
 // post operation struct
