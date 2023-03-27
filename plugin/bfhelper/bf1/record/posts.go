@@ -3,8 +3,8 @@ package bf1record
 
 import rsp "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/api"
 
-// post 获取数据
-type post struct {
+// Post 获取数据
+type Post struct {
 	Jsonrpc string `json:"jsonrpc"`
 	Method  string `json:"method"`
 	Params  struct {
@@ -16,8 +16,8 @@ type post struct {
 }
 
 // NewPostWeapon 武器结构体
-func NewPostWeapon(pid string) *post {
-	return &post{
+func NewPostWeapon(pid string) *Post {
+	return &Post{
 		Jsonrpc: "2.0",
 		Method:  rsp.WEAPONS,
 		Params: struct {
@@ -33,8 +33,8 @@ func NewPostWeapon(pid string) *post {
 }
 
 // NewPostVehicle 载具结构体
-func NewPostVehicle(pid string) *post {
-	return &post{
+func NewPostVehicle(pid string) *Post {
+	return &Post{
 		Jsonrpc: "2.0",
 		Method:  rsp.VEHICLES,
 		Params: struct {
@@ -50,8 +50,8 @@ func NewPostVehicle(pid string) *post {
 }
 
 // NewPostRecent 最近游玩的服务器
-func NewPostRecent(pid string) *post {
-	return &post{
+func NewPostRecent(pid string) *Post {
+	return &Post{
 		Jsonrpc: "2.0",
 		Method:  rsp.RECENTSERVER,
 		Params: struct {
@@ -67,8 +67,8 @@ func NewPostRecent(pid string) *post {
 }
 
 // NewPostPlaying 正在游玩
-func NewPostPlaying(pid string) *post {
-	return &post{
+func NewPostPlaying(pid string) *Post {
+	return &Post{
 		Jsonrpc: "2.0",
 		Method:  rsp.PLAYING,
 		Params: struct {
@@ -84,8 +84,8 @@ func NewPostPlaying(pid string) *post {
 }
 
 // NewPostStats 战绩
-func NewPostStats(pid string) *post {
-	return &post{
+func NewPostStats(pid string) *Post {
+	return &Post{
 		Jsonrpc: "2.0",
 		Method:  rsp.STATS,
 		Params: struct {

@@ -155,7 +155,7 @@ func GetVehicles(pid string) (*VehicleSort, error) {
 		)
 		kills := res[1].Float()
 		seconds := res[3].Float()
-		var kpm float64 = 0
+		var kpm float64
 		if seconds != 0 {
 			kpm = kills / seconds * 60
 		}

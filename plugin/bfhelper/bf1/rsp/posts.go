@@ -3,7 +3,7 @@ package bf1rsp
 
 import bf1api "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/api"
 
-type post struct {
+type Post struct {
 	Jsonrpc string `json:"jsonrpc"`
 	Method  string `json:"method"`
 	Params  struct {
@@ -19,8 +19,8 @@ type post struct {
 }
 
 // NewPostKick 踢出游戏
-func NewPostKick(pid, gid, reason string) *post {
-	return &post{
+func NewPostKick(pid, gid, reason string) *Post {
+	return &Post{
 		Jsonrpc: "2.0",
 		Method:  bf1api.KICK,
 		Params: struct {
@@ -42,8 +42,8 @@ func NewPostKick(pid, gid, reason string) *post {
 }
 
 // NewPostBan 服务器封禁
-func NewPostBan(pid, sid string) *post {
-	return &post{
+func NewPostBan(pid, sid string) *Post {
+	return &Post{
 		Jsonrpc: "2.0",
 		Method:  bf1api.ADDBAN,
 		Params: struct {
@@ -64,8 +64,8 @@ func NewPostBan(pid, sid string) *post {
 }
 
 // NewPostRemoveBan 服务器解封
-func NewPostRemoveBan(pid, sid string) *post {
-	return &post{
+func NewPostRemoveBan(pid, sid string) *Post {
+	return &Post{
 		Jsonrpc: "2.0",
 		Method:  bf1api.REMOVEBAN,
 		Params: struct {
@@ -86,8 +86,8 @@ func NewPostRemoveBan(pid, sid string) *post {
 }
 
 // NewPostChangeMap 换图
-func NewPostChangeMap(pgid string, index int) *post {
-	return &post{
+func NewPostChangeMap(pgid string, index int) *Post {
+	return &Post{
 		Jsonrpc: "2.0",
 		Method:  bf1api.MAPS,
 		Params: struct {
@@ -108,8 +108,8 @@ func NewPostChangeMap(pgid string, index int) *post {
 }
 
 // NewPostGetServerDetails 获取完整服务器信息
-func NewPostGetServerDetails(gid string) *post {
-	return &post{
+func NewPostGetServerDetails(gid string) *Post {
+	return &Post{
 		Jsonrpc: "2.0",
 		Method:  bf1api.SERVERDETALS,
 		Params: struct {
@@ -129,8 +129,8 @@ func NewPostGetServerDetails(gid string) *post {
 }
 
 // NewPostGetServerInfo 获取服务器部分信息
-func NewPostGetServerInfo(gid string) *post {
-	return &post{
+func NewPostGetServerInfo(gid string) *Post {
+	return &Post{
 		Jsonrpc: "2.0",
 		Method:  bf1api.SERVERINFO,
 		Params: struct {
@@ -150,8 +150,8 @@ func NewPostGetServerInfo(gid string) *post {
 }
 
 // NewPostRSPInfo 获取服务器rsp信息
-func NewPostRSPInfo(sid string) *post {
-	return &post{
+func NewPostRSPInfo(sid string) *Post {
+	return &Post{
 		Jsonrpc: "2.0",
 		Method:  bf1api.SERVERRSP,
 		Params: struct {
