@@ -1,3 +1,4 @@
+// Package bfhelper 工具
 package bfhelper
 
 import (
@@ -218,16 +219,16 @@ func ServerAdminPermission(ctx *zero.Ctx) bool {
 		return true
 	}
 	db, cl, _ := OpenServerDB()
-	defer cl()
 	adm, _ := db.IsAdmin(ctx.Event.GroupID, ctx.Event.UserID)
+	_ = cl()
 	return adm
 }
 
 // ServerOwnerPermission 腐竹权限
 func ServerOwnerPermission(ctx *zero.Ctx) bool {
 	db, cl, _ := OpenServerDB()
-	defer cl()
 	p, _ := db.IsOwner(ctx.Event.GroupID, ctx.Event.UserID)
+	_ = cl()
 	return p
 }
 

@@ -1,4 +1,4 @@
-// package bfhelper 战地玩家查询
+// Package bfhelper 战地玩家查询
 package bfhelper
 
 import (

@@ -1,4 +1,4 @@
-// package bf1record 战地相关战绩查询
+// Package bf1record 战地相关战绩查询
 package bf1record
 
 import (

@@ -1,4 +1,4 @@
-// package bf1record 战地相关战绩查询结构体
+// Package bf1record 战地相关战绩查询结构体
 package bf1record
 
 import rsp "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/api"

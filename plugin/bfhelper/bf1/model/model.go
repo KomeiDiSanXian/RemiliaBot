@@ -1,4 +1,4 @@
-// package bf1model 战地相关数据库操作
+// Package bf1model 战地相关数据库操作
 package bf1model
 
 import (

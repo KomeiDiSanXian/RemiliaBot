@@ -178,7 +178,7 @@ func GetExchange() (map[string][]string, error) {
 	}
 	var exmap = make(map[string][]string)
 	for _, v := range gjson.Get(data, "result.items.#.item").Array() {
-		var wpname string = v.Get("parentName").Str
+		var wpname = v.Get("parentName").Str
 		if wpname == "" {
 			wpname = "其他"
 		}

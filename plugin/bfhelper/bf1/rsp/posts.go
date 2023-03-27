@@ -1,4 +1,4 @@
-// package bf1rsp 战地服务器操作请求结构体
+// Package bf1rsp 战地服务器操作请求结构体
 package bf1rsp
 
 import bf1api "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/api"

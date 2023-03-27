@@ -10,9 +10,9 @@ import (
 )
 
 type server struct {
-	Sid  string
-	Gid  string
-	PGid string
+	SID  string
+	GID  string
+	PGID string
 }
 
 type m struct {
@@ -25,9 +25,9 @@ type maps []m
 // NewServer 服务器
 func NewServer(sid, gid, pgid string) *server {
 	return &server{
-		Sid:  sid,
-		Gid:  gid,
-		PGid: pgid,
+		SID:  sid,
+		GID:  gid,
+		PGID: pgid,
 	}
 }
 
@@ -37,7 +37,7 @@ func (s *server) Kick(pid, reason string) (string, error) {
 	if len(reason) > 32 {
 		return "", errors.New("理由过长")
 	}
-	post := NewPostKick(pid, s.Gid, reason)
+	post := NewPostKick(pid, s.GID, reason)
 	data, err := bf1api.ReturnJSON(bf1api.NativeAPI, "POST", post)
 	if err != nil {
 		return "", err
@@ -47,7 +47,7 @@ func (s *server) Kick(pid, reason string) (string, error) {
 
 // Ban player, check returned id
 func (s *server) Ban(pid string) error {
-	post := NewPostBan(pid, s.Sid)
+	post := NewPostBan(pid, s.SID)
 	data, err := bf1api.ReturnJSON(bf1api.NativeAPI, "POST", post)
 	if err != nil {
 		return err
@@ -60,7 +60,7 @@ func (s *server) Ban(pid string) error {
 
 // Unban player
 func (s *server) Unban(pid string) error {
-	post := NewPostRemoveBan(pid, s.Sid)
+	post := NewPostRemoveBan(pid, s.SID)
 	data, err := bf1api.ReturnJSON(bf1api.NativeAPI, "POST", post)
 	if err != nil {
 		return err
@@ -73,7 +73,7 @@ func (s *server) Unban(pid string) error {
 
 // ChangeMap will change the map for players
 func (s *server) ChangeMap(index int) error {
-	post := NewPostChangeMap(s.PGid, index)
+	post := NewPostChangeMap(s.PGID, index)
 	data, err := bf1api.ReturnJSON(bf1api.NativeAPI, "POST", post)
 	if err != nil {
 		return err
@@ -86,7 +86,7 @@ func (s *server) ChangeMap(index int) error {
 
 // GetMaps returns maps
 func (s *server) GetMaps() (*maps, error) {
-	post := NewPostGetServerInfo(s.Gid)
+	post := NewPostGetServerInfo(s.GID)
 	data, err := bf1api.ReturnJSON(bf1api.NativeAPI, "POST", post)
 	if err != nil {
 		return nil, err
@@ -99,15 +99,15 @@ func (s *server) GetMaps() (*maps, error) {
 		return nil, errors.New("获取到的地图池为空")
 	}
 	mp := make(maps, len(result))
-	for _, v := range result {
-		mp = append(mp, m{MapName: v.Get("mapPrettyName").Str, ModeName: v.Get("modePrettyName").Str})
+	for i, v := range result {
+		mp[i] = m{MapName: v.Get("mapPrettyName").Str, ModeName: v.Get("modePrettyName").Str}
 	}
 	return &mp, nil
 }
 
 // GetAdminspid returns pids of admins
 func (s *server) GetAdminspid() ([]string, error) {
-	post := NewPostRSPInfo(s.Sid)
+	post := NewPostRSPInfo(s.SID)
 	data, err := bf1api.ReturnJSON(bf1api.NativeAPI, "POST", post)
 	if err != nil {
 		return nil, err
@@ -115,8 +115,8 @@ func (s *server) GetAdminspid() ([]string, error) {
 	result := gjson.Get(data, "result.adminList.#.personaId").Array()
 	result = append(result, gjson.Get(data, "result.owner.personaId"))
 	strs := make([]string, len(result))
-	for _, v := range result {
-		strs = append(strs, v.Str)
+	for i, v := range result {
+		strs[i] = v.Str
 	}
 	return strs, bf1api.Exception(gjson.Get(data, "error.code").Int())
 }

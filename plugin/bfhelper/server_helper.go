@@ -1,4 +1,4 @@
-// package bfhelper 战地服务器操作
+// Package bfhelper 战地服务器操作
 package bfhelper
 
 import (
@@ -216,7 +216,6 @@ func init() {
 			}
 			ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("正在将 ", args[1], " 加入到 ", args[0], " 的ban列中"))
 			db, cl, err := OpenServerDB()
-			defer cl()
 			if err != nil {
 				ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("ERR：", err))
 				return
@@ -250,6 +249,7 @@ func init() {
 					return
 				}
 			}()
+			_ = cl()
 			ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("已将 ", args[1], " 加入 ", args[0], " 的ban列"))
 		})
 
@@ -263,7 +263,6 @@ func init() {
 			}
 			ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("正在将 ", args[1], " 从 ", args[0], " 的ban列中删除"))
 			db, cl, err := OpenServerDB()
-			defer cl()
 			if err != nil {
 				ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("ERR：", err))
 				return
@@ -297,6 +296,7 @@ func init() {
 					return
 				}
 			}()
+			_ = cl()
 			ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("已将 ", args[1], " 在 ", args[0], " 解封"))
 		})
 
