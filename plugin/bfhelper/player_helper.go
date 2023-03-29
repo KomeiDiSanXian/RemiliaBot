@@ -96,7 +96,7 @@ func init() {
 			db := (*bf1model.PlayerDB)(gdb)
 			defer db.Close()
 			// 先绑定再查询pid和是否实锤
-			//检查是否已经绑定
+			// 检查是否已经绑定
 			if data, err := db.FindByQid(ctx.Event.UserID); errors.Is(err, gorm.ErrRecordNotFound) {
 				// 未绑定...
 				ctx.SendChain(message.At(ctx.Event.UserID), message.Text("正在绑定id为 ", id))
