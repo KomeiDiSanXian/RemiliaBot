@@ -66,6 +66,7 @@ import (
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/baidu"            // 百度一下
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/base64gua"        // base64卦加解密
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/baseamasiro"      // base天城文加解密
+	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper"         // 战地查询
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/bilibili"         // b站相关
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/choose"           // 选择困难症帮手
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/chrev"            // 英文字符翻转
