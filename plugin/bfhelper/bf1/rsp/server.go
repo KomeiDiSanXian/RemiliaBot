@@ -5,8 +5,9 @@ import (
 	"errors"
 	"fmt"
 
-	bf1api "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/api"
 	"github.com/tidwall/gjson"
+
+	bf1api "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/api"
 )
 
 // Server 服务器结构体

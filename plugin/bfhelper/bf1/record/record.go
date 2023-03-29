@@ -6,8 +6,9 @@ import (
 	"fmt"
 	"sort"
 
-	rsp "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/api"
 	"github.com/tidwall/gjson"
+
+	rsp "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/api"
 )
 
 // GetStats 获取战绩信息

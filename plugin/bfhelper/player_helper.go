@@ -13,12 +13,13 @@ import (
 	"github.com/FloatTech/zbputils/control"
 	"gorm.io/gorm"
 
-	api "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/api"
-	"github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/model"
-	"github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/record"
 	"github.com/tidwall/gjson"
 	zero "github.com/wdvxdr1123/ZeroBot"
 	"github.com/wdvxdr1123/ZeroBot/message"
+
+	api "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/api"
+	bf1model "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/model"
+	bf1record "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/record"
 )
 
 // 引擎注册
@@ -51,9 +52,9 @@ func EngineFile() string {
 }
 
 func init() {
-	//初始化数据库
+	// 初始化数据库
 	_ = bf1model.InitDB(engine.DataFolder()+"player.db", &bf1model.Player{})
-	//查询在线玩家数
+	// 查询在线玩家数
 	engine.OnFullMatchGroup([]string{".bf1stats", "战地1人数", "bf1人数"}).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
 			ctx.Send("少女折寿中...")
@@ -74,11 +75,11 @@ func init() {
 					"行动：", gjson.Get(data, "mode.operation.full"), "/", gjson.Get(data, "mode.operation.amount"),
 				))
 		})
-	//Bind QQ绑定ID
+	// Bind QQ绑定ID
 	engine.OnPrefixGroup([]string{".绑定", ".bind"}).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
 			id := ctx.State["args"].(string)
-			//验证id是否有效
+			// 验证id是否有效
 			if vld, err := IsValidID(id); vld {
 				if err != nil {
 					ctx.SendChain(message.At(ctx.Event.UserID), message.Text("ERR：", err))
@@ -94,10 +95,10 @@ func init() {
 			}
 			db := (*bf1model.PlayerDB)(gdb)
 			defer db.Close()
-			//先绑定再查询pid和是否实锤
+			// 先绑定再查询pid和是否实锤
 			//检查是否已经绑定
 			if data, err := db.FindByQid(ctx.Event.UserID); errors.Is(err, gorm.ErrRecordNotFound) {
-				//未绑定...
+				// 未绑定...
 				ctx.SendChain(message.At(ctx.Event.UserID), message.Text("正在绑定id为 ", id))
 				err := db.Create(bf1model.Player{
 					Qid:         ctx.Event.UserID,
@@ -109,8 +110,8 @@ func init() {
 				}
 				ctx.SendChain(message.At(ctx.Event.UserID), message.Text("绑定成功"))
 			} else {
-				//已绑定，换绑...
-				if data.DisplayName == id { //同id..
+				// 已绑定，换绑...
+				if data.DisplayName == id { // 同id..
 					ctx.SendChain(message.At(ctx.Event.UserID), message.Text("笨蛋！你现在绑的就是这个id"))
 					return
 				}
@@ -189,7 +190,7 @@ func init() {
 				"开棺材车创死了 " + stat.CarriersKills + " 人"
 			Txt2Img(ctx, txt)
 		})
-	//武器查询，只展示前五个
+	// 武器查询，只展示前五个
 	engine.OnRegex(`^\. *1?武器 *(.*)$`).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
 			str := strings.Split(ctx.State["regex_matched"].([]string)[1], " ")
@@ -198,7 +199,7 @@ func init() {
 				RequestWeapon(ctx, id, bf1record.ALL)
 				return
 			}
-			//检查str长度
+			// 检查str长度
 			if len(str) > 1 {
 				id = str[1]
 			}
@@ -233,7 +234,7 @@ func init() {
 				ctx.Send(message.ReplyWithMessage(ctx.Event.MessageID, message.Text("请检查输入格式是否有误...")))
 			}
 		})
-	//最近战绩
+	// 最近战绩
 	engine.OnRegex(`^\. *1?最近 *(.*)$`).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
 			id := ctx.State["regex_matched"].([]string)[1]
@@ -259,7 +260,7 @@ func init() {
 			}
 			Txt2Img(ctx, msg)
 		})
-	//获取所有种类的载具信息
+	// 获取所有种类的载具信息
 	engine.OnRegex(`^\. *1?载具 *(.*)$`).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
 			id := ctx.State["regex_matched"].([]string)[1]
@@ -285,7 +286,7 @@ func init() {
 			}
 			Txt2Img(ctx, msg)
 		})
-	//交换查询
+	// 交换查询
 	engine.OnFullMatchGroup([]string{".交换", ".exchange"}).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
 			exchange, err := api.GetExchange()
@@ -302,7 +303,7 @@ func init() {
 			}
 			Txt2Img(ctx, msg)
 		})
-	//行动包查询
+	// 行动包查询
 	engine.OnFullMatchGroup([]string{".行动", ".行动包", ".pack"}).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
 			pack, err := api.GetCampaignPacks()

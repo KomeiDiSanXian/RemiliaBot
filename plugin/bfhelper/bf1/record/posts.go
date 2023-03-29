@@ -93,7 +93,7 @@ func NewPostStats(pid string) *Post {
 			PersonaID  string   "json:\"personaId\""
 			PersonaIds []string "json:\"personaIds\""
 		}{
-			Game:       rsp.BF1,
+			Game:      rsp.BF1,
 			PersonaID: pid,
 		},
 		ID: "ed26fa43-816d-4f7b-a9d8-de9785ae1bb6",

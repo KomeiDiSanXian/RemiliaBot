@@ -1,14 +1,15 @@
 // Package bf1model 战地服务器相关数据库操作
 package bf1model
 
-import (	
+import (
 	"time"
 
-	bf1api "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/api"
-	"github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/rsp"
 	"github.com/tidwall/gjson"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
+
+	bf1api "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/api"
+	bf1rsp "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/rsp"
 )
 
 // Group 群绑定服务器
@@ -24,11 +25,11 @@ type Group struct {
 // Server 表
 type Server struct {
 	GroupID     int64  `gorm:"primaryKey"`
-	Gameid      string `gorm:"primaryKey"` //gid
-	Serverid    string //sid
-	PGid        string //also guid
-	NameInGroup string //群内对该服务器起的别名
-	ServerName  string //服务器名
+	Gameid      string `gorm:"primaryKey"` // gid
+	Serverid    string // sid
+	PGid        string // also guid
+	NameInGroup string // 群内对该服务器起的别名
+	ServerName  string // 服务器名
 	CreatedAt   time.Time
 	UpdatedAt   time.Time
 }

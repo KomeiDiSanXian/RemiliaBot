@@ -3,20 +3,20 @@ package bf1model
 
 import "gorm.io/gorm"
 
-//Player 表
+
 type Player struct {
 	gorm.Model
-	PersonalID  string `gorm:"primaryKey"` //pid
-	Qid         int64  `gorm:"primaryKey"` //QQ号
-	DisplayName string //玩家id
-	IsHack      bool   //是否实锤开挂
+	PersonalID  string `gorm:"primaryKey"` // pid
+	Qid         int64  `gorm:"primaryKey"` // QQ号
+	DisplayName string // 玩家id
+	IsHack      bool   // 是否实锤开挂
 	BanReason   string
 }
 
 // PlayerDB 玩家数据库
 type PlayerDB gorm.DB
 
-//CURD...
+// CURD...
 
 // Create 创建玩家数据
 func (pdb *PlayerDB) Create(player Player) error {

@@ -24,7 +24,7 @@ const (
 	AuthAPI      string = "https://api.s-wg.net/ServersCollection/getPlayerAll?DisplayName="
 	NativeAPI    string = "https://sparta-gw.battlelog.com/jsonrpc/pc/api"
 	SessionAPI   string = "https://battlefield-api.sakurakooi.cyou/account/login"
-	OperationAPI string = "https://sparta-gw.battlelog.com/jsonrpc/ps4/api" //交换和行动包查询
+	OperationAPI string = "https://sparta-gw.battlelog.com/jsonrpc/ps4/api" // 交换和行动包查询
 	EASBAPI      string = "https://delivery.easb.cc/games/get_server_status"
 )
 
@@ -43,7 +43,7 @@ const (
 */
 // ea账密
 const (
-	UserName string = "" //邮箱
+	UserName string = "" // 邮箱
 	Password string = ""
 )
 
@@ -55,7 +55,7 @@ const (
 
 // 原生API 方法名常量
 const (
-	//NativeAPI
+	// NativeAPI
 	ADDVIP       string = "RSP.addServerVip"
 	REMOVEVIP    string = "RSP.removeServerVip"
 	ADDBAN       string = "RSP.addServerBan"
@@ -70,7 +70,7 @@ const (
 	RECENTSERVER string = "ServerHistory.mostRecentServers"
 	SERVERINFO   string = "GameServer.getServerDetails"
 	SERVERRSP    string = "RSP.getServerDetails"
-	//OperationAPI
+	// OperationAPI
 	EXCHANGE string = "ScrapExchange.getOffers"
 	CAMPAIGN string = "CampaignOperations.getPlayerCampaignStatus"
 )
@@ -115,11 +115,11 @@ func Login(username, password string, refreshToken bool) error {
 		return errors.New("账号信息不完整！")
 	}
 	user := map[string]interface{}{"username": username, "password": password, "refreshToken": refreshToken}
-	//requesting..
+	// requesting..
 	var client = gentleman.New()
 	client.URL(SessionAPI)
 	client.Use(body.JSON(user))
-	//寻找SakuraKooi申请APIKey...
+	// 寻找SakuraKooi申请APIKey...
 	client.Use(headers.Set("Sakura-Instance-Id", SakuraID))
 	client.Use(headers.Set("Sakura-Access-Token", SakuraToken))
 

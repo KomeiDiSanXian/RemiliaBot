@@ -7,12 +7,13 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/api"
-	"github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/model"
-	"github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/rsp"
 	zero "github.com/wdvxdr1123/ZeroBot"
 	"github.com/wdvxdr1123/ZeroBot/message"
 	"gorm.io/gorm"
+
+	bf1api "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/api"
+	bf1model "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/model"
+	bf1rsp "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/rsp"
 )
 
 func init() {

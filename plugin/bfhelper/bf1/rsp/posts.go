@@ -164,7 +164,7 @@ func NewPostRSPInfo(sid string) *Post {
 			LevelIndex int    `json:"levelIndex"`
 			Reason     string `json:"reason"`
 		}{
-			Game:   bf1api.BF1,
+			Game:     bf1api.BF1,
 			ServerID: sid,
 		},
 		ID: "ed26fa43-816d-4f7b-a9d8-de9785ae1bb6",

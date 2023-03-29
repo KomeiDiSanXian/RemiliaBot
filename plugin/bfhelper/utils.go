@@ -11,9 +11,6 @@ import (
 	"strings"
 	"sync"
 
-	api "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/api"
-	bf1model "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/model"
-	bf1record "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/record"
 	"github.com/FloatTech/zbputils/img/text"
 	"github.com/sirupsen/logrus"
 	"github.com/tidwall/gjson"
@@ -22,6 +19,10 @@ import (
 	"github.com/wdvxdr1123/ZeroBot/utils/helper"
 	"gopkg.in/h2non/gentleman.v2"
 	"gorm.io/gorm"
+
+	api "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/api"
+	bf1model "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/model"
+	bf1record "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/record"
 )
 
 // 简转繁 字典
@@ -29,7 +30,7 @@ var twmap map[string]string
 
 // 初始化
 func init() {
-	//读字典
+	// 读字典
 	f, err := os.Open(engine.DataFolder() + "dic/dic.json")
 	if err != nil {
 		logrus.Errorf("open dictionary file failed: %v", err)
@@ -91,7 +92,7 @@ func ReturnBindID(ctx *zero.Ctx, id string) (string, error) {
 		}
 		db := (*bf1model.PlayerDB)(gdb)
 		defer db.Close()
-		//检查是否已经绑定
+		// 检查是否已经绑定
 		var data *bf1model.Player
 		if data, err = db.FindByQid(ctx.Event.UserID); errors.Is(err, gorm.ErrRecordNotFound) {
 			return "", errors.New("账号未绑定，请使用 .绑定 id 来绑定")
@@ -115,7 +116,7 @@ func ID2PID(qid int64, id string) (string, string, error) {
 		if data, err = db.FindByQid(qid); errors.Is(err, gorm.ErrRecordNotFound) {
 			return "", "", errors.New("账号未绑定，请使用 .绑定 id 来绑定")
 		}
-		//若绑定账号时未获取到pid,重新获取并写入数据库
+		// 若绑定账号时未获取到pid,重新获取并写入数据库
 		if data.PersonalID == "" {
 			pid, err := api.GetPersonalID(id)
 			if err != nil {
@@ -131,7 +132,7 @@ func ID2PID(qid int64, id string) (string, string, error) {
 		}
 		return data.PersonalID, data.DisplayName, err
 	}
-	//检查数据库内是否存在该id
+	// 检查数据库内是否存在该id
 	if data, err = db.FindByName(id); errors.Is(err, gorm.ErrRecordNotFound) {
 		pid, err := api.GetPersonalID(id)
 		if err != nil {
@@ -139,7 +140,7 @@ func ID2PID(qid int64, id string) (string, string, error) {
 		}
 		return pid, id, err
 	}
-	//若绑定账号时未获取到pid,重新获取并写入数据库
+	// 若绑定账号时未获取到pid,重新获取并写入数据库
 	if data.PersonalID == "" {
 		pid, err := api.GetPersonalID(id)
 		if err != nil {
@@ -154,7 +155,6 @@ func ID2PID(qid int64, id string) (string, string, error) {
 		return pid, id, err
 	}
 	return data.PersonalID, data.DisplayName, err
-
 }
 
 // RequestWeapon 发送武器信息
