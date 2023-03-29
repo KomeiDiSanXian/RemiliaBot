@@ -92,11 +92,11 @@ func ReturnBindID(ctx *zero.Ctx, id string) (string, error) {
 		db := (*bf1model.PlayerDB)(gdb)
 		defer db.Close()
 		//检查是否已经绑定
-		if data, err := db.FindByQid(ctx.Event.UserID); errors.Is(err, gorm.ErrRecordNotFound) {
+		var data *bf1model.Player
+		if data, err = db.FindByQid(ctx.Event.UserID); errors.Is(err, gorm.ErrRecordNotFound) {
 			return "", errors.New("账号未绑定，请使用 .绑定 id 来绑定")
-		} else {
-			id = data.DisplayName
 		}
+		id = data.DisplayName
 	}
 	return id, nil
 }
@@ -111,25 +111,26 @@ func ID2PID(qid int64, id string) (string, string, error) {
 	db := (*bf1model.PlayerDB)(gdb)
 	defer db.Close()
 	if id == "" {
-		if data, err := db.FindByQid(qid); errors.Is(err, gorm.ErrRecordNotFound) {
+		var data *bf1model.Player
+		if data, err = db.FindByQid(qid); errors.Is(err, gorm.ErrRecordNotFound) {
 			return "", "", errors.New("账号未绑定，请使用 .绑定 id 来绑定")
-		} else {
-			//若绑定账号时未获取到pid,重新获取并写入数据库
-			if data.PersonalID == "" {
-				pid, err := api.GetPersonalID(id)
-				if err != nil {
-					return "", id, errors.New("获取pid失败，请重试")
-				}
-				rmu.Lock()
-				_ = db.Update(bf1model.Player{
-					Qid:        qid,
-					PersonalID: pid,
-				})
-				rmu.Unlock()
-				return pid, id, err
-			}
-			return data.PersonalID, data.DisplayName, err
 		}
+		//若绑定账号时未获取到pid,重新获取并写入数据库
+		if data.PersonalID == "" {
+			pid, err := api.GetPersonalID(id)
+			if err != nil {
+				return "", id, errors.New("获取pid失败，请重试")
+			}
+			rmu.Lock()
+			_ = db.Update(bf1model.Player{
+				Qid:        qid,
+				PersonalID: pid,
+			})
+			rmu.Unlock()
+			return pid, id, err
+		}
+		return data.PersonalID, data.DisplayName, err
+
 	} else {
 		//检查数据库内是否存在该id
 		if data, err := db.FindByName(id); errors.Is(err, gorm.ErrRecordNotFound) {
@@ -202,7 +203,7 @@ func GetBF1Recent(id string) (result *bf1record.Recent, err error) {
 }
 
 // IsValidId 检查id有效性
-func IsValidId(id string) (bool, error) {
+func IsValidID(id string) (bool, error) {
 	vld, err := api.ReturnJSON("https://signin.ea.com/p/ajax/user/checkOriginId?originId="+id, "GET", nil)
 	if err != nil {
 		return true, errors.New("验证id有效性失败，将继续绑定，请自行检查id是否正确")

@@ -3,6 +3,7 @@ package bf1rsp
 
 import bf1api "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/api"
 
+// Post 结构体
 type Post struct {
 	Jsonrpc string `json:"jsonrpc"`
 	Method  string `json:"method"`

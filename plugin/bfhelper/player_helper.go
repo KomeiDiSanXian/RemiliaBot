@@ -79,7 +79,7 @@ func init() {
 		Handle(func(ctx *zero.Ctx) {
 			id := ctx.State["args"].(string)
 			//验证id是否有效
-			if vld, err := IsValidId(id); vld {
+			if vld, err := IsValidID(id); vld {
 				if err != nil {
 					ctx.SendChain(message.At(ctx.Event.UserID), message.Text("ERR：", err))
 				}
@@ -113,9 +113,8 @@ func init() {
 				if data.DisplayName == id { //同id..
 					ctx.SendChain(message.At(ctx.Event.UserID), message.Text("笨蛋！你现在绑的就是这个id"))
 					return
-				} else {
-					ctx.SendChain(message.At(ctx.Event.UserID), message.Text("将原绑定id为 ", data.DisplayName, " 改绑为 ", id))
 				}
+				ctx.SendChain(message.At(ctx.Event.UserID), message.Text("将原绑定id为 ", data.DisplayName, " 改绑为 ", id))
 				err := db.Update(bf1model.Player{
 					Qid:         ctx.Event.UserID,
 					DisplayName: id,

@@ -9,7 +9,7 @@ import (
 	"github.com/tidwall/gjson"
 )
 
-type server struct {
+type Server struct {
 	SID  string
 	GID  string
 	PGID string
@@ -23,8 +23,8 @@ type m struct {
 type maps []m
 
 // NewServer 服务器
-func NewServer(sid, gid, pgid string) *server {
-	return &server{
+func NewServer(sid, gid, pgid string) *Server {
+	return &Server{
 		SID:  sid,
 		GID:  gid,
 		PGID: pgid,
@@ -32,7 +32,7 @@ func NewServer(sid, gid, pgid string) *server {
 }
 
 // Kick player, reason needs BIG5, return reason and err
-func (s *server) Kick(pid, reason string) (string, error) {
+func (s *Server) Kick(pid, reason string) (string, error) {
 	reason = fmt.Sprintf("%s%s", "Remi:", reason)
 	if len(reason) > 32 {
 		return "", errors.New("理由过长")
@@ -46,7 +46,7 @@ func (s *server) Kick(pid, reason string) (string, error) {
 }
 
 // Ban player, check returned id
-func (s *server) Ban(pid string) error {
+func (s *Server) Ban(pid string) error {
 	post := NewPostBan(pid, s.SID)
 	data, err := bf1api.ReturnJSON(bf1api.NativeAPI, "POST", post)
 	if err != nil {
@@ -59,7 +59,7 @@ func (s *server) Ban(pid string) error {
 }
 
 // Unban player
-func (s *server) Unban(pid string) error {
+func (s *Server) Unban(pid string) error {
 	post := NewPostRemoveBan(pid, s.SID)
 	data, err := bf1api.ReturnJSON(bf1api.NativeAPI, "POST", post)
 	if err != nil {
@@ -72,7 +72,7 @@ func (s *server) Unban(pid string) error {
 }
 
 // ChangeMap will change the map for players
-func (s *server) ChangeMap(index int) error {
+func (s *Server) ChangeMap(index int) error {
 	post := NewPostChangeMap(s.PGID, index)
 	data, err := bf1api.ReturnJSON(bf1api.NativeAPI, "POST", post)
 	if err != nil {
@@ -85,7 +85,7 @@ func (s *server) ChangeMap(index int) error {
 }
 
 // GetMaps returns maps
-func (s *server) GetMaps() (*maps, error) {
+func (s *Server) GetMaps() (*maps, error) {
 	post := NewPostGetServerInfo(s.GID)
 	data, err := bf1api.ReturnJSON(bf1api.NativeAPI, "POST", post)
 	if err != nil {
@@ -106,7 +106,7 @@ func (s *server) GetMaps() (*maps, error) {
 }
 
 // GetAdminspid returns pids of admins
-func (s *server) GetAdminspid() ([]string, error) {
+func (s *Server) GetAdminspid() ([]string, error) {
 	post := NewPostRSPInfo(s.SID)
 	data, err := bf1api.ReturnJSON(bf1api.NativeAPI, "POST", post)
 	if err != nil {
@@ -123,7 +123,7 @@ func (s *server) GetAdminspid() ([]string, error) {
 
 // input keywords for map id
 /* not compiled
-func (s *server) GetMapidByKeywords(keyword string) (int, error) {
+func (s *Server) GetMapidByKeywords(keyword string) (int, error) {
 	switch keyword{
 		case
 	}
