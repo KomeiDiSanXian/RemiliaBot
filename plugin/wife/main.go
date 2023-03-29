@@ -16,7 +16,7 @@ import (
 )
 
 func init() {
-	engine := control.Register("wife", &ctrl.Options[*zero.Ctx]{
+	engine := control.Register("抽老婆", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
 		Help:             "- 抽老婆",
 		Brief:            "从老婆库抽每日老婆",
