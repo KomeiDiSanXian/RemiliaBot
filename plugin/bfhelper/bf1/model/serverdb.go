@@ -44,7 +44,6 @@ type Admin struct {
 // ServerDB 服务器数据
 type ServerDB gorm.DB
 
-// curd
 // Create new server bind
 func (sdb *ServerDB) Create(groupid, ownerid int64, gameid string) error {
 	// check gameid

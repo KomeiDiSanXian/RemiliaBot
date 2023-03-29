@@ -9,6 +9,7 @@ import (
 	"github.com/tidwall/gjson"
 )
 
+// Server 服务器结构体
 type Server struct {
 	SID  string
 	GID  string
@@ -20,7 +21,8 @@ type m struct {
 	ModeName string
 }
 
-type maps []m
+// Maps 地图切片
+type Maps []m
 
 // NewServer 服务器
 func NewServer(sid, gid, pgid string) *Server {
@@ -85,7 +87,7 @@ func (s *Server) ChangeMap(index int) error {
 }
 
 // GetMaps returns maps
-func (s *Server) GetMaps() (*maps, error) {
+func (s *Server) GetMaps() (*Maps, error) {
 	post := NewPostGetServerInfo(s.GID)
 	data, err := bf1api.ReturnJSON(bf1api.NativeAPI, "POST", post)
 	if err != nil {
@@ -98,7 +100,7 @@ func (s *Server) GetMaps() (*maps, error) {
 	if result == nil {
 		return nil, errors.New("获取到的地图池为空")
 	}
-	mp := make(maps, len(result))
+	mp := make(Maps, len(result))
 	for i, v := range result {
 		mp[i] = m{MapName: v.Get("mapPrettyName").Str, ModeName: v.Get("modePrettyName").Str}
 	}

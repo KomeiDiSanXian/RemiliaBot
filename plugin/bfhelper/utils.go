@@ -109,9 +109,9 @@ func ID2PID(qid int64, id string) (string, string, error) {
 		return "", "", errors.New("打开数据库错误")
 	}
 	db := (*bf1model.PlayerDB)(gdb)
+	var data *bf1model.Player
 	defer db.Close()
 	if id == "" {
-		var data *bf1model.Player
 		if data, err = db.FindByQid(qid); errors.Is(err, gorm.ErrRecordNotFound) {
 			return "", "", errors.New("账号未绑定，请使用 .绑定 id 来绑定")
 		}
@@ -130,33 +130,31 @@ func ID2PID(qid int64, id string) (string, string, error) {
 			return pid, id, err
 		}
 		return data.PersonalID, data.DisplayName, err
-
-	} else {
-		//检查数据库内是否存在该id
-		if data, err := db.FindByName(id); errors.Is(err, gorm.ErrRecordNotFound) {
-			pid, err := api.GetPersonalID(id)
-			if err != nil {
-				return "", id, errors.New("获取pid失败，请检查id是否有误")
-			}
-			return pid, id, err
-		} else {
-			//若绑定账号时未获取到pid,重新获取并写入数据库
-			if data.PersonalID == "" {
-				pid, err := api.GetPersonalID(id)
-				if err != nil {
-					return "", id, errors.New("获取pid失败，请重试")
-				}
-				rmu.Lock()
-				_ = db.Update(bf1model.Player{
-					Qid:        qid,
-					PersonalID: pid,
-				})
-				rmu.Unlock()
-				return pid, id, err
-			}
-			return data.PersonalID, data.DisplayName, err
-		}
 	}
+	//检查数据库内是否存在该id
+	if data, err = db.FindByName(id); errors.Is(err, gorm.ErrRecordNotFound) {
+		pid, err := api.GetPersonalID(id)
+		if err != nil {
+			return "", id, errors.New("获取pid失败，请检查id是否有误")
+		}
+		return pid, id, err
+	}
+	//若绑定账号时未获取到pid,重新获取并写入数据库
+	if data.PersonalID == "" {
+		pid, err := api.GetPersonalID(id)
+		if err != nil {
+			return "", id, errors.New("获取pid失败，请重试")
+		}
+		rmu.Lock()
+		_ = db.Update(bf1model.Player{
+			Qid:        qid,
+			PersonalID: pid,
+		})
+		rmu.Unlock()
+		return pid, id, err
+	}
+	return data.PersonalID, data.DisplayName, err
+
 }
 
 // RequestWeapon 发送武器信息
@@ -202,7 +200,7 @@ func GetBF1Recent(id string) (result *bf1record.Recent, err error) {
 	return result, err
 }
 
-// IsValidId 检查id有效性
+// IsValidID 检查id有效性
 func IsValidID(id string) (bool, error) {
 	vld, err := api.ReturnJSON("https://signin.ea.com/p/ajax/user/checkOriginId?originId="+id, "GET", nil)
 	if err != nil {
