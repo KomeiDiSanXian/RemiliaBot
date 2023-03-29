@@ -3,7 +3,7 @@ package bf1model
 
 import "gorm.io/gorm"
 
-
+// Player 玩家表
 type Player struct {
 	gorm.Model
 	PersonalID  string `gorm:"primaryKey"` // pid
