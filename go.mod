@@ -3,7 +3,6 @@ module github.com/FloatTech/ZeroBot-Plugin
 go 1.20
 
 require (
-	github.com/Baidu-AIP/golang-sdk v1.1.1
 	github.com/FloatTech/AnimeAPI v1.6.1-0.20230409024643-f25135dee0da
 	github.com/FloatTech/floatbox v0.0.0-20230331064925-9af336a84944
 	github.com/FloatTech/gg v1.1.3-0.20230226151425-6ea91286ba08
@@ -102,9 +101,17 @@ require (
 require (
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/glebarez/go-sqlite v1.20.3 // indirect
+	github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51 // indirect
+	github.com/nbio/st v0.0.0-20140626010706-e9e8d9816f32 // indirect
+	lukechampine.com/uint128 v1.2.0 // indirect
+	modernc.org/cc/v3 v3.40.0 // indirect
+	modernc.org/ccgo/v3 v3.16.13 // indirect
+	modernc.org/opt v0.1.3 // indirect
+	modernc.org/strutil v1.1.3 // indirect
+	modernc.org/token v1.0.1 // indirect
 )
 
-replace modernc.org/sqlite => github.com/fumiama/sqlite3 v1.20.0-with-win386
+replace modernc.org/sqlite v1.20.0 => github.com/fumiama/sqlite3 v1.20.0-with-win386
 
 replace github.com/FloatTech/zbputils => github.com/KomeiDiSanXian/zbputils v0.0.0-20230418022900-b6a04796e87b
 

@@ -24,7 +24,8 @@ var Copyright = "© 2020 - %d FloatTech"
 var Banner = "* OneBot + ZeroBot + Golang\n" +
 	"* Version " + Version + " - %s\n" +
 	"* Copyright " + Copyright + ". All Rights Reserved.\n" +
-	"* Project: https://github.com/FloatTech/ZeroBot-Plugin"
+	"* Project: https://github.com/KomeiDiSanXian/RemiliaBot\n" +
+	"* Forked from: https://github.com/FloatTech/ZeroBot-Plugin"
 `
 
 const timeformat = `2006-01-02 15:04:05 +0800 CST`
