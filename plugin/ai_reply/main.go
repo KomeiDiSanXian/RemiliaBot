@@ -27,8 +27,6 @@ func init() { // 插件主体
 			"- 设置语音模式[原神人物/百度/TTSCN] 数字(百度/TTSCN说话人)\n" +
 			"- 设置默认语音模式[原神人物/百度/TTSCN] 数字(百度/TTSCN说话人)\n" +
 			"- 恢复成默认语音模式\n" +
-			"- 设置原神语音 api key xxxxxx (key请加开发群获得)\n" +
-			"- 设置百度语音 api id xxxxxx secret xxxxxx (请自行获得)\n" +
 			"当前适用的原神人物含有以下: \n" + list(genshin.SoundList[:], 5) +
 			"\n当前适用的TTSCN人物含有以下(以数字顺序代表): \n" + list(ttscnspeakers[:], 5),
 		PrivateDataFolder: "tts",
