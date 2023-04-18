@@ -207,6 +207,9 @@ func init() {
 	// sus = append(sus, 12345678)
 	// sus = append(sus, 87654321)
 
+	// 启用 webui
+	// go webctrl.RunGui(*g)
+
 	if *runcfg != "" {
 		f, err := os.Open(*runcfg)
 		if err != nil {
@@ -252,9 +255,6 @@ func init() {
 		logrus.Infoln("[main] 配置文件已保存到", *save)
 		os.Exit(0)
 	}
-
-	// 启用 webui
-	// go webctrl.RunGui(*g)
 }
 
 func main() {

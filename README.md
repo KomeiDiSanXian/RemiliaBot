@@ -653,6 +653,16 @@ print("run[CQ:image,file="+j["img"]+"]")
 
 </details>
 <details>
+  <summary>程序员做饭指南</summary>
+
+  `import _ "github.com/FloatTech/ZeroBot-Plugin/plugin/dish"`
+
+  - [x] 怎么做 | 烹饪[菜名]
+
+  - [x] 随机菜谱 | 随便做点菜
+
+</details>
+<details>
   <summary>多功能抽签</summary>
 
   `import _ "github.com/FloatTech/ZeroBot-Plugin/plugin/drawlots"`
@@ -719,7 +729,8 @@ print("run[CQ:image,file="+j["img"]+"]")
 
   `import _ "github.com/FloatTech/ZeroBot-Plugin/plugin/font"`
 
-  - [x] (用[终末体|终末变体|紫罗兰体|樱酥体|Consolas体|苹方体])渲染文字xxx
+  - [x] (用[终末体|终末变体|紫罗兰体|樱酥体|Consolas体|粗苹方体|未来荧黑体|Gugi体|八丸体|Impact体|猫啃体|苹方体])渲染(抖动)文字xxx
+
 </details>
 <details>
   <summary>每日运势</summary>
@@ -1239,7 +1250,7 @@ print("run[CQ:image,file="+j["img"]+"]")
 
   - [x] 签到
   - [x] 获得签到背景[@xxx] | 获得签到背景
-  - [x] 设置[默认]签到预设(1~9)
+  - [x] 设置签到预设(0~3)
   - [x] 查看等级排名
   - 注:跨群排行
   - [x] 查看我的钱包
@@ -1375,7 +1386,17 @@ print("run[CQ:image,file="+j["img"]+"]")
 
   - [x] 来份网易云热评
 
-  </details>
+</details>
+<details>
+  <summary>据意查句</summary>
+
+  `import _ "github.com/FloatTech/ZeroBot-Plugin/plugin/wantquotes"`
+
+  - [x] 据意查句 大海
+  
+  - [x] 登录据意查句 
+
+</details>
 <details>
   <summary>星际战甲</summary>
 
