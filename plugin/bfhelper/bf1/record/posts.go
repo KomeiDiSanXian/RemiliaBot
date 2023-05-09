@@ -7,12 +7,15 @@ import rsp "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/api"
 type Post struct {
 	Jsonrpc string `json:"jsonrpc"`
 	Method  string `json:"method"`
-	Params  struct {
-		Game       string   `json:"game"`
-		PersonaID  string   `json:"personaId"`
-		PersonaIds []string `json:"personaIds"`
-	} `json:"params"`
-	ID string `json:"id"`
+	Params  Param  `json:"params"`
+	ID      string `json:"id"`
+}
+
+// Param post parameters
+type Param struct {
+	Game       string   `json:"game"`
+	PersonaID  string   `json:"personaId"`
+	PersonaIds []string `json:"personaIds"`
 }
 
 // NewPostWeapon 武器结构体
@@ -20,11 +23,7 @@ func NewPostWeapon(pid string) *Post {
 	return &Post{
 		Jsonrpc: "2.0",
 		Method:  rsp.WEAPONS,
-		Params: struct {
-			Game       string   "json:\"game\""
-			PersonaID  string   "json:\"personaId\""
-			PersonaIds []string "json:\"personaIds\""
-		}{
+		Params: Param{
 			Game:      rsp.BF1,
 			PersonaID: pid,
 		},
@@ -37,11 +36,7 @@ func NewPostVehicle(pid string) *Post {
 	return &Post{
 		Jsonrpc: "2.0",
 		Method:  rsp.VEHICLES,
-		Params: struct {
-			Game       string   "json:\"game\""
-			PersonaID  string   "json:\"personaId\""
-			PersonaIds []string "json:\"personaIds\""
-		}{
+		Params: Param{
 			Game:      rsp.BF1,
 			PersonaID: pid,
 		},
@@ -54,11 +49,7 @@ func NewPostRecent(pid string) *Post {
 	return &Post{
 		Jsonrpc: "2.0",
 		Method:  rsp.RECENTSERVER,
-		Params: struct {
-			Game       string   "json:\"game\""
-			PersonaID  string   "json:\"personaId\""
-			PersonaIds []string "json:\"personaIds\""
-		}{
+		Params: Param{
 			Game:      rsp.BF1,
 			PersonaID: pid,
 		},
@@ -71,11 +62,7 @@ func NewPostPlaying(pid string) *Post {
 	return &Post{
 		Jsonrpc: "2.0",
 		Method:  rsp.PLAYING,
-		Params: struct {
-			Game       string   "json:\"game\""
-			PersonaID  string   "json:\"personaId\""
-			PersonaIds []string "json:\"personaIds\""
-		}{
+		Params: Param{
 			Game:       rsp.BF1,
 			PersonaIds: []string{pid},
 		},
@@ -88,11 +75,7 @@ func NewPostStats(pid string) *Post {
 	return &Post{
 		Jsonrpc: "2.0",
 		Method:  rsp.STATS,
-		Params: struct {
-			Game       string   "json:\"game\""
-			PersonaID  string   "json:\"personaId\""
-			PersonaIds []string "json:\"personaIds\""
-		}{
+		Params: Param{
 			Game:      rsp.BF1,
 			PersonaID: pid,
 		},

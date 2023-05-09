@@ -461,9 +461,9 @@ func drawstatus(m *ctrl.Control[*zero.Ctx], uid int64, botname string) (sendimg 
 		return
 	}
 	canvas.SetRGBA255(0, 0, 0, 255)
-	canvas.DrawStringAnchored("Created By ZeroBot-Plugin "+banner.Version, float64(canvas.W())/2+3, float64(canvas.H())-70/2+3, 0.5, 0.5)
+	canvas.DrawStringAnchored("Created By RemiliaBot "+banner.Version+"  Forked From ZeroBot-Plugin", float64(canvas.W())/2+3, float64(canvas.H())-70/2+3, 0.5, 0.5)
 	canvas.SetRGBA255(255, 255, 255, 255)
-	canvas.DrawStringAnchored("Created By ZeroBot-Plugin "+banner.Version, float64(canvas.W())/2, float64(canvas.H())-70/2, 0.5, 0.5)
+	canvas.DrawStringAnchored("Created By RemiliaBot "+banner.Version+"  Forked From ZeroBot-Plugin", float64(canvas.W())/2, float64(canvas.H())-70/2, 0.5, 0.5)
 
 	sendimg = canvas.Image()
 	return
@@ -475,7 +475,7 @@ func botruntime() (string, error) {
 		return "", err
 	}
 	t := &strings.Builder{}
-	t.WriteString("ZeroBot-Plugin 已运行 ")
+	t.WriteString("RemiliaBot 已运行 ")
 	t.WriteString(strconv.FormatInt((time.Now().Unix()-boottime.Unix())/86400, 10))
 	t.WriteString(" 天 ")
 	t.WriteString(time.Unix(time.Now().Unix()-boottime.Unix(), 0).UTC().Format("15:04:05"))
@@ -516,7 +516,7 @@ func basicstate() (stateinfo [3]*status, err error) {
 		return
 	}
 	cores := strconv.Itoa(int(cpuinfo[0].Cores)) + " Core"
-	times := "最大 " + strconv.FormatFloat(cpuinfo[0].Mhz/1000, 'f', 1, 64) + "Ghz"
+	times := "最大 " + strconv.FormatFloat(cpuinfo[0].Mhz/1000, 'f', 1, 64) + "GHz"
 
 	stateinfo[0] = &status{
 		precent: math.Round(percent[0]),
@@ -595,19 +595,19 @@ func diskstate() (stateinfo []*status, err error) {
 }
 
 func moreinfo(m *ctrl.Control[*zero.Ctx]) (stateinfo []*status, err error) {
-	hostinfo, err := host.Info()
+	/*hostinfo, err := host.Info()
 	if err != nil {
 		return
-	}
+	}*/
 	cpuinfo, err := cpu.Info()
 	if err != nil {
 		return
 	}
 	count := len(m.Manager.M)
 	stateinfo = []*status{
-		{name: "OS", text: []string{hostinfo.Platform}},
+		{name: "OS", text: []string{ /*hostinfo.Platform*/ "Microsoft Windows ⑨"}},
 		{name: "CPU", text: []string{cpuinfo[0].ModelName}},
-		{name: "Version", text: []string{hostinfo.PlatformVersion}},
+		{name: "Version", text: []string{ /*hostinfo.PlatformVersion*/ "99.0.99999.9999 Bulid 99999.9999"}},
 		{name: "Plugin", text: []string{"共 " + strconv.Itoa(count) + " 个"}},
 	}
 	return
