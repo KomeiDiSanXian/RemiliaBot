@@ -13,7 +13,7 @@ import (
 
 var engine = control.Register("ai画图", &ctrl.Options[*zero.Ctx]{
 	DisableOnDefault:  false,
-	Brief:             "本地部署的ai画图，平均请求时间为10s",
+	Brief:             "本地部署的ai画图",
 	Help:              "",
 	PrivateDataFolder: "aipaint",
 }).ApplySingle(ctxext.DefaultSingle)

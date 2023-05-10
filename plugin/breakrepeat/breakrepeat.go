@@ -18,7 +18,7 @@ var sm syncx.Map[int64, string]
 func init() {
 	engine := control.Register("打断复读", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: true,
-		Brief:            "打断复读",
+		Brief:            "禁止+1复读",
 		Help:             "- 打断" + strconv.Itoa(throttle) + "次以上复读\n",
 	})
 	engine.On("message/group", zero.OnlyGroup, func(ctx *zero.Ctx) bool {

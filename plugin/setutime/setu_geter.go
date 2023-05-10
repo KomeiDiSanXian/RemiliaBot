@@ -54,7 +54,7 @@ var pool = &imgpool{
 func init() { // 插件主体
 	engine := control.Register("涩图", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
-		Brief:            "涩图",
+		Brief:            "少看点涩图吧各位",
 		Help: "- 来份[涩图/二次元/风景/车万]\n" +
 			"- 添加[涩图/二次元/风景/车万][P站图片ID]\n" +
 			"- 删除[涩图/二次元/风景/车万][P站图片ID]\n" +

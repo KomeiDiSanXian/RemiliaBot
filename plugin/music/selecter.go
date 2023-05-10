@@ -24,7 +24,7 @@ import (
 func init() {
 	control.Register("点歌", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
-		Brief:            "点歌",
+		Brief:            "每个机器人必备的插件",
 		Help: "- 点歌[xxx]\n" +
 			"- 网易点歌[xxx]\n" +
 			"- 酷我点歌[xxx]\n" +

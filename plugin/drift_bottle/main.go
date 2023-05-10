@@ -35,7 +35,7 @@ var seaLocker sync.RWMutex
 func init() {
 	en := control.Register("漂流瓶", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault:  false,
-		Brief:             "漂流瓶",
+		Brief:             "跨群交流漂流瓶",
 		Help:              "- @bot pick" + "- @bot throw xxx (xxx为投递内容)",
 		PrivateDataFolder: "driftbottle",
 	})

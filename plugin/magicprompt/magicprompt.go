@@ -25,7 +25,7 @@ const (
 func init() { // 插件主体
 	engine := control.Register("魔法咏唱提示", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault:  false,
-		Brief:             "MagicPrompt-Stable-Diffusion吟唱提示",
+		Brief:             "ai画图吟唱提示",
 		Help:              "- 吟唱提示 xxx",
 		PrivateDataFolder: "magicprompt",
 	})

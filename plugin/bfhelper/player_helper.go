@@ -25,6 +25,7 @@ import (
 // 引擎注册
 var engine = control.Register("战地", &ctrl.Options[*zero.Ctx]{
 	DisableOnDefault: false,
+	Brief: "战地相关查询功能",
 	Help: "battlefield\n" +
 		"<-----以下是玩家查询----->\n" +
 		"- .武器 [武器类型] [id]\t不填武器武器类型默认查询全部\n" +

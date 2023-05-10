@@ -34,7 +34,7 @@ var (
 func init() {
 	en := control.Register("随机图片", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
-		Brief:            "随机图片",
+		Brief:            "lolicon随机图片",
 		Help: "- 随机图片\n" +
 			"- 随机图片 萝莉|少女\n" +
 			"- 设置随机图片地址[http...]",

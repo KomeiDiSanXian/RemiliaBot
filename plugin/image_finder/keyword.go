@@ -64,7 +64,7 @@ var hrefre = regexp.MustCompile(`<a href=".*">`)
 func init() {
 	control.Register("关键字搜图", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
-		Brief:            "关键字搜图",
+		Brief:            "使用p站tag搜图",
 		Help:             "- 来张 [xxx]",
 	}).OnRegex(`^来张\s?(.*)$`, zero.AdminPermission).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {

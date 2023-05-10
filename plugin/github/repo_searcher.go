@@ -22,9 +22,9 @@ func init() { // 插件主体
 	control.Register("github", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: true,
 		Brief:            "GitHub仓库搜索",
-		Help: "- >github [xxx]\n" +
-			"- >github -p [xxx]",
-	}).OnRegex(`^>github\s(-.{1,10}? )?(.*)$`).SetBlock(true).
+		Help: "- .github [xxx]\n" +
+			"- .github -p [xxx]",
+	}).OnRegex(`^.github\s(-.{1,10}? )?(.*)$`).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
 			// 发送请求
 			header := http.Header{

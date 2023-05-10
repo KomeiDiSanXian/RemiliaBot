@@ -17,7 +17,7 @@ import (
 func init() {
 	engine := control.Register("事件处理", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
-		Brief:            "好友申请和群聊邀请事件处理",
+		Brief:            "好友和群聊邀请事件处理",
 		Help: "- [开启|关闭]自动同意[申请|邀请|主人]\n" +
 			"- [同意|拒绝][申请|邀请][flag]\n" +
 			"Tips: 信息默认发送给主人列表第一位, 默认同意所有主人的事件, flag跟随事件一起发送",

@@ -63,7 +63,7 @@ var words = make(dictionary)
 func init() {
 	en := control.Register("猜单词", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
-		Brief:            "猜单词",
+		Brief:            "考察范围为四级",
 		Help: "- 个人猜单词\n" +
 			"- 团队猜单词\n" +
 			"- 团队六阶猜单词\n" +

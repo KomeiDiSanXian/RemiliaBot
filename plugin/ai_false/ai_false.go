@@ -53,7 +53,7 @@ var (
 func init() { // 插件主体
 	engine := control.Register("自检", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
-		Brief:            "自检, 全局限速",
+		Brief:            "查看机器人运行情况",
 		Help: "- 查询计算机当前活跃度: [检查身体 | 自检 | 启动自检 | 系统状态]\n" +
 			"- 设置默认限速为每 m [分钟 | 秒] n 次触发",
 	})

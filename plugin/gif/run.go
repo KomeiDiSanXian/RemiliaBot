@@ -128,7 +128,7 @@ func init() { // 插件主体
 	}
 	en := control.Register("制图", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
-		Brief:            "制图",
+		Brief:            "GIF和PNG制梗图",
 		Help: "下为制图命令:\n" +
 			"- 搓|- 冲|- 摸|-拍|- 丢|- 吃|- 敲|- 啃|- 蹭|- 爬|- 撕\n" +
 			"- 吸|- 嗦|- 扔|- 锤|- 紧贴|紧紧贴着|- 转|- 抬棺|- 远离\n" +

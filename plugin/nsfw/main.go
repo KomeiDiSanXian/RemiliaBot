@@ -14,9 +14,9 @@ import (
 const hso = "https://gchat.qpic.cn/gchatpic_new//--4234EDEC5F147A4C319A41149D7E0EA9/0"
 
 func init() {
-	engine := control.Register("nsfw图片打分", &ctrl.Options[*zero.Ctx]{
+	engine := control.Register("图片打分", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
-		Brief:            "nsfw图片识别",
+		Brief:            "nsfw图片打分",
 		Help:             "- nsfw打分[图片]",
 	}).ApplySingle(ctxext.DefaultSingle)
 	// 上传一张图进行评价
@@ -33,9 +33,9 @@ func init() {
 				ctx.Send(message.ReplyWithMessage(ctx.Event.MessageID, message.Text(judge(p))))
 			}
 		})
-	control.Register("nsfw图片自动评价", &ctrl.Options[*zero.Ctx]{
+	control.Register("图片自动评价", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: true,
-		Brief:            "nsfw图片自动识别",
+		Brief:            "nsfw图片自动评价",
 		Help:             "- 当图片属于非 neutral 类别时自动发送评价",
 	}).OnMessage(zero.HasPicture).SetBlock(false).
 		Handle(func(ctx *zero.Ctx) {

@@ -53,7 +53,7 @@ var (
 func init() {
 	engine := control.Register("塔罗牌", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
-		Brief:            "塔罗牌",
+		Brief:            "来抽塔罗牌吧",
 		Help: "- 抽[塔罗牌|大阿卡纳|小阿卡纳]\n" +
 			"- 抽n张[塔罗牌|大阿卡纳|小阿卡纳]\n" +
 			"- 解塔罗牌[牌名]\n" +

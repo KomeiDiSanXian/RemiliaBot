@@ -34,7 +34,7 @@ var (
 func init() {
 	engine := control.Register("聊天热词", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
-		Brief:            "聊天热词",
+		Brief:            "看看群友说什么怪话",
 		Help:             "- 热词 [群号] [消息数目]|热词 123456 1000",
 		PublicDataFolder: "WordCount",
 	})
