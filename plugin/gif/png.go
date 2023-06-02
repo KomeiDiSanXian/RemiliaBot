@@ -175,20 +175,28 @@ func rotate(cc *context, args ...string) (string, error) {
 
 // deformation 变形
 func deformation(cc *context, args ...string) (string, error) {
+	// 暂时不接受args参数
+	_ = args
 	name := cc.usrdir + "Deformation.png"
 	// 加载图片
 	im, err := imgfactory.LoadFirstFrame(cc.headimgsdir[0], 0, 0)
 	if err != nil {
 		return "", err
 	}
-	w, err := strconv.Atoi(args[0])
-	if err != nil {
-		return "", err
-	}
-	h, err := strconv.Atoi(args[1])
-	if err != nil {
-		return "", err
-	}
+	/*
+		log.Fatalln("got args:", args)
+		/// 参数接收错误
+		w, err := strconv.Atoi(args[1])
+		if err != nil {
+			return "", err
+		}
+		h, err := strconv.Atoi(args[2])
+		if err != nil {
+			return "", err
+		}
+		log.Fatalln("got width and height:", w, h)
+	*/
+	w, h := rand.Intn(256), rand.Intn(256)
 	imgnrgba := imgfactory.Size(im.Image(), w, h).Image()
 	return "file:///" + name, imgfactory.SavePNG2Path(name, imgnrgba)
 }

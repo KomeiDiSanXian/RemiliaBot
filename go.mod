@@ -10,7 +10,7 @@ require (
 	github.com/FloatTech/rendercard v0.0.10-0.20230223064326-45d29fa4ede9
 	github.com/FloatTech/sqlite v1.6.2
 	github.com/FloatTech/ttl v0.0.0-20220715042055-15612be72f5b
-	github.com/FloatTech/zbpctrl v1.5.3-0.20230411055601-7cdff751dd67
+	github.com/FloatTech/zbpctrl v1.5.3-0.20230514154630-b74e6fcca380
 	github.com/FloatTech/zbputils v1.6.2-0.20230411114057-4c71136244b2
 	github.com/RomiChan/syncx v0.0.0-20221202055724-5f842c53020e
 	github.com/RomiChan/websocket v1.4.3-0.20220227141055-9b2c6168c9c5
@@ -105,6 +105,6 @@ require (
 
 replace modernc.org/sqlite => github.com/fumiama/sqlite3 v1.20.0-with-win386
 
-replace github.com/FloatTech/zbputils => github.com/KomeiDiSanXian/zbputils v0.0.0-20230510130427-870427527c6f
+replace github.com/FloatTech/zbputils => github.com/KomeiDiSanXian/zbputils v0.0.0-20230601080829-20c1a8e2f8c7
 
 replace github.com/remyoudompheng/bigfft => github.com/fumiama/bigfft v0.0.0-20211011143303-6e0bfa3c836b

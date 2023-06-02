@@ -15,7 +15,7 @@ import (
 
 func init() {
 	engine := control.Register("测定", &ctrl.Options[*zero.Ctx]{
-		DisableOnDefault: false,
+		DisableOnDefault: true,
 		Brief:            "shindan测定",
 		Help: "- 今天是什么少女[@xxx]\n" +
 			"- 异世界转生[@xxx]\n" +
@@ -23,7 +23,7 @@ func init() {
 			"- 今日老婆[@xxx]\n" +
 			"- 黄油角色[@xxx]",
 	})
-	engine.OnPrefix("异世界转生", number(587874)).SetBlock(true).Limit(ctxext.LimitByUser).Handle(handlepic)
+	engine.OnPrefix("异世界转生", number(587874)).SetBlock(true).Limit(ctxext.LimitByUser).Handle(handlepic) // 全部失效
 	engine.OnPrefix("今天是什么少女", number(162207)).SetBlock(true).Limit(ctxext.LimitByUser).Handle(handlepic)
 	engine.OnPrefix("卖萌", number(360578)).SetBlock(true).Limit(ctxext.LimitByUser).Handle(handletxt)
 	engine.OnPrefix("今日老婆", number(1075116)).SetBlock(true).Limit(ctxext.LimitByUser).Handle(handlecq)

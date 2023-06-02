@@ -13,7 +13,7 @@ import (
 	zero "github.com/wdvxdr1123/ZeroBot"
 	"github.com/wdvxdr1123/ZeroBot/message"
 )
-
+// 无响应
 func init() {
 	en := control.Register("投胎模拟", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,

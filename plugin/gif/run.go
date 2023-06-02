@@ -126,6 +126,7 @@ func init() { // 插件主体
 	for k := range cmdMap {
 		cmd = append(cmd, k)
 	}
+	// 变形
 	en := control.Register("制图", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
 		Brief:            "GIF和PNG制梗图",

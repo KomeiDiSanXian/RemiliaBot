@@ -105,7 +105,7 @@ func init() {
 				),
 			), ctxext.GetFirstMessageInForward(ctx))
 			if err != nil {
-				ctx.SendChain(message.Text("ERROR: ", err))
+				ctx.SendChain(message.Text("ERROR: 请求时出现错误"))
 				return
 			}
 		})
