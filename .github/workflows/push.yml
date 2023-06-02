@@ -16,7 +16,7 @@ jobs:
       - name: golangci-lint
         uses: golangci/golangci-lint-action@master
         with:
-          version: 1.52.2
+          version: v1.52.2
 
       - name: Commit back
         if: ${{ !github.head_ref }}
