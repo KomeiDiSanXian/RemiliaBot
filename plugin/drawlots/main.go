@@ -42,7 +42,7 @@ var (
 	}()
 	en = control.Register("多功能抽签", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
-		Brief:            "多功能抽签",
+		Brief:            "图包和gif抽签",
 		Help: "支持图包文件夹和gif抽签\n" +
 			"-------------\n" +
 			"- (刷新)抽签列表\n- 抽[签名]签\n- 看[gif签名]签\n- 加[签名]签[gif图片]\n- 删[gif签名]签",
