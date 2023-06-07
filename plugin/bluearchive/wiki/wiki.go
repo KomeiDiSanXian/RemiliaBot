@@ -4,11 +4,12 @@ package wiki
 import (
 	"errors"
 	"fmt"
-	"github.com/FloatTech/ZeroBot-Plugin/plugin/bluearchive/web"
 	"io"
 	"os"
 	"strings"
 	"time"
+
+	"github.com/FloatTech/ZeroBot-Plugin/plugin/bluearchive/web"
 
 	"github.com/tidwall/gjson"
 )
@@ -54,7 +55,6 @@ func (es *Events) PrintEvent(layout string) []string {
 		} else {
 			strs = append(strs, fmt.Sprintf(startedfmtstr, event.EventName, event.Description, startTime, endTime, h, m, s))
 		}
-
 	}
 	return strs
 }
