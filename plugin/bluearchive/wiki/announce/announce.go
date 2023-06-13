@@ -5,8 +5,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/FloatTech/ZeroBot-Plugin/plugin/bluearchive/wiki/picture"
 	"github.com/tidwall/gjson"
+
+	"github.com/FloatTech/ZeroBot-Plugin/plugin/bluearchive/wiki/picture"
 )
 
 // Announcement 公告

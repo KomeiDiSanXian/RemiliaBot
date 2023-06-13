@@ -6,8 +6,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/FloatTech/ZeroBot-Plugin/plugin/bluearchive/wiki/picture"
 	"github.com/tidwall/gjson"
+
+	"github.com/FloatTech/ZeroBot-Plugin/plugin/bluearchive/wiki/picture"
 )
 
 // Event 用于存储活动信息
@@ -42,12 +43,9 @@ func (es *Events) PrintEvent(layout string) []string {
 		} else {
 			strs = append(strs, fmt.Sprintf(startedfmtstr, event.EventName, event.Description, startTime, endTime, h, m, s))
 		}
-
 	}
 	return strs
 }
-
-
 
 // fixDescription 删除可能存在的 <br>
 func (e *Event) fixDescription() {
