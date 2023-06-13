@@ -1,0 +1,20 @@
+Bot:
+  Debug: true
+  Warn: false
+  AccessToken: # default
+  WSClientURL: ws://127.0.0.1:6700 # default
+  NickNames:
+    - Remilia
+    - Remi
+    - 蕾米莉亚
+    - 蕾米
+    - remilia
+    - remi
+  CommandPrefix: .
+  Latency: 233 # default, ms
+  RingSize: 4096 # default
+  MaxProcessTime: 4 # default, min
+  SuperUser:
+    - 123456789
+    - 987654321
+  WebUIURL: 127.0.0.1:3000 # default
