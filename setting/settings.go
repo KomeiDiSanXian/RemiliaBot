@@ -1,3 +1,4 @@
+// Package setting 配置相关
 package setting
 
 import (
@@ -5,12 +6,13 @@ import (
 	"github.com/spf13/viper"
 )
 
+// Setting 使用viper
 type Setting struct {
 	vp *viper.Viper
 }
 
 var (
-	BotSetting *BotSettings
+	BotSetting *BotSettings // 机器人相关设置出口
 )
 
 // NewSetting 设置conf名为config 路径为 ./configs/config.yaml

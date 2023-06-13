@@ -1,3 +1,4 @@
+// Package setting 配置相关
 package setting
 
 // BotSettings Bot配置信息
