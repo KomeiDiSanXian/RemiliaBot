@@ -185,7 +185,6 @@ func init() {
 		MaxProcessTime: time.Duration(setting.BotSetting.MaxProcessTime) * time.Minute,
 		Driver:         []zero.Driver{config.W[0]},
 	}
-
 }
 
 func setupSetting() error {
