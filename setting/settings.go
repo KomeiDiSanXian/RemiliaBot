@@ -12,7 +12,7 @@ type Setting struct {
 }
 
 var (
-	BotSetting *BotSettings // 机器人相关设置出口
+	BotSetting *BotSettings // BotSetting 机器人相关设置出口
 )
 
 // NewSetting 设置conf名为config 路径为 ./configs/config.yaml
