@@ -12,8 +12,8 @@ import (
 	"github.com/tidwall/gjson"
 )
 
-// WikiData 存储公告和活动
-type WikiData struct {
+// Data 存储公告和活动
+type Data struct {
 	Events        *event.Events
 	Announcements *announce.Announcements
 }
@@ -28,12 +28,12 @@ var Headers = map[string]string{
 }
 
 // NewWikiData 创建空的WikiData，返回其指针
-func NewWikiData() *WikiData {
-	return &WikiData{}
+func NewWikiData() *Data {
+	return &Data{}
 }
 
 // Request 请求获取wiki中的数据
-func (w *WikiData) Request() error {
+func (w *Data) Request() error {
 	resp, err := web.MakeRequest(URL, Headers)
 	if err != nil {
 		return err

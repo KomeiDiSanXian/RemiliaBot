@@ -45,7 +45,7 @@ func (p *Picture) Download(downloadTo string) error {
 	return err
 }
 
-// 使用URL的最后一个path 给图片命名
+// NamedByURL 使用URL的最后一个path 给图片命名
 func (p *Picture) NamedByURL() {
 	s := strings.Split(p.URL, "/")
 	p.Name = s[len(s)-1]
