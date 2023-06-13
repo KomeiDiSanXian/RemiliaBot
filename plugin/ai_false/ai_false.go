@@ -6,6 +6,7 @@ import (
 	"errors"
 	"image"
 	"math"
+	"math/rand"
 	"runtime"
 	"strconv"
 	"strings"
@@ -70,7 +71,7 @@ func init() { // 插件主体
 	}
 	engine.OnFullMatchGroup([]string{"检查身体", "自检", "启动自检", "系统状态"}, zero.AdminPermission).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
-			img, err := drawstatus(ctx.State["manager"].(*ctrl.Control[*zero.Ctx]), ctx.Event.SelfID, zero.BotConfig.NickName[0])
+			img, err := drawstatus(ctx.State["manager"].(*ctrl.Control[*zero.Ctx]), ctx.Event.SelfID, zero.BotConfig.NickName[rand.Intn(len(zero.BotConfig.NickName))])
 			if err != nil {
 				ctx.SendChain(message.Text("ERROR: ", err))
 				return
@@ -607,7 +608,7 @@ func moreinfo(m *ctrl.Control[*zero.Ctx]) (stateinfo []*status, err error) {
 	stateinfo = []*status{
 		{name: "OS", text: []string{ /*hostinfo.Platform*/ "Microsoft Windows ⑨"}},
 		{name: "CPU", text: []string{cpuinfo[0].ModelName}},
-		{name: "Version", text: []string{ /*hostinfo.PlatformVersion*/ "99.0.99999.9999 Bulid 99999.9999"}},
+		{name: "Version", text: []string{ /*hostinfo.PlatformVersion*/ "Maximum number ⑨ Build Crino"}},
 		{name: "Plugin", text: []string{"共 " + strconv.Itoa(count) + " 个"}},
 	}
 	return

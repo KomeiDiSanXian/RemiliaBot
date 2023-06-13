@@ -60,9 +60,6 @@ func (r *PlayerRepository) GetByQID(qid int64) (*Player, error) {
 
 	var player Player
 	if err := r.db.Where("qid = ?", qid).First(&player).Error; err != nil {
-		if gorm.IsRecordNotFoundError(err) {
-			return nil, errors.New("Player not found")
-		}
 		return nil, err
 	}
 	return &player, nil
@@ -75,9 +72,6 @@ func (r *PlayerRepository) GetByName(name string) (*Player, error) {
 	}
 	var player Player
 	if err := r.db.Where("display_name = ?", name).First(&player).Error; err != nil {
-		if gorm.IsRecordNotFoundError(err) {
-			return nil, errors.New("Player not found")
-		}
 		return nil, err
 	}
 	return &player, nil
