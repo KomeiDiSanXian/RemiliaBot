@@ -6,10 +6,12 @@ import (
 	"encoding/binary"
 	"errors"
 	"fmt"
+	"io/fs"
 	"math/rand"
 	"os"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 
 	zero "github.com/wdvxdr1123/ZeroBot"
@@ -20,13 +22,14 @@ import (
 	"github.com/FloatTech/floatbox/process"
 	ctrl "github.com/FloatTech/zbpctrl"
 	"github.com/FloatTech/zbputils/control"
+	"github.com/FloatTech/zbputils/ctxext"
 )
 
 func init() {
 	engine := control.Register("本地老婆", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault:  false,
 		Brief:             "本地抽老婆",
-		Help:              "- 抽wife[@xxx]\n- 添加wife[名字][图片]\n- 删除wife[名字]\n- [让 | 不让]所有人均可添加wife",
+		Help:              "- 抽wife[@xxx]\n- 添加wife[名字][图片]\n- 删除wife[名字]\n- 删除所有wife\n- [让 | 不让]所有人均可添加wife\n- 查看所有wife",
 		PrivateDataFolder: "nwife",
 	})
 	base := engine.DataFolder()
@@ -69,26 +72,48 @@ func init() {
 					break
 				}
 			}
-			if name != "" {
-				url := ctx.State["image_url"].([]string)[0]
-				grpfolder := base + strconv.FormatInt(ctx.Event.GroupID, 36)
-				if file.IsNotExist(grpfolder) {
-					err := os.Mkdir(grpfolder, 0755)
-					if err != nil {
-						ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("错误：", err.Error()))
-						return
-					}
-				}
-				err := file.DownloadTo(url, grpfolder+"/"+name)
-				if err == nil {
-					process.SleepAbout1sTo2s()
-					ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("成功！"))
-				} else {
-					ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("错误：", err.Error()))
-				}
-			} else {
+			if name == "" {
 				ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("没有找到wife的名字！"))
+				return
 			}
+			url := ctx.State["image_url"].([]string)[0]
+			grpfolder := base + strconv.FormatInt(ctx.Event.GroupID, 36)
+			if file.IsNotExist(grpfolder) {
+				err := os.Mkdir(grpfolder, 0755)
+				if err != nil {
+					ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("错误：", err.Error()))
+					return
+				}
+			}
+			err := file.DownloadTo(url, grpfolder+"/"+name)
+			if err != nil {
+				ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("错误：", err))
+				return
+			}
+			process.SleepAbout1sTo2s()
+			ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("成功！"))
+		})
+	// 查看所有wife
+	engine.OnFullMatch("查看所有wife", zero.AdminPermission, zero.OnlyGroup).SetBlock(true).
+		Handle(func(ctx *zero.Ctx) {
+			grpf := strconv.FormatInt(ctx.Event.GroupID, 36)
+			wifes, err := os.ReadDir(base + grpf)
+			if err != nil {
+				ctx.SendChain(message.Text("一个wife也没有哦~"))
+				return
+			}
+			wifesCnt := len(wifes)
+			ctx.SendChain(message.Text("获取到", wifesCnt, "个wife，准备发送相关信息..."))
+			process.SleepAbout1sTo2s()
+			ctx.Send("将完整发送wife信息, 请耐心等待...")
+			wifesSlice := divideWife(wifes, 100)
+			// 发送图片消息
+			var waitgroup sync.WaitGroup
+			var mu sync.Mutex
+			sendAllWifes(wifesSlice, baseuri, grpf, ctx, &waitgroup, &mu)
+			waitgroup.Wait()
+			process.SleepAbout1sTo2s()
+			ctx.Send("wife列表发送完成")
 		})
 	engine.OnPrefix("删除wife", zero.OnlyGroup, zero.AdminPermission).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
@@ -114,7 +139,17 @@ func init() {
 				ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("没有找到wife的名字！"))
 			}
 		})
-	engine.OnSuffix("所有人均可添加wife", zero.SuperUserPermission, zero.OnlyGroup).SetBlock(true).
+	// 一次删除
+	engine.OnFullMatch("删除所有wife", zero.OnlyGroup, zero.AdminPermission).SetBlock(true).
+		Handle(func(ctx *zero.Ctx) {
+			grpfolder := base + strconv.FormatInt(ctx.Event.GroupID, 36)
+			if err := os.RemoveAll(grpfolder); err != nil {
+				ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("删除时发生错误：", err))
+				return
+			}
+			ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("成功！"))
+		})
+	engine.OnSuffix("所有人均可添加wife", zero.AdminPermission, zero.OnlyGroup).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
 			text := ""
 			for _, elem := range ctx.Event.Message {
@@ -131,11 +166,11 @@ func init() {
 			case "取消", "撤销", "不让":
 				err = setEveryoneCanAddWife(ctx, false)
 			}
-			if err == nil {
-				ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("成功！"))
-			} else {
-				ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("错误：", err.Error()))
+			if err != nil {
+				ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("错误：", err))
+				return
 			}
+			ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("成功！"))
 		})
 }
 
@@ -163,4 +198,43 @@ func setEveryoneCanAddWife(ctx *zero.Ctx, canadd bool) error {
 		return m.SetData(ctx.Event.GroupID, 0)
 	}
 	return errors.New("no such plugin")
+}
+
+func divideWife(wifes []fs.DirEntry, arrlen int) (wifesSlice [][]fs.DirEntry) {
+	wifesCnt := len(wifes)
+	for i := 0; i < wifesCnt; i += arrlen {
+		end := i + arrlen
+		if end > wifesCnt {
+			end = wifesCnt
+		}
+		wifesSlice = append(wifesSlice, wifes[i:end])
+	}
+	return
+}
+
+func sendAllWifes(wifesSlice [][]fs.DirEntry, baseuri, grpf string, ctx *zero.Ctx, waitgroup *sync.WaitGroup, mu *sync.Mutex) {
+	for _, wfs := range wifesSlice {
+		waitgroup.Add(1)
+		go func(wifes []fs.DirEntry) {
+			msg := make(message.Message, 0, len(wifes))
+			var wg sync.WaitGroup
+			for _, wf := range wifes {
+				wg.Add(1)
+				go func(wife fs.DirEntry) {
+					wifeName := wife.Name()
+					var msgNode message.Message
+					msgNode = message.Message{
+						ctxext.FakeSenderForwardNode(ctx, message.Text("wife名: ", wifeName), message.Image(baseuri+grpf+"/"+wifeName)),
+					}
+					mu.Lock()
+					msg = append(msg, msgNode...)
+					mu.Unlock()
+					wg.Done()
+				}(wf)
+			}
+			wg.Wait()
+			ctx.Send(msg)
+			waitgroup.Done()
+		}(wfs)
+	}
 }
