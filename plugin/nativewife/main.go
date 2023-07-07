@@ -222,8 +222,7 @@ func sendAllWifes(wifesSlice [][]fs.DirEntry, baseuri, grpf string, ctx *zero.Ct
 				wg.Add(1)
 				go func(wife fs.DirEntry) {
 					wifeName := wife.Name()
-					var msgNode message.Message
-					msgNode = message.Message{
+					msgNode := message.Message{
 						ctxext.FakeSenderForwardNode(ctx, message.Text("wife名: ", wifeName), message.Image(baseuri+grpf+"/"+wifeName)),
 					}
 					mu.Lock()
