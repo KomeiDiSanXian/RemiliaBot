@@ -10,5 +10,5 @@ import (
 )
 
 func init() {
-	fmt.Print("\033]0;ZeroBot-Blugin " + banner.Version + " " + banner.Copyright + "\007")
+	fmt.Print("\033]0;RemiliaBot " + banner.Version + " " + banner.Copyright + "\007")
 }

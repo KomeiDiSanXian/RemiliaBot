@@ -51,15 +51,6 @@ func init() {
 	engine.OnPrefixGroup([]string{".绑定", ".bind"}).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
 			id := ctx.State["args"].(string)
-			// 验证id是否有效
-			if vld, err := IsValidID(id); vld {
-				if err != nil {
-					ctx.SendChain(message.At(ctx.Event.UserID), message.Text("ERR：", err))
-				}
-			} else {
-				ctx.SendChain(message.Reply(ctx.Event.MessageID), message.Text("id无效，请检查id..."))
-				return
-			}
 			db, cl, err := bf1model.Open(dbname)
 			defer func() {
 				_ = cl()
