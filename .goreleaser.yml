@@ -1,4 +1,4 @@
-project_name: zbp
+project_name: RemiliaBot
 env:
   - GO111MODULE=on
 before:
@@ -42,7 +42,7 @@ builds:
       - -s -w
 
 checksum:
-  name_template: "zbp_checksums.txt"
+  name_template: "{{ .ProjectName }}_checksums.txt"
 changelog:
   sort: asc
   filters:
@@ -60,16 +60,16 @@ archives:
     builds:
       - nowin
       - win
-    name_template: "zbp_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
+    name_template: "{{ .ProjectName }}v{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
     format_overrides:
       - goos: windows
         format: zip
 
 nfpms:
-  - license: GPL 3.0
+  - license: AGPL 3.0
     homepage: https://github.com/FloatTech/ZeroBot-Plugin
-    file_name_template: "zbp_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
+    file_name_template: "{{ .ProjectName }}v{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
     formats:
       - deb
       - rpm
-    maintainer: FloatTech
+    maintainer: KomeiDiSanXian
