@@ -8,7 +8,7 @@ import (
 	"github.com/tidwall/gjson"
 
 	bf1api "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/api"
-	"github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/request/bf1"
+	request "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/request/bf1"
 )
 
 // Server 服务器结构体

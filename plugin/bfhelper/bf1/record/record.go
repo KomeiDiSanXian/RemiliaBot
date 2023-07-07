@@ -9,7 +9,7 @@ import (
 	"github.com/tidwall/gjson"
 
 	rsp "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/bf1/api"
-	"github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/request/bf1"
+	request "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/request/bf1"
 )
 
 // GetStats 获取战绩信息
