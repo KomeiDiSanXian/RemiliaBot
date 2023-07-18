@@ -276,10 +276,7 @@ func drawstatus(m *ctrl.Control[*zero.Ctx], uid int64, botname string) (sendimg 
 
 		titlecard.DrawStringAnchored(bs, float64(titlecardh)+fw/2, float64(titlecardh)*(0.5+0.5/2), 0.5, 0.5)
 
-		mss, err := msgstatus()
-		if err != nil {
-			return
-		}
+		mss := msgstatus()
 		fw, _ = titlecard.MeasureString(mss)
 
 		titlecard.DrawStringAnchored(mss, float64(titlecardh)+fw/2, float64(titlecardh)*(0.5+0.75/2), 0.5, 0.5)
@@ -530,12 +527,12 @@ func botstatus() (string, error) {
 	return t.String(), nil
 }
 
-func msgstatus() (string, error) {
+func msgstatus() string {
 	t := &strings.Builder{}
 	t.WriteString(fmt.Sprintf("共收到消息: %d", atomic.LoadUint64(&totalMessageCount)))
 	t.WriteString(" | ")
 	t.WriteString(fmt.Sprintf("上分钟消息数: %d", count))
-	return t.String(), nil
+	return t.String()
 }
 
 type status struct {
