@@ -4,6 +4,7 @@ package aifalse
 import (
 	"bytes"
 	"errors"
+	"fmt"
 	"image"
 	"math"
 	"math/rand"
@@ -51,6 +52,12 @@ var (
 	bgcount  uintptr
 )
 
+var (
+	totalMessageCount uint64
+	msgPerMinute      uint64
+	count             uint64
+)
+
 func init() { // 插件主体
 	engine := control.Register("自检", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
@@ -69,6 +76,19 @@ func init() { // 插件主体
 		ctxext.SetDefaultLimiterManagerParam(time.Duration(m)*time.Second, int(n))
 		logrus.Infoln("设置默认限速为每", m, "秒触发", n, "次")
 	}
+
+	ticker := time.NewTicker(time.Minute)
+	msgPerMinuteChan := make(chan uint64, 1)
+	msgPerMinuteChan <- 0
+	go func() {
+		for range ticker.C {
+			count = atomic.SwapUint64(&msgPerMinute, 0)
+		}
+	}()
+	engine.OnMessage().SetBlock(false).Handle(func(ctx *zero.Ctx) {
+		atomic.AddUint64(&totalMessageCount, 1)
+		atomic.AddUint64(&msgPerMinute, 1)
+	})
 	engine.OnFullMatchGroup([]string{"检查身体", "自检", "启动自检", "系统状态"}, zero.AdminPermission).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
 			img, err := drawstatus(ctx.State["manager"].(*ctrl.Control[*zero.Ctx]), ctx.Event.SelfID, zero.BotConfig.NickName[rand.Intn(len(zero.BotConfig.NickName))])
@@ -255,6 +275,15 @@ func drawstatus(m *ctrl.Control[*zero.Ctx], uid int64, botname string) (sendimg 
 		fw, _ = titlecard.MeasureString(bs)
 
 		titlecard.DrawStringAnchored(bs, float64(titlecardh)+fw/2, float64(titlecardh)*(0.5+0.5/2), 0.5, 0.5)
+
+		mss, err := msgstatus()
+		if err != nil {
+			return
+		}
+		fw, _ = titlecard.MeasureString(mss)
+
+		titlecard.DrawStringAnchored(mss, float64(titlecardh)+fw/2, float64(titlecardh)*(0.5+0.75/2), 0.5, 0.5)
+
 		titleimg = rendercard.Fillet(titlecard.Image(), 16)
 	}()
 	go func() {
@@ -498,6 +527,14 @@ func botstatus() (string, error) {
 	t.WriteString(runtime.Version())
 	t.WriteString(" | ")
 	t.WriteString(cases.Title(language.English).String(hostinfo.OS))
+	return t.String(), nil
+}
+
+func msgstatus() (string, error) {
+	t := &strings.Builder{}
+	t.WriteString(fmt.Sprintf("共收到消息: %d", atomic.LoadUint64(&totalMessageCount)))
+	t.WriteString(" | ")
+	t.WriteString(fmt.Sprintf("上分钟消息数: %d", count))
 	return t.String(), nil
 }
 
