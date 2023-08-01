@@ -2,13 +2,10 @@
 package main
 
 import (
-	"strings"
 	"time"
 
 	_ "github.com/FloatTech/ZeroBot-Plugin/console" // 更改控制台属性
 	"github.com/FloatTech/ZeroBot-Plugin/setting"   // 设置相关
-
-	"github.com/FloatTech/ZeroBot-Plugin/kanban" // 打印 banner
 
 	// ---------以下插件均可通过前面加 // 注释，注释后停用并不加载插件--------- //
 	// ----------------------插件优先级按顺序从高到低---------------------- //
@@ -205,10 +202,6 @@ func main() {
 	zero.OnFullMatchGroup([]string{"help", "help", ".help", "菜单"}).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
 			ctx.SendChain(message.Text(banner.Banner, "\n管理发送\".服务列表\"查看 bot 功能\n发送\".用法 name\"查看功能用法"))
-		})
-	zero.OnFullMatch("查看zbp公告", zero.OnlyToMe, zero.AdminPermission).SetBlock(true).
-		Handle(func(ctx *zero.Ctx) {
-			ctx.SendChain(message.Text(strings.ReplaceAll(kanban.Kanban(), "\t", "")))
 		})
 	zero.RunAndBlock(&config.Z, process.GlobalInitMutex.Unlock)
 }

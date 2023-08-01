@@ -9,3 +9,4 @@ zerobot
 ZeroBot-Plugin*
 *.syso
 *.exe
+*_test.go
