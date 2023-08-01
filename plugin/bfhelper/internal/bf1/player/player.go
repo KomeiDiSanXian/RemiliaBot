@@ -9,13 +9,14 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/pkg/errors"
+	"github.com/tidwall/gjson"
+
 	"github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/internal/anticheat"
 	rsp "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/internal/bf1/api"
 	"github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/pkg/global"
 	"github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/pkg/netreq"
 	bf1reqbody "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/pkg/netreq/bf1"
-	"github.com/pkg/errors"
-	"github.com/tidwall/gjson"
 )
 
 // Cheater 作弊玩家结构体

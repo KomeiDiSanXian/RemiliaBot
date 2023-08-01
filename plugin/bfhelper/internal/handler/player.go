@@ -5,9 +5,10 @@ import (
 	"reflect"
 	"runtime"
 
-	"github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/internal/service"
 	"github.com/sirupsen/logrus"
 	zero "github.com/wdvxdr1123/ZeroBot"
+
+	"github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/internal/service"
 )
 
 // ErrorHandlerWrapper 错误处理封装

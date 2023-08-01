@@ -8,12 +8,13 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/pkg/global"
-	"github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/pkg/netreq"
-	"github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/pkg/uuid"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 	"github.com/tidwall/gjson"
+
+	"github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/pkg/global"
+	"github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/pkg/netreq"
+	"github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/pkg/uuid"
 )
 
 // error code

@@ -6,15 +6,12 @@ import (
 	"io"
 	"os"
 
-	fcext "github.com/FloatTech/floatbox/ctxext"
 	bf1api "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/internal/bf1/api"
 	"github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/internal/engine"
 	"github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/internal/model"
 	"github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/pkg/global"
 	"github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/pkg/setting"
-	"github.com/sirupsen/logrus"
-	zero "github.com/wdvxdr1123/ZeroBot"
-	"github.com/wdvxdr1123/ZeroBot/message"
+	fcext "github.com/FloatTech/floatbox/ctxext"
 )
 
 func setupSetting() error {

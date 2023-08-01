@@ -7,14 +7,15 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/jinzhu/gorm"
+	"github.com/pkg/errors"
+	"github.com/wdvxdr1123/ZeroBot/message"
+
 	bf1api "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/internal/bf1/api"
 	bf1player "github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/internal/bf1/player"
 	"github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/internal/model"
 	"github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/pkg/global"
 	"github.com/FloatTech/ZeroBot-Plugin/plugin/bfhelper/pkg/renderer"
-	"github.com/jinzhu/gorm"
-	"github.com/pkg/errors"
-	"github.com/wdvxdr1123/ZeroBot/message"
 )
 
 // BindAccount 绑定账号
