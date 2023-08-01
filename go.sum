@@ -123,8 +123,8 @@ github.com/fumiama/jieba v0.0.0-20221203025406-36c17a10b565 h1:sQuR2+N5HurnvsZhi
 github.com/fumiama/jieba v0.0.0-20221203025406-36c17a10b565/go.mod h1:UUEvyLTJ7yoOA/viKG4wEis4ERydM7+Ny6gZUWgkS80=
 github.com/fumiama/sqlite3 v1.20.0-with-win386 h1:ZR1AXGBEtkfq9GAXehOVcwn+aaCG8itrkgEsz4ggx5k=
 github.com/fumiama/sqlite3 v1.20.0-with-win386/go.mod h1:Os58MHwYCcYZCy2PGChBrQtBAw5/LS1ZZOkfc+C/I7s=
-github.com/fumiama/unibase2n v0.0.0-20230410024855-c98c9ec11730 h1:JiQZ0C/CGeaJuuarEjGRwbYgtzUZwSGGMAek1fnJtoY=
-github.com/fumiama/unibase2n v0.0.0-20230410024855-c98c9ec11730/go.mod h1:lEaZsT4FRSqcjnQ5q8y+mkenkzR/r1D3BJmfdp0vqDg=
+github.com/fumiama/unibase2n v0.0.0-20221020155353-02876e777430 h1:XL4SnagpaVHYybnnj6whQxmt8Ps9/kaG6sCNn4X1GGA=
+github.com/fumiama/unibase2n v0.0.0-20221020155353-02876e777430/go.mod h1:lEaZsT4FRSqcjnQ5q8y+mkenkzR/r1D3BJmfdp0vqDg=
 github.com/gabriel-vasile/mimetype v1.0.4/go.mod h1:6CDPel/o/3/s4+bp6kIbsWATq8pmgOisOPG40CJa6To=
 github.com/gabriel-vasile/mimetype v1.4.2 h1:w5qFW6JKBz9Y393Y4q372O9A7cUSequkh1Q7OhCmWKU=
 github.com/gabriel-vasile/mimetype v1.4.2/go.mod h1:zApsH/mKG4w07erKIaJPFiX0Tsq9BFQgN3qGY5GnNgA=

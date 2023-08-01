@@ -22,7 +22,7 @@ require (
 	github.com/fumiama/go-registry v0.2.6
 	github.com/fumiama/gotracemoe v0.0.3
 	github.com/fumiama/jieba v0.0.0-20221203025406-36c17a10b565
-	github.com/fumiama/unibase2n v0.0.0-20230410024855-c98c9ec11730
+	github.com/fumiama/unibase2n v0.0.0-20221020155353-02876e777430
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0
 	github.com/jinzhu/gorm v1.9.16
 	github.com/jozsefsallai/gophersauce v1.0.1
