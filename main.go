@@ -183,6 +183,7 @@ func init() {
 		RingLen:        setting.BotSetting.RingSize,
 		Latency:        time.Duration(setting.BotSetting.Latency) * time.Millisecond,
 		MaxProcessTime: time.Duration(setting.BotSetting.MaxProcessTime) * time.Minute,
+		MarkMessage:    !setting.BotSetting.MarkMessage,
 		Driver:         []zero.Driver{config.W[0]},
 	}
 }
@@ -201,7 +202,7 @@ func setupSetting() error {
 
 func main() {
 	// 帮助
-	zero.OnFullMatchGroup([]string{"help", ".help", "菜单"}).SetBlock(true).
+	zero.OnFullMatchGroup([]string{"help", "help", ".help", "菜单"}).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
 			ctx.SendChain(message.Text(banner.Banner, "\n管理发送\".服务列表\"查看 bot 功能\n发送\".用法 name\"查看功能用法"))
 		})

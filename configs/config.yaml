@@ -3,6 +3,7 @@ Bot:
   Warn: false
   AccessToken: # default
   WSClientURL: ws://127.0.0.1:6700 # default
+  MarkMessage: false # 自动标记消息为已读
   NickNames:
     - Remilia
     - Remi

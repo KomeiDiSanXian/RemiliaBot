@@ -16,6 +16,7 @@ type BotSettings struct {
 	MaxProcessTime uint     // 最大处理时间 (min)
 	SuperUser      []int64  // 超级管理员
 	WebUIURL       string   // webui url
+	MarkMessage    bool     // 自动标记消息为已读
 }
 
 // 存储设置键值对
