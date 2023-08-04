@@ -1,15 +1,9 @@
 <div align="center">
-  <img src=".github/hua_nobg_512.gif" alt="椛" width = "400">
-  <br>
+	
+  <h1>RemiliaBot</h1>
 
-  <h1>ZeroBot-Plugin</h1>
-
-  “椛椛是[真寻](https://github.com/HibiKier/zhenxun_bot)的好朋友！”
   
-  ZeroBot-Plugin 是 ZeroBot 的 实用插件合集<br><br>
-
-
-  <img src="https://counter.seku.su/cmoe?name=ZeroBot-Plugin&theme=r34" /><br>
+  RemiliaBot 是 [ZeroBot-Plugin](https://github.com/FloatTech/ZeroBot-Plugin) 的分支<br><br>
 
   [![miraigo](https://img.shields.io/badge/OneBot-MiraiGo-green.svg?style=social&logo=appveyor)](https://github.com/Mrs4s/MiraiGo)
   [![oicq](https://img.shields.io/badge/OneBot-OICQ-green.svg?style=social&logo=appveyor)](https://github.com/takayama-lily/oicq)
@@ -19,8 +13,7 @@
   [![onebot](https://img.shields.io/badge/onebot-v11-black?style=flat-square&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHAAAABwCAMAAADxPgR5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAxQTFRF////29vbr6+vAAAAk1hCcwAAAAR0Uk5T////AEAqqfQAAAKcSURBVHja7NrbctswDATQXfD//zlpO7FlmwAWIOnOtNaTM5JwDMa8E+PNFz7g3waJ24fviyDPgfhz8fHP39cBcBL9KoJbQUxjA2iYqHL3FAnvzhL4GtVNUcoSZe6eSHizBcK5LL7dBr2AUZlev1ARRHCljzRALIEog6H3U6bCIyqIZdAT0eBuJYaGiJaHSjmkYIZd+qSGWAQnIaz2OArVnX6vrItQvbhZJtVGB5qX9wKqCMkb9W7aexfCO/rwQRBzsDIsYx4AOz0nhAtWu7bqkEQBO0Pr+Ftjt5fFCUEbm0Sbgdu8WSgJ5NgH2iu46R/o1UcBXJsFusWF/QUaz3RwJMEgngfaGGdSxJkE/Yg4lOBryBiMwvAhZrVMUUvwqU7F05b5WLaUIN4M4hRocQQRnEedgsn7TZB3UCpRrIJwQfqvGwsg18EnI2uSVNC8t+0QmMXogvbPg/xk+Mnw/6kW/rraUlvqgmFreAA09xW5t0AFlHrQZ3CsgvZm0FbHNKyBmheBKIF2cCA8A600aHPmFtRB1XvMsJAiza7LpPog0UJwccKdzw8rdf8MyN2ePYF896LC5hTzdZqxb6VNXInaupARLDNBWgI8spq4T0Qb5H4vWfPmHo8OyB1ito+AysNNz0oglj1U955sjUN9d41LnrX2D/u7eRwxyOaOpfyevCWbTgDEoilsOnu7zsKhjRCsnD/QzhdkYLBLXjiK4f3UWmcx2M7PO21CKVTH84638NTplt6JIQH0ZwCNuiWAfvuLhdrcOYPVO9eW3A67l7hZtgaY9GZo9AFc6cryjoeFBIWeU+npnk/nLE0OxCHL1eQsc1IciehjpJv5mqCsjeopaH6r15/MrxNnVhu7tmcslay2gO2Z1QfcfX0JMACG41/u0RrI9QAAAABJRU5ErkJggg==)](https://t.me/zerobotplugin)
   [![zerobot](https://img.shields.io/badge/zerobot-v1.7.4-black?style=flat-square&logo=go)](https://github.com/wdvxdr1123/ZeroBot)
   [![license](https://img.shields.io/github/license/FloatTech/ZeroBot-Plugin.svg?style=flat-square&logo=gnu)](https://raw.githubusercontent.com/FloatTech/ZeroBot-Plugin/master/LICENSE)
-  [![tencent-qq](https://img.shields.io/badge/group-1048452984-red?style=flat-square&logo=tencent-qq)](https://jq.qq.com/?_wv=1027&k=QMb7x1mM)
-  [![telegram](https://img.shields.io/badge/Telegram-click%20me-informational?style=flat-square&logo=telegram)](https://t.me/zerobotplugin)
+  
 
   本项目符合 [OneBot](https://github.com/howmanybots/onebot) 标准，可基于以下项目与机器人框架/平台进行交互
   | 项目地址 | 平台 | 核心作者 |
@@ -29,53 +22,132 @@
   | [onebot-kotlin](https://github.com/yyuueexxiinngg/onebot-kotlin) | [Mirai](https://github.com/mamoe/mirai) | yyuueexxiinngg |
   | [oicq/http-api](https://github.com/takayama-lily/oicq/tree/master/http-api) | [OICQ](https://github.com/takayama-lily/oicq) | takayama |
 
-  [![Star Trend](https://api.star-history.com/svg?repos=FloatTech/ZeroBot-Plugin&type=Timeline)](https://seladb.github.io/StarTrack-js/#/preload?r=FloatTech,ZeroBot-Plugin)
-
 </div>
 
-> 如果您不知道什么是 [OneBot](https://github.com/howmanybots/onebot) 或不希望运行多个程序，还可以直接前往 [gocqzbp](https://github.com/FloatTech/gocqzbp) 的 [Release](https://github.com/FloatTech/gocqzbp/releases) 页面下载单一可执行文件或前往 [Packages](https://github.com/FloatTech/gocqzbp/pkgs/container/gocqzbp) 页面使用`docker`，运行后按提示登录即可。
+> 原始仓库: [FloatTech/ZeroBot-Plugin](https://github.com/FloatTech/ZeroBot-Plugin)
 
-> 如果您对开发插件感兴趣，欢迎加入[ZeroBot-Plugin-Playground](https://github.com/FloatTech/ZeroBot-Plugin-Playground)
+## 修改内容
+> 在这个仓库中, 对原始仓库做了以下修改
 
-> webui持续开发中, 欢迎加入[ZeroBot-Plugin-Webui](https://github.com/FloatTech/ZeroBot-Plugin-Webui)
+- 移动 `FloatTech/zbputils/job` 至 `plugin/job`
+- 所有插件注册名改为中文
+- 插件相关
+  <details>
+	<summary>删除插件</summary>
+ 
+ 	> 删除这些插件并非是因为它们不够优秀
+  	> 
+  	> 一部分是api失效, 如 `coser 三次元小姐姐`,  一部分是防止举报我机器人账号, 如 `curse 骂人` (因为真的有人会去举报机器人)
+  	>
 
-## 命令行参数
-> `[]`代表是可选参数
-```bash
-zerobot [-h] [-m] [-n nickname] [-t token] [-u url] [-g url] [-p prefix] [-d|w] [-c|s config.json] [-l latency] [-r ringlen] [-x max process time] [qq1 qq2 qq3 ...] [&]
-```
-- **-h**: 显示帮助
-- **-m**: 不自动标记消息为已读
-- **-n nickname**: 设置默认昵称，默认为`椛椛`
-- **-t token**: 设置`AccessToken`，默认为空
-- **-u url**: 设置`Url`，默认为`ws://127.0.0.1:6700`
-- ~~**-g url**~~(默认禁用): 设置`webui url`，默认为`127.0.0.1:3000`
-- **-p prefix**: 设置命令前缀，默认为`/`
-- **-d|w**: 开启 debug | warning 级别及以上日志输出
-- **-c config.json**: 从`config.json`加载`bot`配置
-- **-s config.json**: 保存现在`bot`配置到`config.json`
-- **-l latency**: 全局处理延时 (ms)
-- **-r ringlen**: 接收消息环缓冲区大小，`0`为不设缓冲，并发处理
-- **-x max process time**: 最大处理时间 (min)
-- **qqs**: superusers 的 qq 号
-- **&**: 驻留在后台，必须放在最后，仅`Linux`下有效
+  	> 如果您想使用已删除的插件, 可以前往[原始仓库](https://github.com/FloatTech/ZeroBot-Plugin) 或者本仓库的 [origin分支](https://github.com/KomeiDiSanXian/RemiliaBot/tree/origin)
+  	>
+  	> **注意: 本仓库的 origin 分支不会添加原始仓库没有的插件, 与原始仓库完全一致**
+   	- ~~atri~~ atri人格文本回复
+ 	- ~~baiduaudit~~ 百度内容审核
+	- ~~book_review~~ 哀伤雪刃吧推书记录
+	- ~~cangtoushi~~ 藏头诗
+	- ~~chouxianghua~~ 说抽象话
+ 	- ~~coser~~ 三次元小姐姐
+  	- ~~cpstory~~ cp短打
+  	- ~~diana~~ 嘉心糖发病
+  	- ~~dish~~ 程序员做饭指南
+  	- ~~dress~~ 女装
+  	- ~~funny~~ 笑话
+  	- ~~guessmusic~~ 猜歌
+  	- ~~heisi~~ 黑丝
+  	- ~~hitokoto~~ 一言
+  	- ~~hs~~ 炉石
+  	- ~~hyaku~~ 百人一首
+  	- ~~jandan~~ 煎蛋网无聊图
+  	- ~~juejuezi~~ 绝绝子生成器
+  	- ~~magicprompt~~ magicprompt吟唱提示
+  	- ~~midicreate~~ 简易midi音乐制作
+  	- ~~moegoe~~ 日韩 VITS 模型拟声
+  	- ~~moyu~~ 摸鱼
+  	- ~~moyu_calendar~~ 摸鱼人日历
+  	- ~~nativesetu~~ 本地涩图
+  	- ~~nbnhhsh~~ 拼音首字母缩写释义工具
+  	- ~~novel~~ 铅笔小说网搜索
+  	- ~~qqwife~~ 一群一天一夫一妻制群老婆
+  	- ~~quan~~ QQ权重查询
+  	- ~~qzone~~ qq空间表白墙
+  	- ~~realcugan~~ realcugan清晰术
+  	- ~~reborn~~ 投胎
+  	- ~~scale~~ 叔叔的AI二次元图片放大
+  	- ~~score~~ 分数
+  	- ~~shadiao~~ 沙雕app
+  	- ~~steam~~ steam相关
+  	- ~~tiangou~~ 舔狗日记
+  	- ~~translation~~ 翻译
+  	- ~~vitsnyaru~~ vits猫雷
+  	- ~~vtb_quotation~~ vtb语录
+  	- ~~vtbmusic~~ vtb点歌
+  	- ~~wallet~~ 钱包
+  	- ~~wangyiyun~~ 网易云音乐热评
+  	- ~~wantquotes~~ 据意查句
+  	- ~~warframeapi~~ warframeAPI插件
+  	- ~~wenben~~ 文本指令大全
+  	- ~~wenxinAI~~ 百度文心AI画图
+  	- ~~wife~~ 抽老婆
+  	- ~~ygo~~ 游戏王相关插件
+  	- ~~wtf~~ 鬼东西
+  	- ~~curse~~ 骂人
+  
+  </details>
+  <details>
+	  <summary>修改插件</summary>
+	  
+  	- aifalse
+  		- 添加消息统计
+  	 	- 随机抽取一个bot name 来显示
+  	  	- 系统固定为`Microsoft Windows ⑨`
+  	  	- 系统版本固定为`Maximum number ⑨ Build Crino`
+  	- ai_reply
+ 		- 删除 `设置原神语音`
+  	 	- 删除 `设置百度语音`
+  	- aipaint
+  	  	- 重写为我本地部署进行api请求
+  	- bilibili
+  	  	- 修改命令前缀为 `.`
+  	- drawlots
+  	  	- 修改 `加签` 为任何人可加
+  	  	- 修改 `删签` 为群管理员权限
+  	- gif
+  	  	- 修复 `变形` 导致的内存溢出
+  	- github
+  	  	- 修改命令前缀为 `.`
+  	  	- 默认改为 `关闭`
+  	- manager
+  	  	- 告别辞默认改为 `xx(qq)承受不住的群内男同的氛围，离开了`
+  	- nwife
+  	  	- 添加 `查看所有wife`
+  	  	- 添加 `删除所有wife`
+  	  	- 修改 `所有人均可添加wife` 为群管理员权限
+  	- runcode
+  	  	- 修改命令前缀为 `.`
+  	- setutime
+  	  	- 修改 `>setu status` 为 `.setu -s`
+  	- shindan
+  	  	- 默认改为 `关闭`
 
-默认配置文件格式如下。当选择从配置文件加载时，将忽略相应命令行参数。
-```json
-{
-  "zero": {
-    "nickname": ["椛椛", "ATRI", "atri", "亚托莉", "アトリ"],
-    "command_prefix": "/",
-    "super_users": [],
-    "ring_len": 4096,
-    "latency": 233000000,
-    "max_process_time": 240000000000,
-    "mark_message": true
-  },
-  "ws": [{ "Url": "ws://127.0.0.1:6700", "AccessToken": "" }],
-  "wss": null
-}
-```
+  </details>
+  <details>
+	  <summary>添加插件</summary>
+	  
+	- [bfhelper](https://github.com/KomeiDiSanXian/BFHelper) 战地
+ 	- [bluearchive](https://github.com/KomeiDiSanXian/BlueArchive) 碧蓝档案
+  
+  </details>
+  
+- 移除命令行参数，改为编辑 `configs/config.yaml`
+- 所有的 `少女祈祷中` 改为 `少女折寿中`
+
+## 施工中...
+## 下面的内容等待修改...
+---
+
+## ~~命令行参数~~
 
 ## 功能
 > 在编译时，以下功能除插件控制外，均可通过注释`main.go`中的相应`import`而物理禁用，减小插件体积。
@@ -89,51 +161,51 @@ zerobot [-h] [-m] [-n nickname] [-t token] [-u url] [-g url] [-p prefix] [-d|w] 
 <details>
   <summary>插件控制</summary>
 
-  - [x] /响应 (在发送的群/用户开始工作)
+  - [x] .响应 (在发送的群/用户开始工作)
 
-  - [x] /沉默 (在发送的群/用户停止工作)
+  - [x] .沉默 (在发送的群/用户停止工作)
 
-  - [x] /全局响应 (在所有位置开始工作，无视单独的沉默)
+  - [x] .全局响应 (在所有位置开始工作，无视单独的沉默)
 
-  - [x] /全局沉默 (在所有本应沉默的位置停止工作，显式指定启用的位置不受影响)
+  - [x] .全局沉默 (在所有本应沉默的位置停止工作，显式指定启用的位置不受影响)
 
-  - [x] /启用 xxx (在发送的群/用户启用xxx)
+  - [x] .启用 xxx (在发送的群/用户启用xxx)
 
-  - [x] /禁用 xxx (在发送的群/用户禁用xxx)
+  - [x] .禁用 xxx (在发送的群/用户禁用xxx)
 
-  - [x] /此处启用所有插件
+  - [x] .此处启用所有插件
 
-  - [x] /此处禁用所有插件
+  - [x] .此处禁用所有插件
 
-  - [x] /全局启用 xxx
+  - [x] .全局启用 xxx
 
-  - [x] /全局禁用 xxx
+  - [x] .全局禁用 xxx
 
-  - [x] /还原 xxx (在发送的群/用户还原xxx的开启状态到初始状态)
+  - [x] .还原 xxx (在发送的群/用户还原xxx的开启状态到初始状态)
 
   - 注：当全局未配置或与默认相同时，状态取决于单独配置，后备为默认配置；当全局与默认不同时，状态取决于全局配置，单独配置失效。
 
-  - [x] /改变默认启用状态 xxx
+  - [x] .改变默认启用状态 xxx
 
-  - [x] /禁止 service qq1 qq2... (禁止 qqs 使用服务 service)
+  - [x] .禁止 service qq1 qq2... (禁止 qqs 使用服务 service)
 
-  - [x] /允许 service qq1 qq2... (重新允许 qqs 使用服务 service)
+  - [x] .允许 service qq1 qq2... (重新允许 qqs 使用服务 service)
 
-  - [x] /封禁 qq1 qq2... (禁止 qqs 使用全部服务)
+  - [x] .封禁 qq1 qq2... (禁止 qqs 使用全部服务)
 
-  - [x] /解封 qq1 qq2... (允许 qqs 使用全部服务)
+  - [x] .解封 qq1 qq2... (允许 qqs 使用全部服务)
 
-  - [x] /用法 xxx
+  - [x] .用法 xxx
 
-  - [x] /服务列表
+  - [x] .服务列表
 
-  - [x] /设置服务列表显示行数 xx (默认值为 9, 该设置仅运行时有效, zbp 重启后重置)
+  - [x] .设置服务列表显示行数 xx (默认值为 9, 该设置仅运行时有效, zbp 重启后重置)
 
-  - [x] (默认禁用) /设置webui用户名 zerobot 密码 123456
+  - [x] (默认禁用) .设置webui用户名 zerobot 密码 123456
 
-  - [x] (默认禁用) /webui启动
+  - [x] (默认禁用) .webui启动
 
-  - [x] (默认禁用) /webui停止
+  - [x] (默认禁用) .webui停止
 
   - [x] @Bot 插件冲突检测 (会在本群发送一条消息并在约 1s 后撤回以检测其它同类 bot 中已启用的插件并禁用)
 
