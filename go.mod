@@ -117,7 +117,7 @@ require (
 require github.com/fsnotify/fsnotify v1.7.0
 
 require (
-	github.com/KomeiDiSanXian/BFHelper v1.2.0-alpha.0.20231015082015-44643f78cf57
+	github.com/KomeiDiSanXian/BFHelper v1.2.0-alpha.0.20240102011233-b599886bae30
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect

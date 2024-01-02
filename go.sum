@@ -17,6 +17,8 @@ github.com/FloatTech/zbpctrl v1.6.0 h1:BWg9aRR4bUCmNNKj6GPH0TmzFRWYImIi6rQcQTTYR
 github.com/FloatTech/zbpctrl v1.6.0/go.mod h1:i3GGM5K4HiDsXzvmXQSYoH1QT3tsSaAHjRzHwKGsHG0=
 github.com/KomeiDiSanXian/BFHelper v1.2.0-alpha.0.20231015082015-44643f78cf57 h1:tEY0BofZkBSl58656aSdgkM39xEO/U++3MHb0+/rGOc=
 github.com/KomeiDiSanXian/BFHelper v1.2.0-alpha.0.20231015082015-44643f78cf57/go.mod h1:2ee6t1xbckQaZeJRxv0wHbvXh3wKVTK6JrSdk4Mm40A=
+github.com/KomeiDiSanXian/BFHelper v1.2.0-alpha.0.20240102011233-b599886bae30 h1:PmqoA2bfnoLsm0kYWrte5IMFDaMWmjsmYBx5A4oE4Ak=
+github.com/KomeiDiSanXian/BFHelper v1.2.0-alpha.0.20240102011233-b599886bae30/go.mod h1:6DF30lqE4+478H0UiyEIQNRb86v1bqn01fjrTYNjQE0=
 github.com/KomeiDiSanXian/zbputils v0.0.0-20240102015250-fccebce5ce51 h1:G60nJsx6W0iyOdYyfVT8MZHc8rkIsYbAG1FMPZJZknc=
 github.com/KomeiDiSanXian/zbputils v0.0.0-20240102015250-fccebce5ce51/go.mod h1:N8baWkKePSTxW4Jr7tOoHNQdq87UsHXnJwOxmcAfzm4=
 github.com/PuerkitoBio/goquery v1.5.1/go.mod h1:GsLWisAFVj4WgDibEWF4pvYnkVQBpKBKeU+7zCJoLcc=
