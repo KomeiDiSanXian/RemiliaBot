@@ -31,16 +31,14 @@ func init() { // 主函数
 		DisableOnDefault: false,
 		Brief:            "你能不能自己百度",
 		Help: "百科\n" +
-			"- 百度/百科/维基/wiki[关键字]",
+			"- 百度/百科[关键字]",
 	})
-	en.OnRegex(`^(百度|维基|百科|wiki)\s*(.+)$`).SetBlock(true).Handle(func(ctx *zero.Ctx) {
+	en.OnRegex(`^(百度|百科)\s*(.+)$`).SetBlock(true).Handle(func(ctx *zero.Ctx) {
 		var es []byte
 		var err error
 		switch ctx.State["regex_matched"].([]string)[1] {
 		case "百度", "百科":
 			es, err = web.GetData(fmt.Sprintf(duURL, key, ctx.State["regex_matched"].([]string)[2])) // 将网站返回结果赋值
-		case "wiki", "维基":
-			es, err = web.GetData(fmt.Sprintf(wikiURL, key, ctx.State["regex_matched"].([]string)[2])) // 将网站返回结果赋值
 		}
 		if err != nil {
 			ctx.SendChain(message.Text("出现错误捏：", err))

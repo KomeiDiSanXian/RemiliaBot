@@ -46,6 +46,9 @@ func init() {
 	}
 
 	_ = createChannel(seaSide)
+
+	// 捞回应该考虑是否再次丢出去
+	// TODO: 添加漂流瓶销毁
 	en.OnFullMatch("pick", zero.OnlyToMe, zero.OnlyGroup).Limit(ctxext.LimitByGroup).SetBlock(true).Handle(func(ctx *zero.Ctx) {
 		be, err := fetchBottle(seaSide)
 		if err != nil {

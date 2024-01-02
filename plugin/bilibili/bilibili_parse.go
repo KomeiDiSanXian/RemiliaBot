@@ -76,12 +76,15 @@ func handleVideo(ctx *zero.Ctx) {
 		ctx.SendChain(message.Text("ERROR: ", err))
 		return
 	}
-	summaryMsg, err := getVideoSummary(card)
-	if err != nil {
-		ctx.SendChain(message.Text("ERROR: ", err))
-		return
-	}
-	msg = append(msg, summaryMsg...)
+	// 貌似有点问题
+	// 未设置cookie时发送空消息
+	// 无效cookie没有检测？
+	// summaryMsg, err := getVideoSummary(card)
+	// if err != nil {
+	// 	ctx.SendChain(message.Text("ERROR: ", err))
+	// 	return
+	// }
+	// msg = append(msg, summaryMsg...)
 	ctx.SendChain(msg...)
 }
 

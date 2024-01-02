@@ -1,4 +1,5 @@
 // Package kfccrazythursday 疯狂星期四
+// api已经失效
 package kfccrazythursday
 
 import (

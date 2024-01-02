@@ -17,7 +17,8 @@ import (
 	"github.com/FloatTech/zbputils/img/text"
 )
 
-const bed = "https://gitcode.net/u011570312/senso-ji-omikuji/-/raw/main/"
+// 失效
+const bed = "https://gitea.seku.su/fumiama/senso-ji-omikuji/raw/branch/main/"
 
 func init() { // 插件主体
 	engine := control.Register("求签", &ctrl.Options[*zero.Ctx]{

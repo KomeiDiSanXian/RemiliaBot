@@ -24,6 +24,10 @@ func init() {
 func handle(ctx *zero.Ctx) {
 	rawOptions := strings.Split(ctx.State["args"].(string), "还是")
 	var options = make([]string, 0)
+	// 如果只有一个选择应该什么都不做
+	if len(rawOptions) <= 1 {
+		return
+	}
 	for count, option := range rawOptions {
 		options = append(options, strconv.Itoa(count+1)+", "+option)
 	}

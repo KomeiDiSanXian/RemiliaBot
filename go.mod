@@ -26,7 +26,6 @@ require (
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0
 	github.com/jinzhu/gorm v1.9.16
 	github.com/jozsefsallai/gophersauce v1.0.1
-	github.com/mroth/weightedrand v1.0.0
 	github.com/pkg/errors v0.9.1
 	github.com/quic-go/quic-go v0.40.1
 	github.com/shirou/gopsutil/v3 v3.23.12

@@ -33,7 +33,7 @@ func init() { // 插件主体
 	})
 
 	enr := control.Register("ai回复", &ctrl.Options[*zero.Ctx]{
-		DisableOnDefault:  false,
+		DisableOnDefault:  true,
 		Brief:             "人工智能回复",
 		Help:              "- @Bot 任意文本(任意一句话回复)\n- 设置回复模式[青云客|小爱|ChatGPT]\n- 设置 ChatGPT api key xxx",
 		PrivateDataFolder: "aireply",
