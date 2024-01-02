@@ -5,8 +5,8 @@ import (
 	"time"
 
 	_ "github.com/FloatTech/ZeroBot-Plugin/console" // 更改控制台属性
-	"github.com/FloatTech/ZeroBot-Plugin/pporf"	// pporf 127.0.0.1:6060
-	"github.com/FloatTech/ZeroBot-Plugin/setting" // 设置相关
+	"github.com/FloatTech/ZeroBot-Plugin/pprof"     // pprof 127.0.0.1:6060
+	"github.com/FloatTech/ZeroBot-Plugin/setting"   // 设置相关
 
 	// ---------以下插件均可通过前面加 // 注释，注释后停用并不加载插件--------- //
 	// ----------------------插件优先级按顺序从高到低---------------------- //
@@ -49,6 +49,8 @@ import (
 	//                      vvvvvvv中优先级区vvvvvvv                      //
 	//                          vvvvvvvvvvvvvv                          //
 	//                               vvvv                               //
+
+	_ "github.com/KomeiDiSanXian/BFHelper/bfhelper" // 战地查询
 
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/ahsai"            // ahsai tts
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/ai_false"         // 服务器监控
@@ -95,7 +97,6 @@ import (
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/word_count"       // 聊天热词
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/wordle"           // 猜单词
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/ymgal"            // 月幕galgame
-	_ "github.com/KomeiDiSanXian/BFHelper/bfhelper"                 // 战地查询
 
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/thesaurus" // 词典匹配回复
 
@@ -199,7 +200,7 @@ func setupSetting() error {
 }
 
 func main() {
-	pporf.Start()
+	pprof.Start()
 	// 帮助
 	zero.OnFullMatchGroup([]string{"help", "help", ".help", "菜单"}).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {

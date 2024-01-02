@@ -1,12 +1,14 @@
-package pporf
+// Package pprof 用于性能分析
+package pprof
 
 import (
 	"log"
 	"net/http"
 
-	_ "net/http/pprof"
+	_ "net/http/pprof" // pprof 必须import
 )
 
+// Start 启动一个pprof服务
 func Start() {
 	log.Println("Starting pporf")
 	go func() {
