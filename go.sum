@@ -15,10 +15,10 @@ github.com/FloatTech/ttl v0.0.0-20230307105452-d6f7b2b647d1 h1:g4pTnDJUW4VbJ9Nvo
 github.com/FloatTech/ttl v0.0.0-20230307105452-d6f7b2b647d1/go.mod h1:fHZFWGquNXuHttu9dUYoKuNbm3dzLETnIOnm1muSfDs=
 github.com/FloatTech/zbpctrl v1.6.0 h1:BWg9aRR4bUCmNNKj6GPH0TmzFRWYImIi6rQcQTTYRs4=
 github.com/FloatTech/zbpctrl v1.6.0/go.mod h1:i3GGM5K4HiDsXzvmXQSYoH1QT3tsSaAHjRzHwKGsHG0=
-github.com/KomeiDiSanXian/BFHelper v1.2.0-alpha.0.20231015082015-44643f78cf57 h1:tEY0BofZkBSl58656aSdgkM39xEO/U++3MHb0+/rGOc=
-github.com/KomeiDiSanXian/BFHelper v1.2.0-alpha.0.20231015082015-44643f78cf57/go.mod h1:2ee6t1xbckQaZeJRxv0wHbvXh3wKVTK6JrSdk4Mm40A=
 github.com/KomeiDiSanXian/BFHelper v1.2.0-alpha.0.20240102011233-b599886bae30 h1:PmqoA2bfnoLsm0kYWrte5IMFDaMWmjsmYBx5A4oE4Ak=
 github.com/KomeiDiSanXian/BFHelper v1.2.0-alpha.0.20240102011233-b599886bae30/go.mod h1:6DF30lqE4+478H0UiyEIQNRb86v1bqn01fjrTYNjQE0=
+github.com/KomeiDiSanXian/unibase2n v0.0.0-20240102054023-802e9ee7cd10 h1:KK44gp75RIOxfWxThAlmNlui9qWxm7/Wj1T0AkVg7XE=
+github.com/KomeiDiSanXian/unibase2n v0.0.0-20240102054023-802e9ee7cd10/go.mod h1:lEaZsT4FRSqcjnQ5q8y+mkenkzR/r1D3BJmfdp0vqDg=
 github.com/KomeiDiSanXian/zbputils v0.0.0-20240102015250-fccebce5ce51 h1:G60nJsx6W0iyOdYyfVT8MZHc8rkIsYbAG1FMPZJZknc=
 github.com/KomeiDiSanXian/zbputils v0.0.0-20240102015250-fccebce5ce51/go.mod h1:N8baWkKePSTxW4Jr7tOoHNQdq87UsHXnJwOxmcAfzm4=
 github.com/PuerkitoBio/goquery v1.5.1/go.mod h1:GsLWisAFVj4WgDibEWF4pvYnkVQBpKBKeU+7zCJoLcc=
@@ -82,8 +82,6 @@ github.com/fumiama/jieba v0.0.0-20221203025406-36c17a10b565 h1:sQuR2+N5HurnvsZhi
 github.com/fumiama/jieba v0.0.0-20221203025406-36c17a10b565/go.mod h1:UUEvyLTJ7yoOA/viKG4wEis4ERydM7+Ny6gZUWgkS80=
 github.com/fumiama/sqlite3 v1.20.0-with-win386 h1:ZR1AXGBEtkfq9GAXehOVcwn+aaCG8itrkgEsz4ggx5k=
 github.com/fumiama/sqlite3 v1.20.0-with-win386/go.mod h1:Os58MHwYCcYZCy2PGChBrQtBAw5/LS1ZZOkfc+C/I7s=
-github.com/fumiama/unibase2n v0.0.0-20230410024855-c98c9ec11730 h1:JiQZ0C/CGeaJuuarEjGRwbYgtzUZwSGGMAek1fnJtoY=
-github.com/fumiama/unibase2n v0.0.0-20230410024855-c98c9ec11730/go.mod h1:lEaZsT4FRSqcjnQ5q8y+mkenkzR/r1D3BJmfdp0vqDg=
 github.com/gabriel-vasile/mimetype v1.0.4/go.mod h1:6CDPel/o/3/s4+bp6kIbsWATq8pmgOisOPG40CJa6To=
 github.com/gabriel-vasile/mimetype v1.4.3 h1:in2uUcidCuFcDKtdcBxlR0rJ1+fsokWf+uqxgUFjbI0=
 github.com/gabriel-vasile/mimetype v1.4.3/go.mod h1:d8uq/6HKRL6CGdk+aubisF/M5GcPfT7nKyLpA0lbSSk=
@@ -172,8 +170,6 @@ github.com/mewkiz/flac v1.0.7/go.mod h1:yU74UH277dBUpqxPouHSQIar3G1X/QIclVbFahSd
 github.com/mewkiz/pkg v0.0.0-20190919212034-518ade7978e2/go.mod h1:3E2FUC/qYUfM8+r9zAwpeHJzqRVVMIYnpzD/clwWxyA=
 github.com/mitchellh/mapstructure v1.5.0 h1:jeMsZIYE/09sWLaz43PL7Gy6RuMjD2eJVyuac5Z2hdY=
 github.com/mitchellh/mapstructure v1.5.0/go.mod h1:bFUtVrKA4DC2yAKiSyO/QUcy7e+RRV2QTWOzhPopBRo=
-github.com/mroth/weightedrand v1.0.0 h1:V8JeHChvl2MP1sAoXq4brElOcza+jxLkRuwvtQu8L3E=
-github.com/mroth/weightedrand v1.0.0/go.mod h1:3p2SIcC8al1YMzGhAIoXD+r9olo/g/cdJgAD905gyNE=
 github.com/onsi/ginkgo/v2 v2.13.2 h1:Bi2gGVkfn6gQcjNjZJVO8Gf0FHzMPf2phUei9tejVMs=
 github.com/onsi/ginkgo/v2 v2.13.2/go.mod h1:XStQ8QcGwLyF4HdfcZB8SFOS/MWCgDuXMSBe6zrvLgM=
 github.com/onsi/gomega v1.29.0 h1:KIA/t2t5UBzoirT4H9tsML45GEbo3ouUnBHsCfD2tVg=
