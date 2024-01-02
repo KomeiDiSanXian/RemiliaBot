@@ -26,6 +26,8 @@
 
 > 原始仓库: [FloatTech/ZeroBot-Plugin](https://github.com/FloatTech/ZeroBot-Plugin)
 
+> 鉴于gocq即将停止更新，该项目可能不再支持onebot协议
+
 ## 修改内容
 > 在这个仓库中, 对原始仓库做了以下修改
 
