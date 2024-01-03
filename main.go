@@ -202,7 +202,7 @@ func setupSetting() error {
 func main() {
 	pprof.Start()
 	// 帮助
-	zero.OnFullMatchGroup([]string{"help", "help", ".help", "菜单"}).SetBlock(true).
+	zero.OnFullMatchGroup([]string{"help", "/help", ".help", "菜单"}).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
 			ctx.SendChain(message.Text(banner.Banner, "\n管理发送\".服务列表\"查看 bot 功能\n发送\".用法 name\"查看功能用法"))
 		})
