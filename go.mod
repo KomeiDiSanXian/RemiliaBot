@@ -132,7 +132,7 @@ require (
 
 replace modernc.org/sqlite => github.com/fumiama/sqlite3 v1.20.0-with-win386
 
-replace github.com/FloatTech/zbputils => github.com/KomeiDiSanXian/zbputils v0.0.0-20240102015250-fccebce5ce51
+replace github.com/FloatTech/zbputils => github.com/KomeiDiSanXian/zbputils v0.0.0-20240511052424-8b444ccfb843
 
 replace github.com/remyoudompheng/bigfft => github.com/fumiama/bigfft v0.0.0-20211011143303-6e0bfa3c836b
 

@@ -21,6 +21,8 @@ github.com/KomeiDiSanXian/unibase2n v0.0.0-20240102054023-802e9ee7cd10 h1:KK44gp
 github.com/KomeiDiSanXian/unibase2n v0.0.0-20240102054023-802e9ee7cd10/go.mod h1:lEaZsT4FRSqcjnQ5q8y+mkenkzR/r1D3BJmfdp0vqDg=
 github.com/KomeiDiSanXian/zbputils v0.0.0-20240102015250-fccebce5ce51 h1:G60nJsx6W0iyOdYyfVT8MZHc8rkIsYbAG1FMPZJZknc=
 github.com/KomeiDiSanXian/zbputils v0.0.0-20240102015250-fccebce5ce51/go.mod h1:N8baWkKePSTxW4Jr7tOoHNQdq87UsHXnJwOxmcAfzm4=
+github.com/KomeiDiSanXian/zbputils v0.0.0-20240511052424-8b444ccfb843 h1:UwTVZmmN0X++HdCG5TqsgYzyzkUMCYV5ZNVFnuDlmBM=
+github.com/KomeiDiSanXian/zbputils v0.0.0-20240511052424-8b444ccfb843/go.mod h1:dUPrY75p1+EI8+gutIEv5oFK1PaVEQ1CvKPCJBkXWk0=
 github.com/PuerkitoBio/goquery v1.5.1/go.mod h1:GsLWisAFVj4WgDibEWF4pvYnkVQBpKBKeU+7zCJoLcc=
 github.com/RomiChan/syncx v0.0.0-20240418144900-b7402ffdebc7 h1:S/ferNiehVjNaBMNNBxUjLtVmP/YWD6Yh79RfPv4ehU=
 github.com/RomiChan/syncx v0.0.0-20240418144900-b7402ffdebc7/go.mod h1:vD7Ra3Q9onRtojoY5sMCLQ7JBgjUsrXDnDKyFxqpf9w=
