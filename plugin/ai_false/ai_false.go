@@ -87,7 +87,7 @@ func init() { // 插件主体
 			count = atomic.SwapUint64(&msgPerMinute, 0)
 		}
 	}()
-	engine.OnMessage().SetBlock(false).Handle(func(ctx *zero.Ctx) {
+	engine.OnMessage().SetBlock(false).Handle(func(_ *zero.Ctx) {
 		atomic.AddUint64(&totalMessageCount, 1)
 		atomic.AddUint64(&msgPerMinute, 1)
 	})

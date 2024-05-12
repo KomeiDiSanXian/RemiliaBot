@@ -35,7 +35,7 @@ func NewSetting() (*Setting, error) {
 func (s *Setting) WatchSettingChange() {
 	go func() {
 		s.vp.WatchConfig()
-		s.vp.OnConfigChange(func(in fsnotify.Event) {
+		s.vp.OnConfigChange(func(_ fsnotify.Event) {
 			_ = s.ReloadAllSections()
 		})
 	}()
