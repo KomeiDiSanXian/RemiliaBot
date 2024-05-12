@@ -3,11 +3,10 @@ package aifalse
 
 import (
 	"bytes"
-	"errors"
-	"fmt"
+	"errors"	
 	"image"
+	"image/color"
 	"math"
-	"math/rand"
 	"runtime"
 	"strconv"
 	"strings"
@@ -47,15 +46,12 @@ const (
 )
 
 var (
-	boottime = time.Now()
-	bgdata   *[]byte
-	bgcount  uintptr
-)
-
-var (
-	totalMessageCount uint64
-	msgPerMinute      uint64
-	count             uint64
+	boottime   = time.Now()
+	bgdata     *[]byte
+	bgcount    uintptr
+	isday      bool
+	lightcolor = [3][4]uint8{{255, 70, 0, 255}, {255, 165, 0, 255}, {145, 240, 145, 255}}
+	darkcolor  = [3][4]uint8{{215, 50, 0, 255}, {205, 135, 0, 255}, {115, 200, 115, 255}}
 )
 
 func init() { // 插件主体
@@ -77,21 +73,28 @@ func init() { // 插件主体
 		logrus.Infoln("设置默认限速为每", m, "秒触发", n, "次")
 	}
 
-	ticker := time.NewTicker(time.Minute)
-	msgPerMinuteChan := make(chan uint64, 1)
-	msgPerMinuteChan <- 0
-	go func() {
-		for range ticker.C {
-			count = atomic.SwapUint64(&msgPerMinute, 0)
-		}
-	}()
-	engine.OnMessage().SetBlock(false).Handle(func(ctx *zero.Ctx) {
-		atomic.AddUint64(&totalMessageCount, 1)
-		atomic.AddUint64(&msgPerMinute, 1)
-	})
 	engine.OnFullMatchGroup([]string{"检查身体", "自检", "启动自检", "系统状态"}, zero.AdminPermission).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
-			img, err := drawstatus(ctx.State["manager"].(*ctrl.Control[*zero.Ctx]), ctx.Event.SelfID, zero.BotConfig.NickName[rand.Intn(len(zero.BotConfig.NickName))])
+			now := time.Now().Hour()
+			isday = now > 7 && now < 19
+
+			botrunstatus := ctx.CallAction("get_status", zero.Params{}).Data
+			botverisoninfo := ctx.GetVersionInfo()
+			sb := &strings.Builder{}
+			sb.WriteString("在线(")
+			sb.WriteString(botverisoninfo.Get("app_name").String())
+			sb.WriteString("-")
+			sb.WriteString(botverisoninfo.Get("app_version").String())
+			sb.WriteString(") | 收")
+			sb.WriteString(botrunstatus.Get("stat").Get("message_received").String())
+			sb.WriteString(" | 发")
+			sb.WriteString(botrunstatus.Get("stat").Get("message_sent").String())
+			sb.WriteString(" | 群")
+			sb.WriteString(strconv.Itoa(len(ctx.GetGroupList().Array())))
+			sb.WriteString(" | 好友")
+			sb.WriteString(strconv.Itoa(len(ctx.GetFriendList().Array())))
+
+			img, err := drawstatus(ctx.State["manager"].(*ctrl.Control[*zero.Ctx]), ctx.Event.SelfID, zero.BotConfig.NickName[0], sb.String())
 			if err != nil {
 				ctx.SendChain(message.Text("ERROR: ", err))
 				return
@@ -143,7 +146,7 @@ func init() { // 插件主体
 		})
 }
 
-func drawstatus(m *ctrl.Control[*zero.Ctx], uid int64, botname string) (sendimg image.Image, err error) {
+func drawstatus(m *ctrl.Control[*zero.Ctx], uid int64, botname string, botrunstatus string) (sendimg image.Image, err error) {
 	diskstate, err := diskstate()
 	if err != nil {
 		return
@@ -215,6 +218,13 @@ func drawstatus(m *ctrl.Control[*zero.Ctx], uid int64, botname string) (sendimg 
 		defer bwg.Done()
 		blurback = imaging.Blur(canvas.Image(), 8)
 	}()
+
+	if !isday {
+		canvas.SetRGBA255(0, 0, 0, 50)
+		canvas.DrawRectangle(0, 0, cw, ch)
+		canvas.Fill()
+	}
+
 	wg := &sync.WaitGroup{}
 	wg.Add(5)
 
@@ -232,9 +242,9 @@ func drawstatus(m *ctrl.Control[*zero.Ctx], uid int64, botname string) (sendimg 
 
 		titlecard.DrawRoundedRectangle(1, 1, float64(titlecard.W()-1*2), float64(titlecardh-1*2), 16)
 		titlecard.SetLineWidth(3)
-		titlecard.SetRGBA255(255, 255, 255, 100)
+		titlecard.SetColor(colorswitch(100))
 		titlecard.StrokePreserve()
-		titlecard.SetRGBA255(255, 255, 255, 140)
+		titlecard.SetColor(colorswitch(140))
 		titlecard.Fill()
 
 		titlecard.DrawImage(avatarf.Circle(0).Image(), (titlecardh-avatarf.H())/2, (titlecardh-avatarf.H())/2)
@@ -245,7 +255,7 @@ func drawstatus(m *ctrl.Control[*zero.Ctx], uid int64, botname string) (sendimg 
 		}
 		fw, _ := titlecard.MeasureString(botname)
 
-		titlecard.SetRGBA255(30, 30, 30, 255)
+		titlecard.SetColor(fontcolorswitch())
 
 		titlecard.DrawStringAnchored(botname, float64(titlecardh)+fw/2, float64(titlecardh)*0.5/2, 0.5, 0.5)
 
@@ -253,12 +263,16 @@ func drawstatus(m *ctrl.Control[*zero.Ctx], uid int64, botname string) (sendimg 
 		if err != nil {
 			return
 		}
-		titlecard.SetRGBA255(30, 30, 30, 180)
+		titlecard.SetColor(fontcolorswitch())
 
 		titlecard.NewSubPath()
 		titlecard.MoveTo(float64(titlecardh), float64(titlecardh)/2)
 		titlecard.LineTo(float64(titlecard.W()-titlecardh), float64(titlecardh)/2)
 		titlecard.Stroke()
+
+		fw, _ = titlecard.MeasureString(botrunstatus)
+
+		titlecard.DrawStringAnchored(botrunstatus, float64(titlecardh)+fw/2, float64(titlecardh)*(0.5+0.25/2), 0.5, 0.5)
 
 		brt, err := botruntime()
 		if err != nil {
@@ -266,7 +280,7 @@ func drawstatus(m *ctrl.Control[*zero.Ctx], uid int64, botname string) (sendimg 
 		}
 		fw, _ = titlecard.MeasureString(brt)
 
-		titlecard.DrawStringAnchored(brt, float64(titlecardh)+fw/2, float64(titlecardh)*(0.5+0.25/2), 0.5, 0.5)
+		titlecard.DrawStringAnchored(brt, float64(titlecardh)+fw/2, float64(titlecardh)*(0.5+0.5/2), 0.5, 0.5)
 
 		bs, err := botstatus()
 		if err != nil {
@@ -274,13 +288,7 @@ func drawstatus(m *ctrl.Control[*zero.Ctx], uid int64, botname string) (sendimg 
 		}
 		fw, _ = titlecard.MeasureString(bs)
 
-		titlecard.DrawStringAnchored(bs, float64(titlecardh)+fw/2, float64(titlecardh)*(0.5+0.5/2), 0.5, 0.5)
-
-		mss := msgstatus()
-		fw, _ = titlecard.MeasureString(mss)
-
-		titlecard.DrawStringAnchored(mss, float64(titlecardh)+fw/2, float64(titlecardh)*(0.5+0.75/2), 0.5, 0.5)
-
+		titlecard.DrawStringAnchored(bs, float64(titlecardh)+fw/2, float64(titlecardh)*(0.5+0.75/2), 0.5, 0.5)
 		titleimg = rendercard.Fillet(titlecard.Image(), 16)
 	}()
 	go func() {
@@ -291,26 +299,34 @@ func drawstatus(m *ctrl.Control[*zero.Ctx], uid int64, botname string) (sendimg 
 
 		basiccard.DrawRoundedRectangle(1, 1, float64(basiccard.W()-1*2), float64(basiccardh-1*2), 16)
 		basiccard.SetLineWidth(3)
-		basiccard.SetRGBA255(255, 255, 255, 100)
+		basiccard.SetColor(colorswitch(100))
 		basiccard.StrokePreserve()
-		basiccard.SetRGBA255(255, 255, 255, 140)
+		basiccard.SetColor(colorswitch(140))
 		basiccard.Fill()
 
 		bslen := len(basicstate)
 		for i, v := range basicstate {
 			offset := float64(i) * ((float64(basiccard.W())-200*float64(bslen))/float64(bslen+1) + 200)
 
-			basiccard.SetRGBA255(235, 235, 235, 255)
+			basiccard.SetRGBA255(57, 57, 57, 255)
+			if isday {
+				basiccard.SetRGBA255(235, 235, 235, 255)
+			}
 			basiccard.DrawCircle((float64(basiccard.W())-200*float64(bslen))/float64(bslen+1)+200/2+offset, 20+200/2, 100)
 			basiccard.Fill()
 
+			colors := darkcolor
+			if isday {
+				colors = lightcolor
+			}
+
 			switch {
 			case v.precent > 90:
-				basiccard.SetRGBA255(255, 70, 0, 255)
+				basiccard.SetColor(slice2color(colors[0]))
 			case v.precent > 70:
-				basiccard.SetRGBA255(255, 165, 0, 255)
+				basiccard.SetColor(slice2color(colors[1]))
 			default:
-				basiccard.SetRGBA255(145, 240, 145, 255)
+				basiccard.SetColor(slice2color(colors[2]))
 			}
 
 			basiccard.NewSubPath()
@@ -318,7 +334,7 @@ func drawstatus(m *ctrl.Control[*zero.Ctx], uid int64, botname string) (sendimg 
 			basiccard.DrawEllipticalArc((float64(basiccard.W())-200*float64(bslen))/float64(bslen+1)+200/2+offset, 20+200/2, 100, 100, -0.5*math.Pi, -0.5*math.Pi+2*v.precent*0.01*math.Pi)
 			basiccard.Fill()
 
-			basiccard.SetRGBA255(255, 255, 255, 255)
+			basiccard.SetColor(colorswitch(255))
 			basiccard.DrawCircle((float64(basiccard.W())-200*float64(bslen))/float64(bslen+1)+200/2+offset, 20+200/2, 80)
 			basiccard.Fill()
 
@@ -330,7 +346,8 @@ func drawstatus(m *ctrl.Control[*zero.Ctx], uid int64, botname string) (sendimg 
 			basiccard.SetRGBA255(213, 213, 213, 255)
 			basiccard.DrawStringAnchored(strconv.FormatFloat(v.precent, 'f', 0, 64)+"%", (float64(basiccard.W())-200*float64(bslen))/float64(bslen+1)+200/2+offset, 20+200/2, 0.5, 0.5)
 
-			basiccard.SetRGBA255(30, 30, 30, 255)
+			basiccard.SetColor(fontcolorswitch())
+
 			_, fw := basiccard.MeasureString(v.name)
 			basiccard.DrawStringAnchored(v.name, (float64(basiccard.W())-200*float64(bslen))/float64(bslen+1)+200/2+offset, 20+200+15+basiccard.FontHeight()/2, 0.5, 0.5)
 
@@ -338,7 +355,7 @@ func drawstatus(m *ctrl.Control[*zero.Ctx], uid int64, botname string) (sendimg 
 			if err != nil {
 				return
 			}
-			basiccard.SetRGBA255(30, 30, 30, 180)
+			basiccard.SetColor(fontcolorswitch())
 
 			textoffsety := basiccard.FontHeight() + 10
 			for k, s := range v.text {
@@ -355,9 +372,9 @@ func drawstatus(m *ctrl.Control[*zero.Ctx], uid int64, botname string) (sendimg 
 
 		diskcard.DrawRoundedRectangle(1, 1, float64(diskcard.W()-1*2), float64(diskcardh-1*2), 16)
 		diskcard.SetLineWidth(3)
-		diskcard.SetRGBA255(255, 255, 255, 100)
+		diskcard.SetColor(colorswitch(100))
 		diskcard.StrokePreserve()
-		diskcard.SetRGBA255(255, 255, 255, 140)
+		diskcard.SetColor(colorswitch(140))
 		diskcard.Fill()
 
 		err = diskcard.ParseFontFace(fontbyte, 32)
@@ -367,24 +384,33 @@ func drawstatus(m *ctrl.Control[*zero.Ctx], uid int64, botname string) (sendimg 
 
 		dslen := len(diskstate)
 		if dslen == 1 {
-			diskcard.SetRGBA255(192, 192, 192, 255)
+			diskcard.SetRGBA255(57, 57, 57, 255)
+			if isday {
+				diskcard.SetRGBA255(192, 192, 192, 255)
+			}
 			diskcard.DrawRoundedRectangle(40, 40, float64(diskcard.W())-40-100, 50, 12)
 			diskcard.ClipPreserve()
 			diskcard.Fill()
 
+			colors := darkcolor
+			if isday {
+				colors = lightcolor
+			}
+
 			switch {
 			case diskstate[0].precent > 90:
-				diskcard.SetRGBA255(255, 70, 0, 255)
+				diskcard.SetColor(slice2color(colors[0]))
 			case diskstate[0].precent > 70:
-				diskcard.SetRGBA255(255, 165, 0, 255)
+				diskcard.SetColor(slice2color(colors[1]))
 			default:
-				diskcard.SetRGBA255(145, 240, 145, 255)
+				diskcard.SetColor(slice2color(colors[2]))
 			}
 
 			diskcard.DrawRoundedRectangle(40, 40, (float64(diskcard.W())-40-100)*diskstate[0].precent*0.01, 50, 12)
 			diskcard.Fill()
 			diskcard.ResetClip()
-			diskcard.SetRGBA255(30, 30, 30, 255)
+
+			diskcard.SetColor(fontcolorswitch())
 
 			fw, _ := diskcard.MeasureString(diskstate[0].name)
 			fw1, _ := diskcard.MeasureString(diskstate[0].text[0])
@@ -396,23 +422,32 @@ func drawstatus(m *ctrl.Control[*zero.Ctx], uid int64, botname string) (sendimg 
 			for i, v := range diskstate {
 				offset := float64(i)*(50+20) - 20
 
-				diskcard.SetRGBA255(192, 192, 192, 255)
+				diskcard.SetRGBA255(57, 57, 57, 255)
+				if isday {
+					diskcard.SetRGBA255(192, 192, 192, 255)
+				}
+
 				diskcard.DrawRoundedRectangle(40, 40+(float64(diskcardh-40*2)-50*float64(dslen))/float64(dslen-1)+offset, float64(diskcard.W())-40-100, 50, 12)
 				diskcard.Fill()
 
+				colors := darkcolor
+				if isday {
+					colors = lightcolor
+				}
+
 				switch {
 				case v.precent > 90:
-					diskcard.SetRGBA255(255, 70, 0, 255)
+					diskcard.SetColor(slice2color(colors[0]))
 				case v.precent > 70:
-					diskcard.SetRGBA255(255, 165, 0, 255)
+					diskcard.SetColor(slice2color(colors[1]))
 				default:
-					diskcard.SetRGBA255(145, 240, 145, 255)
+					diskcard.SetColor(slice2color(colors[2]))
 				}
 
 				diskcard.DrawRoundedRectangle(40, 40+(float64(diskcardh-40*2)-50*float64(dslen))/float64(dslen-1)+offset, (float64(diskcard.W())-40-100)*v.precent*0.01, 50, 12)
 				diskcard.Fill()
 
-				diskcard.SetRGBA255(30, 30, 30, 255)
+				diskcard.SetColor(fontcolorswitch())
 
 				fw, _ := diskcard.MeasureString(v.name)
 				fw1, _ := diskcard.MeasureString(v.text[0])
@@ -432,9 +467,9 @@ func drawstatus(m *ctrl.Control[*zero.Ctx], uid int64, botname string) (sendimg 
 
 		moreinfocard.DrawRoundedRectangle(1, 1, float64(moreinfocard.W()-1*2), float64(moreinfocard.H()-1*2), 16)
 		moreinfocard.SetLineWidth(3)
-		moreinfocard.SetRGBA255(255, 255, 255, 100)
+		moreinfocard.SetColor(colorswitch(100))
 		moreinfocard.StrokePreserve()
-		moreinfocard.SetRGBA255(255, 255, 255, 140)
+		moreinfocard.SetColor(colorswitch(140))
 		moreinfocard.Fill()
 
 		err = moreinfocard.ParseFontFace(fontbyte, 32)
@@ -446,7 +481,7 @@ func drawstatus(m *ctrl.Control[*zero.Ctx], uid int64, botname string) (sendimg 
 		for i, v := range moreinfo {
 			offset := float64(i)*(20+moreinfocard.FontHeight()) - 20
 
-			moreinfocard.SetRGBA255(30, 30, 30, 255)
+			moreinfocard.SetColor(fontcolorswitch())
 
 			fw, _ := moreinfocard.MeasureString(v.name)
 			fw1, _ := moreinfocard.MeasureString(v.text[0])
@@ -488,9 +523,9 @@ func drawstatus(m *ctrl.Control[*zero.Ctx], uid int64, botname string) (sendimg 
 		return
 	}
 	canvas.SetRGBA255(0, 0, 0, 255)
-	canvas.DrawStringAnchored("Created By RemiliaBot "+banner.Version+"  Forked From ZeroBot-Plugin", float64(canvas.W())/2+3, float64(canvas.H())-70/2+3, 0.5, 0.5)
+	canvas.DrawStringAnchored("Created By ZeroBot-Plugin "+banner.Version, float64(canvas.W())/2+3, float64(canvas.H())-70/2+3, 0.5, 0.5)
 	canvas.SetRGBA255(255, 255, 255, 255)
-	canvas.DrawStringAnchored("Created By RemiliaBot "+banner.Version+"  Forked From ZeroBot-Plugin", float64(canvas.W())/2, float64(canvas.H())-70/2, 0.5, 0.5)
+	canvas.DrawStringAnchored("Created By ZeroBot-Plugin "+banner.Version, float64(canvas.W())/2, float64(canvas.H())-70/2, 0.5, 0.5)
 
 	sendimg = canvas.Image()
 	return
@@ -525,14 +560,6 @@ func botstatus() (string, error) {
 	t.WriteString(" | ")
 	t.WriteString(cases.Title(language.English).String(hostinfo.OS))
 	return t.String(), nil
-}
-
-func msgstatus() string {
-	t := &strings.Builder{}
-	t.WriteString(fmt.Sprintf("共收到消息: %d", atomic.LoadUint64(&totalMessageCount)))
-	t.WriteString(" | ")
-	t.WriteString(fmt.Sprintf("上分钟消息数: %d", count))
-	return t.String()
 }
 
 type status struct {
@@ -638,12 +665,34 @@ func moreinfo(m *ctrl.Control[*zero.Ctx]) (stateinfo []*status, err error) {
 	if err != nil {
 		return
 	}
+	var mems runtime.MemStats
+	runtime.ReadMemStats(&mems)
+	fmtmem := storagefmt(float64(mems.Sys))
 	count := len(m.Manager.M)
 	stateinfo = []*status{
 		{name: "OS", text: []string{ /*hostinfo.Platform*/ "Microsoft Windows ⑨"}},
 		{name: "CPU", text: []string{cpuinfo[0].ModelName}},
-		{name: "Version", text: []string{ /*hostinfo.PlatformVersion*/ "Maximum number ⑨ Build Crino"}},
+		{name: "Version", text: []string{ /*hostinfo.PlatformVersion*/ "Maximum number ⑨ Build Cirno"}},
 		{name: "Plugin", text: []string{"共 " + strconv.Itoa(count) + " 个"}},
+		{name: "Memory", text: []string{"已用 " + fmtmem}},
 	}
 	return
+}
+
+func colorswitch(a uint8) color.Color {
+	if isday {
+		return color.NRGBA{255, 255, 255, a}
+	}
+	return color.NRGBA{0, 0, 0, a}
+}
+
+func fontcolorswitch() color.Color {
+	if isday {
+		return color.NRGBA{30, 30, 30, 255}
+	}
+	return color.NRGBA{235, 235, 235, 255}
+}
+
+func slice2color(c [4]uint8) color.Color {
+	return color.NRGBA{c[0], c[1], c[2], c[3]}
 }
