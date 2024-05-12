@@ -3,10 +3,11 @@ package aifalse
 
 import (
 	"bytes"
-	"errors"	
+	"errors"
 	"image"
 	"image/color"
 	"math"
+	"math/rand"
 	"runtime"
 	"strconv"
 	"strings"
@@ -54,6 +55,12 @@ var (
 	darkcolor  = [3][4]uint8{{215, 50, 0, 255}, {205, 135, 0, 255}, {115, 200, 115, 255}}
 )
 
+var (
+	totalMessageCount uint64
+	msgPerMinute      uint64
+	count             uint64
+)
+
 func init() { // 插件主体
 	engine := control.Register("自检", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
@@ -72,13 +79,25 @@ func init() { // 插件主体
 		ctxext.SetDefaultLimiterManagerParam(time.Duration(m)*time.Second, int(n))
 		logrus.Infoln("设置默认限速为每", m, "秒触发", n, "次")
 	}
+	ticker := time.NewTicker(time.Minute)
+	msgPerMinuteChan := make(chan uint64, 1)
+	msgPerMinuteChan <- 0
+	go func() {
+		for range ticker.C {
+			count = atomic.SwapUint64(&msgPerMinute, 0)
+		}
+	}()
+	engine.OnMessage().SetBlock(false).Handle(func(ctx *zero.Ctx) {
+		atomic.AddUint64(&totalMessageCount, 1)
+		atomic.AddUint64(&msgPerMinute, 1)
+	})
 
 	engine.OnFullMatchGroup([]string{"检查身体", "自检", "启动自检", "系统状态"}, zero.AdminPermission).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
 			now := time.Now().Hour()
 			isday = now > 7 && now < 19
 
-			botrunstatus := ctx.CallAction("get_status", zero.Params{}).Data
+			// botrunstatus := ctx.CallAction("get_status", zero.Params{}).Data
 			botverisoninfo := ctx.GetVersionInfo()
 			sb := &strings.Builder{}
 			sb.WriteString("在线(")
@@ -86,15 +105,18 @@ func init() { // 插件主体
 			sb.WriteString("-")
 			sb.WriteString(botverisoninfo.Get("app_version").String())
 			sb.WriteString(") | 收")
-			sb.WriteString(botrunstatus.Get("stat").Get("message_received").String())
-			sb.WriteString(" | 发")
-			sb.WriteString(botrunstatus.Get("stat").Get("message_sent").String())
+			// sb.WriteString(botrunstatus.Get("stat").Get("message_received").String()) // Lagrange.Core 中没有这个字段
+			sb.WriteString(strconv.FormatUint(atomic.LoadUint64(&totalMessageCount), 10))
+			// sb.WriteString(" | 发")
+			// sb.WriteString(botrunstatus.Get("stat").Get("message_sent").String()) // Lagrange.Core 中没有这个字段
+			sb.WriteString(" | 上分钟消息")
+			sb.WriteString(strconv.FormatUint(count, 10))
 			sb.WriteString(" | 群")
 			sb.WriteString(strconv.Itoa(len(ctx.GetGroupList().Array())))
 			sb.WriteString(" | 好友")
 			sb.WriteString(strconv.Itoa(len(ctx.GetFriendList().Array())))
 
-			img, err := drawstatus(ctx.State["manager"].(*ctrl.Control[*zero.Ctx]), ctx.Event.SelfID, zero.BotConfig.NickName[0], sb.String())
+			img, err := drawstatus(ctx.State["manager"].(*ctrl.Control[*zero.Ctx]), ctx.Event.SelfID, zero.BotConfig.NickName[rand.Intn(len(zero.BotConfig.NickName))], sb.String())
 			if err != nil {
 				ctx.SendChain(message.Text("ERROR: ", err))
 				return
@@ -523,9 +545,9 @@ func drawstatus(m *ctrl.Control[*zero.Ctx], uid int64, botname string, botrunsta
 		return
 	}
 	canvas.SetRGBA255(0, 0, 0, 255)
-	canvas.DrawStringAnchored("Created By ZeroBot-Plugin "+banner.Version, float64(canvas.W())/2+3, float64(canvas.H())-70/2+3, 0.5, 0.5)
+	canvas.DrawStringAnchored("Created By RemiliaBot "+banner.Version+"  Forked From ZeroBot-Plugin", float64(canvas.W())/2+3, float64(canvas.H())-70/2+3, 0.5, 0.5)
 	canvas.SetRGBA255(255, 255, 255, 255)
-	canvas.DrawStringAnchored("Created By ZeroBot-Plugin "+banner.Version, float64(canvas.W())/2, float64(canvas.H())-70/2, 0.5, 0.5)
+	canvas.DrawStringAnchored("Created By RemiliaBot "+banner.Version+"  Forked From ZeroBot-Plugin", float64(canvas.W())/2, float64(canvas.H())-70/2, 0.5, 0.5)
 
 	sendimg = canvas.Image()
 	return
