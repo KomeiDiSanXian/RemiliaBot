@@ -16,17 +16,23 @@
   
 
   本项目符合 [OneBot](https://github.com/howmanybots/onebot) 标准，可基于以下项目与机器人框架/平台进行交互
-  | 项目地址 | 平台 | 核心作者 |
-  | --- | --- | --- |
-  | [go-cqhttp](https://github.com/Mrs4s/go-cqhttp) | [MiraiGo](https://github.com/Mrs4s/MiraiGo) | Mrs4s |
-  | [onebot-kotlin](https://github.com/yyuueexxiinngg/onebot-kotlin) | [Mirai](https://github.com/mamoe/mirai) | yyuueexxiinngg |
-  | [oicq/http-api](https://github.com/takayama-lily/oicq/tree/master/http-api) | [OICQ](https://github.com/takayama-lily/oicq) | takayama |
+  | 项目地址 | 平台 | 核心作者 | 备注
+  | --- | --- | --- | --- |
+  | [Lagrange.Core](https://github.com/LagrangeDev/Lagrange.Core) | NTQQ | Linwenxuan05 | 推荐, 我自己觉得好用
+  | [LLOneBot](https://github.com/LLOneBot/LLOneBot) | NTQQ | linyuchen | 推荐使用, 但如果你的群特别多的话会卡 |
+  | [NapCatQQ](https://github.com/NapNeko/NapCatQQ) | NTQQ | linyuchen | 同上, 无头NTQQ框架, 适合Linux系统使用
+  | [go-cqhttp](https://github.com/Mrs4s/go-cqhttp) | [MiraiGo](https://github.com/Mrs4s/MiraiGo) | Mrs4s | 因签名原因不再维护 |
+  | [onebot-kotlin](https://github.com/yyuueexxiinngg/onebot-kotlin) | [Mirai](https://github.com/mamoe/mirai) | yyuueexxiinngg | 不再积极维护 |
+  | [oicq/http-api](https://github.com/takayama-lily/oicq/tree/master/http-api) | [OICQ](https://github.com/takayama-lily/oicq) | takayama | 已归档不再维护 |
 
 </div>
 
+> [!NOTE] 
 > 原始仓库: [FloatTech/ZeroBot-Plugin](https://github.com/FloatTech/ZeroBot-Plugin)
+> 以上评价为我个人使用体验做出备注, 非原始仓库作者评价
 
-> 鉴于gocq即将停止更新，该项目可能不再支持onebot协议
+
+## 施工中...
 
 ## 修改内容
 > 在这个仓库中, 对原始仓库做了以下修改
@@ -145,7 +151,6 @@
 - 移除命令行参数，改为编辑 `configs/config.yaml`
 - 所有的 `少女祈祷中` 改为 `少女折寿中`
 
-## 施工中...
 ## 下面的内容等待修改...
 ---
 
