@@ -1,4 +1,5 @@
 // Package music QQ音乐、网易云、酷狗、酷我、咪咕 点歌
+// TODO: 改为JSON卡片
 package music
 
 import (
@@ -25,25 +26,25 @@ func init() {
 	control.Register("点歌", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
 		Brief:            "每个机器人必备的插件",
-		Help: "- 点歌[xxx]\n" +
-			"- 网易点歌[xxx]\n" +
-			"- 酷我点歌[xxx]\n" +
-			"- 酷狗点歌[xxx]\n" +
-			"- 咪咕点歌[xxx]",
+		Help:             "- 点歌[xxx]",
+		// "- 网易点歌[xxx]\n" +
+		// "- 酷我点歌[xxx]\n" +
+		// "- 酷狗点歌[xxx]\n" +
+		// "- 咪咕点歌[xxx]",
 	}).OnRegex(`^(.{0,2})点歌\s?(.{1,25})$`).SetBlock(true).Limit(ctxext.LimitByUser).
 		Handle(func(ctx *zero.Ctx) {
 			// switch 平台
 			switch ctx.State["regex_matched"].([]string)[1] {
-			case "咪咕":
-				ctx.SendChain(migu(ctx.State["regex_matched"].([]string)[2]))
-			case "酷我":
-				ctx.SendChain(kuwo(ctx.State["regex_matched"].([]string)[2]))
-			case "酷狗":
-				ctx.SendChain(kugou(ctx.State["regex_matched"].([]string)[2]))
-			case "网易":
+			// case "咪咕":
+			// 	ctx.SendChain(migu(ctx.State["regex_matched"].([]string)[2]))
+			// case "酷我":
+			// 	ctx.SendChain(kuwo(ctx.State["regex_matched"].([]string)[2]))
+			// case "酷狗":
+			// 	ctx.SendChain(kugou(ctx.State["regex_matched"].([]string)[2]))
+			// case "网易":
+			// 	ctx.SendChain(cloud163(ctx.State["regex_matched"].([]string)[2]))
+			default: // 默认 网易
 				ctx.SendChain(cloud163(ctx.State["regex_matched"].([]string)[2]))
-			default: // 默认 QQ音乐
-				ctx.SendChain(qqmusic(ctx.State["regex_matched"].([]string)[2]))
 			}
 		})
 }
@@ -170,7 +171,8 @@ func cloud163(keyword string) (msg message.MessageSegment) {
 		msg = message.Text("ERROR: ", err)
 		return
 	}
-	msg = message.Music("163", gjson.ParseBytes(data).Get("result.songs.0.id").Int())
+	// msg = message.Music("163", gjson.ParseBytes(data).Get("result.songs.0.id").Int())
+	msg = message.Text("https://music.163.com/#/song?id=", gjson.ParseBytes(data).Get("result.songs.0.id").Raw)
 	return
 }
 
