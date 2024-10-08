@@ -96,12 +96,12 @@ func GetFilledTimer(dateStrs []string, botqq, grp int64, matchDateOnly bool) *Ti
 	if len(minuteStr) == 3 {
 		minuteStr = []rune{minuteStr[0], minuteStr[2]} // 去除中间的十
 	}
-	min := chineseNum2Int(minuteStr)
-	if min < -1 || min > 59 { // 分钟非法
+	m := chineseNum2Int(minuteStr)
+	if m < -1 || m > 59 { // 分钟非法
 		t.Alert = "分钟非法！"
 		return &t
 	}
-	t.SetMinute(min)
+	t.SetMinute(m)
 	if !matchDateOnly {
 		urlStr := dateStrs[5]
 		if urlStr != "" { // 是图片url
