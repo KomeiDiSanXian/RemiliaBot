@@ -1,18 +1,17 @@
 // Package kfccrazythursday 疯狂星期四
-// api已经失效
 package kfccrazythursday
 
 import (
 	"github.com/FloatTech/floatbox/web"
 	ctrl "github.com/FloatTech/zbpctrl"
 	"github.com/FloatTech/zbputils/control"
-	"github.com/tidwall/gjson"
 	zero "github.com/wdvxdr1123/ZeroBot"
 	"github.com/wdvxdr1123/ZeroBot/message"
+	"github.com/wdvxdr1123/ZeroBot/utils/helper"
 )
 
 const (
-	crazyURL = "https://www.iculture.cc/demo/CrazyThursday/api/kfc.php"
+	crazyURL = "http://api.jixs.cc/api/wenan-fkxqs/index.php"
 )
 
 func init() {
@@ -27,6 +26,6 @@ func init() {
 			ctx.SendChain(message.Text("ERROR: ", err))
 			return
 		}
-		ctx.SendChain(message.Text(gjson.ParseBytes(data).Get("@this.0.content").String()))
+		ctx.SendChain(message.Text(helper.BytesToString(data)))
 	})
 }
