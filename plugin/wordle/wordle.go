@@ -12,7 +12,6 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/FloatTech/AnimeAPI/tl"
 	"github.com/FloatTech/imgfactory"
 
 	"github.com/FloatTech/floatbox/binary"
@@ -129,11 +128,6 @@ func init() {
 		Handle(func(ctx *zero.Ctx) {
 			class := classdict[ctx.State["regex_matched"].([]string)[2]]
 			target := words[class].cet4[rand.Intn(len(words[class].cet4))]
-			tt, err := tl.Translate(target)
-			if err != nil {
-				ctx.SendChain(message.Text("ERROR: ", err))
-				return
-			}
 			game := newWordleGame(target)
 			_, img, _ := game("")
 			ctx.Send(
@@ -155,6 +149,7 @@ func init() {
 			defer cancel()
 			tick := time.NewTimer(105 * time.Second)
 			after := time.NewTimer(120 * time.Second)
+			var err error
 			for {
 				select {
 				case <-tick.C:
@@ -162,7 +157,7 @@ func init() {
 				case <-after.C:
 					ctx.Send(
 						message.ReplyWithMessage(ctx.Event.MessageID,
-							message.Text("猜单词超时，游戏结束...答案是: ", target, "(", tt, ")"),
+							message.Text("猜单词超时，游戏结束...答案是: ", target),
 						),
 					)
 					return
@@ -177,7 +172,7 @@ func init() {
 						ctx.Send(
 							message.ReplyWithMessage(c.Event.MessageID,
 								message.ImageBytes(img),
-								message.Text("太棒了，你猜出来了！答案是: ", target, "(", tt, ")"),
+								message.Text("太棒了，你猜出来了！答案是: ", target),
 							),
 						)
 						return
@@ -187,7 +182,7 @@ func init() {
 						ctx.Send(
 							message.ReplyWithMessage(c.Event.MessageID,
 								message.ImageBytes(img),
-								message.Text("游戏结束...答案是: ", target, "(", tt, ")"),
+								message.Text("游戏结束...答案是: ", target),
 							),
 						)
 						return
