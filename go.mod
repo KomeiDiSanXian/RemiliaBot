@@ -135,7 +135,6 @@ require (
 replace (
 	github.com/FloatTech/floatbox => github.com/KomeiDiSanXian/floatbox v0.0.0-20241008033815-74fe3739bb9e
 	github.com/FloatTech/zbputils => github.com/KomeiDiSanXian/zbputils v0.0.0-20240511052424-8b444ccfb843
-	github.com/fumiama/unibase2n => github.com/KomeiDiSanXian/unibase2n v0.0.0-20240102054023-802e9ee7cd10
 	github.com/remyoudompheng/bigfft => github.com/fumiama/bigfft v0.0.0-20211011143303-6e0bfa3c836b
 	modernc.org/sqlite => github.com/fumiama/sqlite3 v1.20.0-with-win386
 )
