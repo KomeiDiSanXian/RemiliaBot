@@ -59,7 +59,6 @@ import (
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/alipayvoice"  // 支付宝到账语音
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/autowithdraw" // 触发者撤回时也自动撤回
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/b14"          // base16384加解密
-	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/baidu"        // 百度一下
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/base64gua"    // base64卦加解密
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/baseamasiro"  // base天城文加解密
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/bilibili"     // b站相关
