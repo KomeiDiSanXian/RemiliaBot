@@ -80,7 +80,7 @@ import (
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/inject"       // 注入指令
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/jptingroom"   // 日语听力学习材料
 
-	// _ "github.com/FloatTech/ZeroBot-Plugin/plugin/kfccrazythursday" // 疯狂星期四
+	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/kfccrazythursday" // 疯狂星期四
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/lolicon"    // lolicon 随机图片
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/music"      // 点歌
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/nativewife" // 本地老婆
