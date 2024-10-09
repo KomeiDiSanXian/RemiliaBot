@@ -15,8 +15,8 @@ github.com/FloatTech/zbpctrl v1.6.1 h1:SilK5R2poO8iUT6JPzpgr/BSzxYAaybBYNZkMyZ8S
 github.com/FloatTech/zbpctrl v1.6.1/go.mod h1:I+MetM++1sJhNPg3zww1aw04BicYsNohvHC4Jh52XSo=
 github.com/KomeiDiSanXian/BFHelper v1.2.2 h1:hlEk3m3hT4qx2nCf65NjWxFDC3ZJk5dQjstaeLRZ9ls=
 github.com/KomeiDiSanXian/BFHelper v1.2.2/go.mod h1:7dYNzxNNK+jcHBdd7k5ND+fS8oSQvQAmWjwsC7tMWDs=
-github.com/KomeiDiSanXian/floatbox v0.0.0-20241008033815-74fe3739bb9e h1:DNjiKQwPAwBHIjPhElmU8500Sa/7mI2bF47FxMdquRo=
-github.com/KomeiDiSanXian/floatbox v0.0.0-20241008033815-74fe3739bb9e/go.mod h1:rJVY8K9bNslT8j+YtR5X/rg95Tp9MRrnaqGuNv3iUXU=
+github.com/KomeiDiSanXian/floatbox v0.0.0-20241009015604-05a7557b282d h1:n5FAQkl30WhSge/B8jos7CUQjSRHOmxC9R93pvr8GbA=
+github.com/KomeiDiSanXian/floatbox v0.0.0-20241009015604-05a7557b282d/go.mod h1:rJVY8K9bNslT8j+YtR5X/rg95Tp9MRrnaqGuNv3iUXU=
 github.com/KomeiDiSanXian/zbputils v0.0.0-20240511052424-8b444ccfb843 h1:UwTVZmmN0X++HdCG5TqsgYzyzkUMCYV5ZNVFnuDlmBM=
 github.com/KomeiDiSanXian/zbputils v0.0.0-20240511052424-8b444ccfb843/go.mod h1:dUPrY75p1+EI8+gutIEv5oFK1PaVEQ1CvKPCJBkXWk0=
 github.com/PuerkitoBio/goquery v1.5.1/go.mod h1:GsLWisAFVj4WgDibEWF4pvYnkVQBpKBKeU+7zCJoLcc=
