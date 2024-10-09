@@ -2,7 +2,6 @@
 package event
 
 import (
-	"encoding/binary"
 	"strconv"
 	"time"
 
@@ -61,14 +60,7 @@ func init() {
 			if ok {
 				su := zero.BotConfig.SuperUsers[0]
 				now := time.Unix(ctx.Event.Time, 0).Format("2006-01-02 15:04:05")
-				flag, err := strconv.ParseInt(ctx.Event.Flag, 10, 64)
-				if err != nil {
-					ctx.SendChain(message.Text("ERROR: ", err))
-					return
-				}
-				var buf [8]byte
-				binary.BigEndian.PutUint64(buf[:], uint64(flag))
-				es := base14.EncodeToString(buf[1:])
+				es := base14.EncodeToString(helper.StringToBytes(ctx.Event.Flag))
 				comment := ctx.Event.Comment
 				userid := ctx.Event.UserID
 				username := ctx.CardOrNickName(userid)
@@ -100,9 +92,7 @@ func init() {
 			org := ctx.State["regex_matched"].([]string)[2]
 			es := ctx.State["regex_matched"].([]string)[3]
 			other := ctx.State["regex_matched"].([]string)[4]
-			var buf [8]byte
-			copy(buf[1:], base14.DecodeFromString(es))
-			flag := strconv.FormatInt(int64(binary.BigEndian.Uint64(buf[:])), 10)
+			flag := helper.BytesToString(base14.DecodeFromString(es))
 			ok := cmd == "同意"
 			switch org {
 			case "申请":
