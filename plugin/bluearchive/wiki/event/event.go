@@ -86,7 +86,14 @@ func (e *Event) remainingTime() (hours, minutes, seconds int64, isStarted bool) 
 
 // GetEvents 从jsonBytes 中获取活动信息
 func (es *Events) GetEvents(jsonBytes []byte) *Events {
-	events := gjson.GetBytes(jsonBytes, "data.4.list").Array()
+	var events []gjson.Result
+	gjson.ParseBytes(jsonBytes).Get("data").ForEach(func(_, value gjson.Result) bool {
+		if value.Get("module.name").Str == "活动周历" {
+			events = value.Get("list").Array()
+			return false
+		}
+		return true
+	})
 	result := make(Events, 0, len(events))
 	for _, value := range events {
 		picurl := value.Get("picture").Str
