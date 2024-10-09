@@ -23,7 +23,7 @@ func init() {
 		}
 		for _, msg := range zero.GetTriggeredMessages(message.NewMessageIDFromInteger(id)) {
 			process.SleepAbout1sTo2s()
-			ctx.DeleteMessage(msg)
+			ctx.DeleteMessage(msg.ID())
 		}
 	})
 }
