@@ -24,7 +24,7 @@ const js = `{
     "#1": {
       "0409": {
         "identity": {
-          "name": "ZeroBot-Plugin",
+          "name": "RemiliaBot",
           "version": "%s"
         },
         "description": "",
@@ -57,14 +57,14 @@ const js = `{
           "0409": {
             "Comments": "OneBot plugins based on ZeroBot",
             "CompanyName": "FloatTech",
-            "FileDescription": "https://github.com/FloatTech/ZeroBot-Plugin",
+            "FileDescription": "RemiliaBot",
             "FileVersion": "%s",
             "InternalName": "",
             "LegalCopyright": "%s",
             "LegalTrademarks": "",
-            "OriginalFilename": "ZBP.EXE",
+            "OriginalFilename": "ZeroBot-Plugin.exe",
             "PrivateBuild": "",
-            "ProductName": "ZeroBot-Plugin",
+            "ProductName": "RemiliaBot",
             "ProductVersion": "%s",
             "SpecialBuild": ""
           }
