@@ -32,7 +32,14 @@ func (as *Announcements) PrintAnnouncements() []string {
 
 // GetAnnouncements 从jsonBytes 中获取公告信息
 func (as *Announcements) GetAnnouncements(jsonBytes []byte) *Announcements {
-	announcements := gjson.GetBytes(jsonBytes, "data.2.list").Array()
+	var announcements []gjson.Result
+	gjson.ParseBytes(jsonBytes).Get("data").ForEach(func(_, value gjson.Result) bool {
+		if value.Get("module.name").Str == "公告" {
+			announcements = value.Get("list").Array()
+			return false
+		}
+		return true
+	})
 	result := make(Announcements, 0, len(announcements))
 	for _, value := range announcements {
 		announcement := &Announcement{
