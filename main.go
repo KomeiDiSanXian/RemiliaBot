@@ -81,20 +81,20 @@ import (
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/jptingroom"   // 日语听力学习材料
 
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/kfccrazythursday" // 疯狂星期四
-	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/lolicon"    // lolicon 随机图片
-	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/music"      // 点歌
-	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/nativewife" // 本地老婆
-	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/nihongo"    // 日语语法学习
-	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/nsfw"       // nsfw图片识别
-	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/omikuji"    // 浅草寺求签
-	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/runcode"    // 在线运行代码
-	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/saucenao"   // 以图搜图
-	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/setutime"   // 来份涩图
-	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/tarot"      // 抽塔罗牌
-	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/tracemoe"   // 搜番
-	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/word_count" // 聊天热词
-	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/wordle"     // 猜单词
-	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/ymgal"      // 月幕galgame
+	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/lolicon"          // lolicon 随机图片
+	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/music"            // 点歌
+	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/nativewife"       // 本地老婆
+	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/nihongo"          // 日语语法学习
+	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/nsfw"             // nsfw图片识别
+	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/omikuji"          // 浅草寺求签
+	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/runcode"          // 在线运行代码
+	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/saucenao"         // 以图搜图
+	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/setutime"         // 来份涩图
+	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/tarot"            // 抽塔罗牌
+	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/tracemoe"         // 搜番
+	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/word_count"       // 聊天热词
+	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/wordle"           // 猜单词
+	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/ymgal"            // 月幕galgame
 
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/thesaurus" // 词典匹配回复
 

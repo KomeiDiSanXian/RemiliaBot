@@ -44,7 +44,7 @@ func init() {
 			// case "网易":
 			// 	ctx.SendChain(cloud163(ctx.State["regex_matched"].([]string)[2]))
 			// default: // 默认 网易
-				ctx.SendChain(cloud163(ctx.State["regex_matched"].([]string)[2]))
+			ctx.SendChain(cloud163(ctx.State["regex_matched"].([]string)[2]))
 			// }
 		})
 }
