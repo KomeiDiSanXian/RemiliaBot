@@ -12,6 +12,7 @@ import (
 	"github.com/sirupsen/logrus"
 	zero "github.com/wdvxdr1123/ZeroBot"
 	"github.com/wdvxdr1123/ZeroBot/message"
+	"github.com/wdvxdr1123/ZeroBot/utils/helper"
 )
 
 func init() {
@@ -28,14 +29,7 @@ func init() {
 			if ok {
 				su := zero.BotConfig.SuperUsers[0]
 				now := time.Unix(ctx.Event.Time, 0).Format("2006-01-02 15:04:05")
-				flag, err := strconv.ParseInt(ctx.Event.Flag, 10, 64)
-				if err != nil {
-					ctx.SendChain(message.Text("ERROR: ", err))
-					return
-				}
-				var buf [8]byte
-				binary.BigEndian.PutUint64(buf[:], uint64(flag))
-				es := base14.EncodeToString(buf[1:])
+				es := base14.EncodeToString(helper.StringToBytes(ctx.Event.Flag))
 				userid := ctx.Event.UserID
 				username := ctx.CardOrNickName(userid)
 				data := (storage)(c.GetData(-su))
